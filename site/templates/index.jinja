@@ -1,0 +1,12 @@
+{% extends "layouts/page.jinja" %}
+{% block content %}
+<div class="row">
+  <div class="col-8">
+    <h1>WOW Index Page</h1>
+  </div>
+  <div class="col-4">
+    <a class="btn btn-lg btn-block btn-danger" href="/live">Watch Live!</a>
+    {{ url_for('static', filename='test.png') }}
+  </div>
+</div>
+{% endblock %}
