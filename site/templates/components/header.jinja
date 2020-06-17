@@ -1,19 +1,23 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-info">
-    <div class="container">
-      <a class="navbar-brand" href="/">Way Out West!</a>
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <div class="container-md">
+      <a class="navbar-brand wow mr-3" href="/">Way Out West!</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks" aria-controls="navbarLinks" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarLinks">
         <ul class="navbar-nav mr-auto">
-          {% for link in links %}
-            <li class="nav-item{{ ' active' if request.path == link.link }}">
-              <a class="nav-link" href="{{ link.link }}">{{ link.title }}</a>
+          {% for title, link in links %}
+            <li class="nav-item{{ ' active' if request.path == link }}">
+              <a class="nav-link" href="{{ link }}">{{ title }}</a>
             </li>
           {% endfor %}
         </ul>
+      </div>
+      <div class="d-none d-lg-block">
+        <a class="btn btn-success" href="/send"><i class="fas fa-paper-plane pr-2"></i>Send in your pictures</a>
+        <a class="btn btn-danger ml-2" href="/live"><i class="fas fa-video pr-2"></i>Watch Live!</a>
       </div>
     </div>
   </nav>

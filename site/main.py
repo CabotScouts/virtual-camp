@@ -2,12 +2,22 @@ from flask import Flask, session, render_template
 
 app = Flask(__name__)
 
-links = [{"title": "Home", "link": "/"}, {"title": "Register", "link": "/register"}]
+links = [
+    ("Home", "/"),
+    ("Information", "/information"),
+    ("Sign Up", "/register"),
+    ("Camp Timetable", "/timetable"),
+]
 
 
 @app.route("/")
 def index():
     return render_template("index.jinja", links=links)
+
+
+@app.route("/information")
+def information():
+    return render_template("information.jinja", links=links)
 
 
 @app.route("/register")
@@ -23,11 +33,6 @@ def timetable():
 @app.route("/live")
 def live():
     return render_template("live.jinja", links=links)
-
-
-@app.route("/privacy")
-def privacy():
-    return render_template("privacy.jinja", links=links)
 
 
 @app.errorhandler(404)
