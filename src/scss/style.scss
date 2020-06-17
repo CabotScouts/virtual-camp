@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&family=Sriracha&display=swap');
+
+// Typography
+$font-family-sans-serif: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-size-base: 1.1rem;
+$line-height-base: 1.6;
+
+$primary: #0583C7;
+$danger: #EF233C;
+$dark: #2B2D42;
+
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+
+body {
+  background: $primary;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $dark;
+  font-weight: 900;
+}
+
+header {
+  box-shadow: 1px 1px darken($primary, 4%);
+}
+
+main {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: $gray-100;
+  box-shadow: 1px 1px darken($primary, 4%);
+}
+
+footer {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-size: 1rem;
+  text-shadow: 1px 1px darken($primary, 4%);
+}
+
+/* -- Navbar -- */
+.navbar-brand {
+  font-size: 2rem;
+}
+
+/* -- Branding -- */
+.wow {
+  font-family: 'Sriracha', cursive;
+  text-shadow: 1px 1px darken($primary, 8%);
+}
+
+.cabot-logo {
+  max-width: 175px;
+  padding: 15px;
+}
+
+.compass {
+  color: $primary;
+  font-size: 8rem;
+  margin: 15px;
+}
