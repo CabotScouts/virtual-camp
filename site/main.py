@@ -30,6 +30,16 @@ def timetable():
     return render_template("timetable.jinja", links=links)
 
 
+@app.route("/send", methods=["GET"])
+def sendForm():
+    return render_template("send-photo.jinja", links=links)
+
+
+@app.route("/send", methods=["POST"])
+def sendProcess():
+    return render_template("process-photo.jinja", links=links)
+
+
 @app.route("/live")
 def live():
     return render_template("live.jinja", links=links)
@@ -37,4 +47,9 @@ def live():
 
 @app.errorhandler(404)
 def notFoundError(error):
-    return render_template("404.jinja", links=links), 404
+    return render_template("error.jinja", links=links, error=error), 404
+
+
+@app.errorhandler(504)
+def serverError(error):
+    return render_template("error.jinja", links=links, error=error), 500
