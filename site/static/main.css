@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&family=Sriracha&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&family=Sriracha&?family=Lato:wght@400;700;900&display=swap);
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -11795,17 +11795,37 @@ body {
   background: #0583C7; }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
   color: #2B2D42;
-  font-weight: 900; }
+  font-weight: 700;
+  margin-bottom: 0.6rem; }
+
+h1 {
+  font-size: 2rem; }
+
+h2 {
+  font-size: 1.8rem; }
+
+h3 {
+  font-size: 1.6rem; }
+
+h4 {
+  font-size: 1.4rem; }
+
+h5 {
+  font-size: 1.2rem; }
+
+h6 {
+  font-size: 1.1rem; }
 
 header {
-  box-shadow: 1px 1px #0576b3; }
+  box-shadow: 1px 1px #0579b8; }
 
 main {
   padding-top: 20px;
   padding-bottom: 20px;
   background: #f8f9fa;
-  box-shadow: 1px 1px #0576b3; }
+  box-shadow: 1px 1px #0579b8; }
 
 footer {
   padding-top: 20px;
@@ -11819,7 +11839,9 @@ footer {
 
 /* -- Branding -- */
 .wow {
-  font-family: 'Sriracha', cursive;
+  font-family: 'Sriracha', cursive; }
+
+.navbar .wow {
   text-shadow: 1px 1px #04699f; }
 
 .cabot-logo {
