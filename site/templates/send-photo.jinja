@@ -1,0 +1,32 @@
+{% extends "layouts/page.jinja" %}
+{% block title %}Send in Photos{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-12 col-lg-8">
+    <h1>Send in your pictures and videos</h1>
+    <p>
+      Show us what you've been getting up to during the weekend by sharing your pictures and videos! We'll try to show as many as we can during the weekend across our live stream and social media.
+    </p>
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputName">Your Name*</label>
+          <input type="text" class="form-control" id="inputName" />
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputName">Your Group or Unit*</label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane pr-2"></i>Send</button>
+    </form>
+  </div>
+  <div class="col-12 col-lg-4">
+    <div class="alert alert-info">
+      <h5 class="alert-heading">Ask before you send!</h5>
+      <p>Anything you send in may be shown during the <span class="wow">Way Out West!</span> livestream, or on our Facebook page, so only send us pictures or videos you're happy for everybody to see.</p>
+      <p>Check with a parent/carer before you send any pictures or videos, and make sure you get permission from everybody in your photo or video too!</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
