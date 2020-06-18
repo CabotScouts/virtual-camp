@@ -7,10 +7,12 @@
     <script src="{{ url_for('static', filename='app.js')}}"></script>
     {% if self.title() %}<title>{% block title %}{% endblock %} - Way Out West!</title>
     {% else %}<title>Way Out West!</title>{% endif %}
+    {% block headjs %}{% endblock %}
   </head>
   <body>
     {% include "components/header.jinja" %}
     {% block main %}{% endblock %}
     {% include "components/footer.jinja" %}
+    {% block footjs %}{% endblock %}
   </body>
 </html>
