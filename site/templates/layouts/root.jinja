@@ -9,10 +9,8 @@
     {% else %}<title>Way Out West!</title>{% endif %}
     {% block headjs %}{% endblock %}
   </head>
-  <body>
-    {% include "components/header.jinja" %}
-    {% block main %}{% endblock %}
-    {% include "components/footer.jinja" %}
+  <body {% if self.bodyclass() %}class="{% block bodyclass %}{% endblock %}"{% endif %}>
+    {% block body %}{% endblock %}
     {% block footjs %}{% endblock %}
   </body>
 </html>
