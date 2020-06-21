@@ -1,31 +1,70 @@
 {% extends "layouts/page.jinja" %}
-{% block title %}Send in Photos{% endblock %}
+{% block title %}Share{% endblock %}
 {% block content %}
 <div class="row">
-  <div class="col-12 col-lg-8">
+  <div class="col-12">
     <h1>Send in your pictures and videos</h1>
+  </div>
+  <div class="col-12 col-lg-8">
     <p>
-      Show us what you've been getting up to during the weekend by sharing your pictures and videos! We'll try to show as many as we can during the weekend across our live stream and social media.
+      Show us what you've been getting up to during the camp by sending in your pictures and videos - we'll try to show as many as we can during the weekend across our <a href="{{ url_for('live') }}">live stream</a> and social media!
     </p>
-    <form>
+    <form method="POST" action="{{ url_for('sendProcess') }}">
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="inputName">Your Name*</label>
-          <input type="text" class="form-control" id="inputName" />
+          <label for="name">What is your name?</label>
+          <input required type="text" class="form-control" id="name" name="name"/>
         </div>
         <div class="form-group col-md-6">
-          <label for="inputName">Your Group or Unit*</label>
+          <label for="group">Which Group are you from?</label>
+          <select required class="form-control" id="group" name="group">
+            <option selected disabled value="">Choose...</option>
+            {% for group in groups %}
+            <option value="{{ group.id }}">{{ group.name }}</option>
+            {% endfor %}
+          </select>
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane pr-2"></i>Send</button>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <p>Choose your picture or video</p>
+          <div class="custom-file">
+            <input required type="file" class="custom-file-input" id="file" name="file" accept="image/*,video/*">
+            <label class="custom-file-label" for="file">Choose file</label>
+          </div>
+          <small id="fileHelpBlock" class="form-text text-muted">Maximum file size is 50MB, most common image and video file formats are accepted</small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-12">
+          <label for="comment">Is there anything you want to tell us about your picture or video?</label>
+          <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-12">
+          <div class="custom-control custom-checkbox">
+            <input required type="checkbox" class="custom-control-input" id="check" name="check">
+            <label class="custom-control-label" for="check">I have permission from a parent/guardian to send this picture or video to <span class="wow">Way Out West!</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-12">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane pr-2"></i>Send</button>
+        </div>
+      </div>
     </form>
   </div>
   <div class="col-12 col-lg-4">
-    <div class="alert alert-info">
+    <div class="alert alert-info mb-0">
       <h5 class="alert-heading">Ask before you send!</h5>
-      <p>Anything you send in may be shown during the <span class="wow">Way Out West!</span> livestream, or on our Facebook page, so only send us pictures or videos you're happy for everybody to see.</p>
-      <p>Check with a parent/carer before you send any pictures or videos, and make sure you get permission from everybody in your photo or video too!</p>
+      <p>Anything you send in may be shown during the <span class="wow">Way Out West!</span> live stream, or on our Facebook page, so only send us pictures and videos you're happy for everybody to see.</p>
+      <p>Check with a parent/guardian before you send any pictures or videos, and make sure you get permission from everybody in your picture or video too!</p>
     </div>
   </div>
 </div>
