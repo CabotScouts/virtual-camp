@@ -1,8 +1,10 @@
 {% extends "layouts/root.jinja" %}
-{% block main %}
+{% block body %}
+{% include "components/header.jinja" %}
 <main>
   <div class="container-md">
     {% block content %}{% endblock %}
   </div>
 </main>
+{% include "components/footer.jinja" %}
 {% endblock %}
