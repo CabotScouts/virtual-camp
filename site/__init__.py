@@ -14,7 +14,7 @@ links = [
     ("Camp Timetable", "/timetable"),
 ]
 
-
+# Static Pages
 @app.route("/")
 def index():
     return render_template("index.jinja", links=links)
@@ -35,13 +35,13 @@ def timetable():
     return render_template("timetable.jinja", links=links)
 
 
-@app.route("/send", methods=["GET"])
-def sendForm():
+@app.route("/share", methods=["GET"])
+def shareForm():
     return render_template("send-photo.jinja", links=links)
 
 
-@app.route("/send", methods=["POST"])
-def sendProcess():
+@app.route("/share", methods=["POST"])
+def shareProcess():
     # return render_template("process-photo.jinja", links=links)
     return jsonify(request.form)
 
@@ -51,6 +51,18 @@ def live():
     return render_template("live.jinja", links=links)
 
 
+# Auth Pages
+@app.route("/login", methods=["GET"])
+def groupLoginForm():
+    pass
+
+
+@app.route("/login", methods=["POST"])
+def groupLogin():
+    pass
+
+
+# Error Handlers
 @app.errorhandler(404)
 def notFoundError(error):
     return render_template("error.jinja", links=links, error=error), 404

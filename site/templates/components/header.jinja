@@ -16,8 +16,8 @@
         </ul>
       </div>
       <div class="d-none d-xl-block">
-        <a class="btn btn-success" href="/send"><i class="fas fa-star pr-2"></i>Share what you're doing</a>
-        <a class="btn btn-danger ml-2" href="/live"><i class="fas fa-video pr-2"></i>Watch live</a>
+        <a class="btn btn-success" href="{{ url_for('shareForm') }}"><i class="fas fa-star pr-2"></i>Share what you're doing</a>
+        <a class="btn btn-danger ml-2" href="{{ url_for('live') }}"><i class="fas fa-video pr-2"></i>Watch live</a>
         <!-- <a class="btn btn-info ml-2" href="/manage"><i class="fas fa-edit"></i> Manage <span class="badge badge-danger">1</span></a> -->
       </div>
     </div>
