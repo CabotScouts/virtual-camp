@@ -7,13 +7,24 @@
   </div>
   <div class="col-12 col-lg-8">
     <p>
-      Show us what you've been getting up to during the camp by sending in your pictures and videos, we'll try to show as many as we can during the weekend across our <a href="{{ url_for('live') }}">live stream</a> and <a href="" target="_blank" rel="nofollow">Facebook page</a>!
+      Show us what you've been getting up to during the camp by sending in your pictures and videos, we'll try to show as many as we can during the weekend across our <a href="{{ url_for('root.live') }}">live stream</a> and <a href="" target="_blank" rel="nofollow">Facebook page</a>!
     </p>
-    <form method="POST" action="{{ url_for('shareProcess') }}">
+
+  {% with messages = get_flashed_messages(category_filter=['danger', 'success']) %}
+    {% if messages %}
+      {% for type, message in messages %}
+      <div class="alert alert-{{ type }}">
+        {{ message|safe }}
+      </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+    <form method="POST" action="{{ url_for('root.shareProcess') }}" enctype="multipart/form-data">
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="name">What is your name?</label>
-          <input required type="text" class="form-control" id="name" name="name"/>
+          <input required type="text" class="form-control" id="name" name="name" />
         </div>
         <div class="form-group col-md-6">
           <label for="group">Which Group are you from?</label>

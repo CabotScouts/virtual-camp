@@ -1,37 +1,28 @@
 {% extends "layouts/page.jinja" %}
 {% block content %}
-<!-- <div class="row d-lg-none">
-  <div class="col-6">
-    <a class="btn btn-success btn-block" href="/send"><i class="fas fa-copy pr-2"></i>Send in your pictures</a>
-  </div>
-  <div class="col-6">
-    <a class="btn btn-danger btn-block" href="/live"><i class="fas fa-video pr-2"></i>Watch Live!</a>
-  </div>
-</div> -->
 <div class="row">
-  <div class="col-12">
-    <h1>Way Out West</h1>
-    <h2>To Do</h2>
-    <ul>
-      <li>
-        Front page layout &amp; content plan
-      </li>
-      <li>
-        Info page layout &amp; copy
-      </li>
-      <li class="text-strike">
-        Registration page layout &amp; copy - links to downloads?
-      </li>
-      <li>
-        Simple auth system - add users, change passwords
-      </li>
-      <li>
-        Thumbnail for live stream
-      </li>
-      <li>
-        Plan out WebRTC bits for live messages
-      </li>
-    </ul>
+  <div class="col-12 order-1">
+    <h1>Way Out West!</h1>
+  </div>
+  <div class="col-12 col-md-8 col-xl-12 order-2">
+    <p>On Saturday 25<sup>th</sup> to Sunday 26<sup>th</sup> of July, Cabot are holding a virtual camp for all young people in the District!</p>
+    <p>During the weekend each section will have their own programme of activities, and there'll also be some shared events for everybody to join in with - have a look at the <a href="{{ url_for('root.timetable') }}">camp timetable</a> to see what's happening.</p>
+    <p>Each section will be representing a different part of the West Country - <strong class="beavers">Cornwall (Beavers)</strong>, <strong class="cubs">Somerset (Cubs)</strong>, <strong class="scouts">Devon (Scouts)</strong> and <strong class="explorers">Bristol (Explorers and Network)</strong> - if you haven't already, make sure you <a href="{{ url_for('root.register') }}">sign up for the camp</a> to receive your section's activity pack and camp badge.</p>
+  </div>
+  <div class="col-12 col-md-12 order-4">
+    <!-- <div class="col-12 col-md-8"> -->
+      <h2>Camp Badge</h2>
+      <p>Everybody who joins in with the camp will receive a badge through the post!</p>
+      <p>Each section will be represented, along with their part of the West Country - the design for each section will be chosen from submitted entries.</p>
+      <p>Please return any badge design entries, with your name and parental email address to <a href="mailto:dc@cabotscouts.org.uk">dc@cabotscouts.org.uk</a> by midday on 30th June - design templates have been sent out by Section leaders.</p>
+    <!-- </div> -->
+    <!-- <div class="col-12 col-md-4">
+      < BADGE >
+    </div> -->
+  </div>
+  <div class="col-12 col-md-4 d-xl-none order-5 order-md-3">
+    <a class="btn btn-block btn-success" href="{{ url_for('root.shareForm') }}"><i class="fas fa-star pr-2"></i>Share what you're doing</a>
+    <a class="btn btn-block btn-danger" href="{{ url_for('root.live') }}"><i class="fas fa-video pr-2"></i>Watch live</a>
   </div>
 </div>
 {% endblock %}

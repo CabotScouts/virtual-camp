@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}">
+    <link rel="icon" type="image/png" sizes="64x64" href="{{ url_for('static', filename='favicon.png') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='appicon.png') }}" />
     <script src="{{ url_for('static', filename='app.js')}}"></script>
     {% if self.title() %}<title>{% block title %}{% endblock %} - Way Out West!</title>
     {% else %}<title>Way Out West!</title>{% endif %}
@@ -12,6 +14,6 @@
   <body {% if self.bodyclass() %}class="{% block bodyclass %}{% endblock %}"{% endif %}>
     {% block body %}{% endblock %}
     {% block footjs %}{% endblock %}
+    <!-- The full source code behind the site will be released at https://github.com/CabotExplorers/wayoutwest once the event has finished! -->
   </body>
 </html>
-<!-- Interested in seeing how this was built? The source code will be released at https://github.com/CabotExplorers/wayoutwest once the event has finished -->
