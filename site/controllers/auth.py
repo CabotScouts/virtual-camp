@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, request, flash, render_template, redirect, url_for
 from flask_login import login_required, login_user, logout_user
 
 from CabotAtHome.site import login_manager
@@ -11,7 +11,7 @@ login_manager.login_view = "auth.login"
 
 @login_manager.user_loader
 def loadUser(id):
-    return User.get(id)
+    return User.query.get(id)
 
 
 @blueprint.route("/login", methods=["GET"])
@@ -21,11 +21,11 @@ def login():
 
 @blueprint.route("/login", methods=["POST"])
 def processLogin():
-    u = User.query.filter_by(name=request.args.get("username")).first()
-    if u and u.key == request.args.get("key"):
+    u = User.query.filter_by(name=request.form["user"]).first()
+    if u and (u.key == request.form["key"]):
         login_user(u)
         flash("Successfully logged in", "success")
-        return redirect(url_for("manageIndex"))
+        return redirect(url_for("root.index"))
 
     else:
         flash("Username or key incorrect", "danger")
