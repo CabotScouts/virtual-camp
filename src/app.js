@@ -1,5 +1,6 @@
 import 'bootstrap';
-import bsCustomFileInput from 'bs-custom-file-input'
+import $ from 'jquery';
+import bsCustomFileInput from 'bs-custom-file-input';
 
 (function () {
   $(document).ready(function () {
