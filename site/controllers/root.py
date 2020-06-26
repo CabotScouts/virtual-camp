@@ -1,41 +1,53 @@
 from flask import Blueprint, request, flash, render_template, redirect, url_for
 from werkzeug.utils import secure_filename
 
-from CabotAtHome.site import links
+from CabotAtHome.site import app
 from CabotAtHome.site.models import Group, Share
 from CabotAtHome.site.utils import allowedFile
 
 blueprint = Blueprint("root", __name__)
 
 
+@app.context_processor
+def injectLinks():
+    return dict(
+        links=[
+            ("Home", "/"),
+            ("Sign Up", "/register"),
+            ("Camp Timetable", "/timetable"),
+            ("Gallery", "/gallery"),
+        ]
+    )
+
+
 @blueprint.route("/")
 def index():
-    return render_template("index.jinja", links=links)
+    return render_template("index.jinja")
 
 
 @blueprint.route("/organisation")
 def information():
-    return render_template("information.jinja", links=links)
+    return render_template("information.jinja")
 
 
 @blueprint.route("/register")
 def register():
-    return render_template("registration.jinja", links=links)
+    return render_template("registration.jinja")
 
 
 @blueprint.route("/timetable")
 def timetable():
-    return render_template("timetable.jinja", links=links)
+    return render_template("timetable.jinja")
 
 
 @blueprint.route("/live")
 def live():
-    return render_template("live.jinja", links=links)
+    return render_template("live.jinja")
 
 
 @blueprint.route("/share", methods=["GET"])
 def shareForm():
-    return render_template("send-photo.jinja", links=links)
+    return render_template("send-photo.jinja")
 
 
 @blueprint.route("/share", methods=["POST"])
@@ -79,4 +91,4 @@ def shareProcess():
 @blueprint.route("/gallery/<int:page>")
 def gallery(page):
     shares = Share.query.filter_by(approved=True, gallery=True)
-    return render_template("gallery.jinja", links=links, shares=shares, page=page)
+    return render_template("gallery.jinja", shares=shares, page=page)
