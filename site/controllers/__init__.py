@@ -26,5 +26,4 @@ class registerControllers:
 
     def register(self, app):
         for controller in self.loaded:
-            prefix = controller.prefix if hasattr(controller, "prefix") else None
-            app.register_blueprint(controller.blueprint, url_prefix=prefix)
+            app.register_blueprint(controller.blueprint)
