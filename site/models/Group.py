@@ -1,5 +1,6 @@
 from CabotAtHome.site import db
 from CabotAtHome.site.models import User
+from CabotAtHome.site.models.User import Role
 
 
 class Group(db.Model):
@@ -11,7 +12,7 @@ class Group(db.Model):
 
     def __init__(self, **kwargs):
         super(Group, self).__init__(**kwargs)
-        self.user = User(name=self.sanitisedName)
+        self.user = User(role=Role.GROUP)
 
     @property
     def sanitisedName(self):
