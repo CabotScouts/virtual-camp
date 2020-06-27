@@ -34,11 +34,11 @@ def login():
 
 @blueprint.route("/login", methods=["POST"])
 def processLogin():
-    u = User.query.filter_by(name=request.form["user"]).first()
+    u = User.query.filter_by(username=request.form["user"]).first()
     if u and (u.key == request.form["key"]):
         login_user(u)
         flash("Successfully logged in", "success")
-        return redirect(url_for("admin.index"))
+        return redirect(url_for("root.index"))
 
     else:
         flash("Username or key incorrect", "danger")
