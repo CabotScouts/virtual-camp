@@ -21,24 +21,24 @@ def injectLinks():
 
 @blueprint.route("/")
 def index():
-    return render_template("index.jinja")
+    return render_template("root/index.jinja")
 
 
 @blueprint.route("/organisation")
 def information():
-    return render_template("information.jinja")
+    return render_template("root/information.jinja")
 
 
 @blueprint.route("/register")
 def register():
-    return render_template("registration.jinja")
+    return render_template("root/registration.jinja")
 
 
 @blueprint.route("/timetable")
 def timetable():
-    return render_template("timetable.jinja")
+    return render_template("root/timetable.jinja")
 
 
 @blueprint.route("/live")
 def live():
-    return render_template("live.jinja")
+    return render_template("root/live.jinja")

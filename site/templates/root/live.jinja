@@ -1,0 +1,24 @@
+{% extends "layouts/page.jinja" %}
+{% block title %}Watch Live!{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <!-- <div class="col-12 col-lg-9 col-xl-10"> -->
+  <div class="col-12 col-md-8 text-center">
+    <h5>
+      <span class="wow">Way Out West!</span> will be live from 8am on Saturday 25<sup>th</sup> July
+    </h5>
+
+    <p>
+      If you haven't already, make sure you <a href="{{ url_for('root.register') }}">sign up for the camp</a> to receive your sections' activity pack and a camp badge!
+    </p>
+  </div>
+  <div class="col-12">
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/ITLkj9vSDeI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+  <!-- <div class="col-12 col-lg-3 col-xl-2">
+    <p>Live messages</p>
+  </div> -->
+</div>
+{% endblock %}
