@@ -7,6 +7,8 @@ from CabotAtHome.site.models import User, Group, Share
 
 blueprint = Blueprint("manage", __name__, url_prefix="/manage")
 
+sharesPerPage = 20
+
 
 @app.context_processor
 def injectShareCounts():
@@ -42,10 +44,11 @@ def index():
 
 # Shares
 @blueprint.route("/shares")
+@blueprint.route("/shares/<int:page>")
 @needs_manage
-def allShares():
+def allShares(page=1):
     title = "All Shares"
-    shares = Share.query.order_by(Share.id.desc()).all()
+    shares = Share.query.order_by(Share.id.desc()).paginate(page, sharesPerPage, False)
     return render_template("admin/shares.jinja", title=title, shares=shares)
 
 
@@ -57,42 +60,54 @@ def viewShare(id):
 
 
 @blueprint.route("/shares/approved")
+@blueprint.route("/shares/approved/<int:page>")
 @needs_manage
-def approvedShares():
+def approvedShares(page=1):
     title = "Approved Shares"
     shares = (
         Share.query.filter_by(approved=True, flagged=False)
         .order_by(Share.id.desc())
-        .all()
+        .paginate(page, sharesPerPage, False)
     )
     return render_template("admin/shares.jinja", title=title, shares=shares)
 
 
 @blueprint.route("/shares/pending")
+@blueprint.route("/shares/pending/<int:page>")
 @needs_manage
-def pendingShares():
+def pendingShares(page=1):
     title = "Pending Shares"
     shares = (
         Share.query.filter_by(approved=False, flagged=False)
         .order_by(Share.id.asc())
-        .all()
+        .paginate(page, sharesPerPage, False)
     )
     return render_template("admin/shares.jinja", title=title, shares=shares)
 
 
 @blueprint.route("/shares/flagged")
+@blueprint.route("/shares/flagged/<int:page>")
 @needs_manage
-def flaggedShares():
+def flaggedShares(page=1):
     title = "Flagged Shares"
-    shares = Share.query.filter_by(flagged=True).order_by(Share.id.asc()).all()
+    shares = (
+        Share.query.filter_by(flagged=True)
+        .order_by(Share.id.asc())
+        .paginate(page, sharesPerPage, False)
+    )
     return render_template("admin/shares.jinja", title=title, shares=shares)
 
 
 @blueprint.route("/shares/starred")
+@blueprint.route("/shares/starred/<int:page>")
 @needs_manage
-def starredShares():
+def starredShares(page=1):
     title = "Starred Shares"
-    shares = Share.query.filter_by(starred=True).order_by(Share.id.asc()).all()
+    shares = (
+        Share.query.filter_by(starred=True)
+        .order_by(Share.id.asc())
+        .paginate(page, sharesPerPage, False)
+    )
     return render_template("admin/shares.jinja", title=title, shares=shares)
 
 
