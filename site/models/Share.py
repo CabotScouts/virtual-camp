@@ -50,9 +50,7 @@ class Share(db.Model):
 
     def star(self):
         self.starred = not self.starred
-
-        if self.starred and not self.approved:
-            self.approved = True
+        self.approved = True
 
         db.session.add(self)
         db.session.commit()
