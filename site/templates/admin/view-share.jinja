@@ -5,36 +5,67 @@
 <div class="table-responsive">
   <table class="table">
     <tbody>
-      <tr><td scope="row">Submitted by</td><td>{{ share.name }}</td></tr>
-      <tr><td scope="row">Submitter IP</td><td>{{ share.ip }}</td></tr>
-      <tr><td scope="row">Group</td><td>{{ share.group.name }}</td></tr>
-      <tr><td scope="row">Status</td><td class="text-{{ share.statusColour }}">{{ share.status }}</td></tr>
-      <tr><td scope="row">Comment</td><td>{{ share.comment }}</td></tr>
-      <tr><td colspan="2">
-        <img class="img img-fluid" src="{{ url_for("share.get", image=share.file) }}"/>
-      </td></tr>
-      <tr><td colspan="2" class="text-right">
-        <div class="row">
-          <div class="col-12 col-md-4 mb-2">
-            <form method="POST" action="{{ url_for('manage.approveShare') }}">
-                <input type="hidden" name="id" value="{{ share.id }}" />
-                <button type="submit" class="btn btn-block btn-success"><i class="fas fa-check mr-2"></i>Approve</button>
-            </form>
+      <tr>
+        <td scope="row">Submitted by</td>
+        <td>{{ share.name }}</td>
+      </tr>
+
+      <tr>
+        <td scope="row">Group</td>
+        <td>{{ share.group.name }}</td>
+      </tr>
+
+      <tr>
+        <td scope="row">Comment</td>
+        <td>{{ share.comment }}</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <img class="img img-fluid" src="{{ url_for("share.get", image=share.file) }}"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td scope="row">Submitter IP</td>
+        <td>{{ share.ip }}</td>
+      </tr>
+
+      <tr>
+        <td scope="row">Status</td>
+        <td class="text-{{ share.statusColour }}">{{ share.status }}</td>
+      </tr>
+
+      <tr>
+        <td colspan="2" class="text-right">
+          <div class="row">
+            <div class="col-12 col-md-4 mb-2">
+              <form method="POST" action="{{ url_for('manage.approveShare') }}">
+                  <input type="hidden" name="id" value="{{ share.id }}" />
+                  <button type="submit" class="btn btn-block btn-success">
+                    <i class="fas fa-check mr-2"></i>Approve
+                  </button>
+              </form>
+            </div>
+            <div class="col-12 col-md-4 mb-2">
+              <form method="POST" action="{{ url_for('manage.flagShare') }}">
+                  <input type="hidden" name="id" value="{{ share.id }}" />
+                  <button type="submit" class="btn btn-block btn-danger">
+                    <i class="fas fa-flag mr-2"></i>Flag
+                  </button>
+              </form>
+            </div>
+            <div class="col-12 col-md-4 mb-2">
+              <form method="POST" action="{{ url_for('manage.starShare') }}">
+                  <input type="hidden" name="id" value="{{ share.id }}" />
+                  <button type="submit" class="btn btn-block btn-info">
+                    <i class="fas fa-star mr-2"></i>Star
+                  </button>
+              </form>
+            </div>
           </div>
-          <div class="col-12 col-md-4 mb-2">
-            <form method="POST" action="{{ url_for('manage.flagShare') }}">
-                <input type="hidden" name="id" value="{{ share.id }}" />
-                <button type="submit" class="btn btn-block btn-warning text-white"><i class="fas fa-flag mr-2"></i>Flag</button>
-            </form>
-          </div>
-          <div class="col-12 col-md-4 mb-2">
-            <form method="POST" action="{{ url_for('manage.starShare') }}">
-                <input type="hidden" name="id" value="{{ share.id }}" />
-                <button type="submit" class="btn btn-block btn-info"><i class="fas fa-star mr-2"></i>Star</button>
-            </form>
-          </div>
-        </div>
-      </td></tr>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
