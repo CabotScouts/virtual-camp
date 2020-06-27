@@ -85,7 +85,15 @@ def upload():
 def get(image):
     share = Share.query.filter_by(file=image).first_or_404()
 
-    if share.approved or current_user.hasPermission(Permission.MANAGE):
+    if (
+        share.starred
+        or (
+            share.approved
+            and current_user.hasPermission(Permission.GROUP)
+            and current_user.group_id == share.group_id
+        )
+        or current_user.hasPermission(Permission.MANAGE)
+    ):
         path = os.path.join(os.getcwd(), current_app.config["UPLOAD_FOLDER"])
         return send_from_directory(path, share.file)
 
@@ -93,9 +101,10 @@ def get(image):
         abort(403)
 
 
-@blueprint.route("/gallery", defaults={"page": 0})
+@blueprint.route("/gallery")
 @blueprint.route("/gallery/<int:page>")
-def gallery(page):
-    # shares = Share.query.filter_by(approved=True, gallery=True)
-    shares = Share.query.all()
-    return render_template("share/gallery.jinja", shares=shares, page=page)
+def gallery(page=0):
+    shares = Share.query.filter_by(approved=True, starred=True).paginate(
+        page, 20, False
+    )
+    return render_template("share/gallery.jinja", shares=shares)
