@@ -8,22 +8,23 @@ from flask import (
     render_template,
     redirect,
     url_for,
+    send_from_directory,
 )
 
 from CabotAtHome.site import db
 from CabotAtHome.site.models import Share, Group
 from CabotAtHome.site.utils import allowedFile, getFileExtension
 
-blueprint = Blueprint("share", __name__)
+blueprint = Blueprint("share", __name__, url_prefix="/share")
 
 
-@blueprint.route("/share", methods=["GET"])
+@blueprint.route("", methods=["GET"])
 def new():
     groups = Group.query.all()
     return render_template("share/new.jinja", groups=groups)
 
 
-@blueprint.route("/share", methods=["POST"])
+@blueprint.route("", methods=["POST"])
 def upload():
     if "group" not in request.form:
         flash(
@@ -75,6 +76,13 @@ def upload():
             "success",
         )
         return redirect(url_for("share.new"))
+
+
+@blueprint.route("/view/<path:image>")
+def get(image):
+    share = Share.query.filter_by(file=image).first_or_404()
+    path = os.path.join(os.getcwd(), current_app.config["UPLOAD_FOLDER"])
+    return send_from_directory(path, share.file)
 
 
 @blueprint.route("/gallery", defaults={"page": 0})
