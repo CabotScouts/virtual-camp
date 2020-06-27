@@ -3,6 +3,11 @@ from flask import Blueprint, render_template
 blueprint = Blueprint("errors", __name__)
 
 
+@blueprint.app_errorhandler(400)
+def badRequest(error):
+    return render_template("error.jinja", error=error), 400
+
+
 @blueprint.app_errorhandler(401)
 def unauthorisedError(error):
     return render_template("error.jinja", error=error), 401
@@ -16,6 +21,11 @@ def forbiddenError(error):
 @blueprint.app_errorhandler(404)
 def notFoundError(error):
     return render_template("error.jinja", error=error), 404
+
+
+@blueprint.app_errorhandler(405)
+def methodNotAllowed(error):
+    return render_template("error.jinja", error=error), 405
 
 
 @blueprint.app_errorhandler(504)
