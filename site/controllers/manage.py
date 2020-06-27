@@ -1,37 +1,105 @@
 from flask import Blueprint, request, flash, render_template, redirect, url_for
 from flask_login import current_user
 
+from CabotAtHome.site import app, db
 from CabotAtHome.site.auth import needs_manage, needs_admin
 from CabotAtHome.site.models import User, Group, Share
 
 blueprint = Blueprint("manage", __name__, url_prefix="/manage")
 
 
+@app.context_processor
+def injectShareCounts():
+    def pendingCount():
+        return Share.query.filter_by(approved=False).count()
+
+    def flaggedCount():
+        return Share.query.filter_by(flagged=True).count()
+
+    return dict(pendingCount=pendingCount, flaggedCount=flaggedCount)
+
+
 @blueprint.route("", strict_slashes=False)
 @needs_manage
 def index():
-    shares = Share.query.filter_by(approved=False).order_by(Share.id)
-    groups = Group.query.all()
-    return render_template("admin/index.jinja", shares=shares, groups=groups)
+    return render_template("admin/index.jinja")
 
 
+# Shares
+@blueprint.route("/shares")
+@needs_manage
+def allShares():
+    title = "All Shares"
+    shares = Share.query.order_by(Share.id.desc()).all()
+    return render_template("admin/shares.jinja", title=title, shares=shares)
+
+
+@blueprint.route("/shares/view/<int:id>")
+@needs_manage
+def viewShare(id):
+    share = Share.query.filter_by(id=id).first_or_404()
+    return render_template("admin/view-share.jinja", share=share)
+
+
+@blueprint.route("/shares/approved")
+@needs_manage
+def approvedShares():
+    title = "Approved Shares"
+    shares = Share.query.filter_by(approved=True, flagged=False).order_by(
+        Share.id.desc()
+    )
+    return render_template("admin/shares.jinja", title=title, shares=shares)
+
+
+@blueprint.route("/shares/pending")
+@needs_manage
+def pendingShares():
+    title = "Pending Shares"
+    shares = Share.query.filter_by(approved=False).order_by(Share.id.asc())
+    return render_template("admin/shares.jinja", title=title, shares=shares)
+
+
+@blueprint.route("/shares/flagged")
+@needs_manage
+def flaggedShares():
+    title = "Flagged Shares"
+    shares = Share.query.filter_by(flagged=True).order_by(Share.id.asc())
+    return render_template("admin/shares.jinja", title=title, shares=shares)
+
+
+# Groups/Users
 @blueprint.route("/users")
 @needs_admin
 def users():
-    users = User.query.filter_by(group=None)
+    users = User.query.filter_by(group=None).order_by(User.username)
     return render_template("admin/users.jinja", users=users)
 
 
 @blueprint.route("/users/add", methods=["POST"])
 @needs_admin
 def addUser():
-    users = User.query.filter_by(group=None)
+    user = User.query.filter_by(username=request.form["username"]).first()
+
+    if user:
+        flash("A user with that name already exists", "danger")
+        return redirect(url_for("manage.users"))
+
+    if request.form["username"] == "":
+        flash("A username is required", "danger")
+        return redirect(url_for("manage.users"))
+
+    new = User(username=request.form["username"], role=request.form["role"])
+    db.session.add(new)
+    db.session.commit()
+
     return redirect(url_for("manage.users"))
 
 
-@blueprint.route("users/regenerate-key/<int:id>")
+@blueprint.route("users/regenerate-key", methods=["POST"])
 @needs_admin
-def regenerateKey(id):
+def regenerateKey():
+    id = request.form["id"]
+
     user = User.query.filter_by(id=id).first()
     if not user:
         flash(f"Unknown user <#{id}>", "danger")
@@ -41,6 +109,52 @@ def regenerateKey(id):
         flash("You can't regenerate your own key", "danger")
         return redirect(url_for("manage.users"))
 
+    user.generateKey()
+    db.session.add(user)
+    db.session.commit()
+    flash(f"Regenerated key for { user.name }", "success")
+    next = "manage.groups" if request.form["return"] == "group" else "manage.users"
+    return redirect(url_for(next))
+
+
+@blueprint.route("users/update-role", methods=["POST"])
+@needs_admin
+def updateRole():
+    id = request.form["id"]
+
+    user = User.query.filter_by(id=id).first()
+    if not user:
+        flash(f"Unknown user <#{id}>", "danger")
+        return redirect(url_for("manage.users"))
+
+    if user.id == current_user.id:
+        flash("You can't change your own role", "danger")
+        return redirect(url_for("manage.users"))
+
+    user.role = request.form["role"]
+    db.session.add(user)
+    db.session.commit()
+    flash(f"Updated role for { user.name }", "success")
+    return redirect(url_for("manage.users"))
+
+
+@blueprint.route("users/delete", methods=["POST"])
+@needs_admin
+def deleteUser():
+    id = request.form["id"]
+
+    user = User.query.filter_by(id=id).first()
+    if not user:
+        flash(f"Unknown user <#{id}>", "danger")
+        return redirect(url_for("manage.users"))
+
+    if user.id == current_user.id:
+        flash("You can't delete yourself", "danger")
+        return redirect(url_for("manage.users"))
+
+    db.session.delete(user)
+    db.session.commit()
+    flash(f"Removed { user.name }", "warning")
     return redirect(url_for("manage.users"))
 
 

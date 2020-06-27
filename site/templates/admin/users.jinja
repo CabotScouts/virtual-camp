@@ -1,0 +1,88 @@
+{% extends "layouts/admin.jinja" %}
+{% block title %}Users - Admin{% endblock %}
+{% block content %}
+<h1>Users</h1>
+<form method="POST" action="{{ url_for('manage.addUser') }}">
+  <div class="form-row">
+    <div class="form-group col align-self-center">
+      <h5 class="mb-0">New user</h5>
+    </div>
+    <div class="form-group col-12 col-lg-4">
+      <input class="form-control" type="text" name="username" placeholder="Username" />
+    </div>
+    <div class="form-group col-10 col-lg-4">
+      <select class="form-control" name="role">
+        <option disabled>Choose</option>
+        <option value="0">Guest</option>
+        <option value="1">User</option>
+        <option value="3">Manager</option>
+        <option value="7">Admin</option>
+      </select>
+    </div>
+    <div class="form-group col">
+      <button type="submit" class="form-control btn-primary btn-sm" title="Add user"><i class="fas fa-plus"></i></button>
+    </div>
+  </div>
+</form>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">User</th>
+      <th scope="col">Role</th>
+      <th scope="col">Key</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td class="align-middle">{{ user.name }}</td>
+      <td>
+        {% if user.id != current_user.id %}
+        <form method="POST" action="{{ url_for('manage.updateRole') }}">
+          <input type="hidden" name="id" value="{{ user.id }}" />
+          <div class="form-row">
+            <div class="col-6 col-md-10">
+              <select class="form-control" name="role">
+                <option selected value="{{ user.role }}">{{ user.role|roleName }}</option>
+                <option disabled>New Role</option>
+                <option value="0">Guest</option>
+                <option value="1">User</option>
+                <option value="3">Manager</option>
+                <option value="7">Admin</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-2">
+              <button type="submit" class="form-control btn-info btn-sm" data-toggle="tooltip" data-placement="right" title="Update role"><i class="fas fa-pen"></i></button>
+            </div>
+          </div>
+        </form>
+        {% endif %}
+      </td>
+      <td class="align-middle">
+        {{ user.key }}
+      </td>
+      <td>
+        {% if user.id != current_user.id %}
+        <div class="form-row">
+          <div class="col-6">
+            <form method="POST" action="{{ url_for('manage.regenerateKey') }}">
+              <input type="hidden" name="id" value="{{ user.id }}" />
+              <input type="hidden" name="return" value="user" />
+              <button type="submit" class="form-control d-inline btn-info btn-sm" data-toggle="tooltip" data-placement="right" title="Regenerate key"><i class="fas fa-key"></i></button>
+            </form>
+          </div>
+          <div class="col-6">
+            <form method="POST" action="{{ url_for('manage.deleteUser') }}">
+              <input type="hidden" name="id" value="{{ user.id }}" />
+              <button type="submit" class="form-control btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Delete user"><i class="fas fa-times"></i></button>
+            </form>
+          </div>
+        </div>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

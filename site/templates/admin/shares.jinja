@@ -1,0 +1,20 @@
+{% extends "layouts/admin.jinja" %}
+{% block title %}{{ title }} - Admin{% endblock %}
+{% block content %}
+<h1>{{ title }}</h1>
+<table class="table table-hover">
+  <tbody>
+    {% for share in shares %}
+    <tr id="share-{{ share.id }}" class="table-{{ share.status }} d-flex">
+      <td class="col-9 col-md-11"><img class="img img-fluid" src="{{ url_for("share.get", image=share.file) }}"/></td>
+      <td class="col-3 col-md-1 text-right">
+        <a href="{{ url_for('manage.viewShare', id=share.id) }}" class="btn btn-primary btn-block"><i class="fas fa-eye"></i></a>
+        <a href="#" class="btn btn-success btn-block"><i class="fas fa-check"></i></a>
+        <a href="#" class="btn btn-info btn-block text-white"><i class="fas fa-star"></i></a>
+        <a href="#" class="btn btn-warning btn-block text-white"><i class="fas fa-flag"></i></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
