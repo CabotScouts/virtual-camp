@@ -2,15 +2,6 @@
 {% block bodyclass %}dark{% endblock %}
 {% block title %}Admin Login{% endblock %}
 {% block content %}
-{% with messages = get_flashed_messages(with_categories=True, category_filter=['danger', 'success']) %}
-  {% if messages %}
-    {% for type, message in messages %}
-    <div class="alert alert-{{ type }}">
-      {{ message|safe }}
-    </div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
 <div class="card login-form">
   <div class="card-body">
     <h4 class="card-title">Admin Login</h4>
