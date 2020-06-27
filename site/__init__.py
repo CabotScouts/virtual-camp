@@ -15,18 +15,19 @@ login_manager.init_app(app)
 
 ## TEST DB DATA
 from CabotAtHome.site.models import User, Group, Share
+from CabotAtHome.site.models.User import UserType
 
 db.create_all()
+
+users = ["owen"]
+for user in users:
+    u = User(name=user, type=UserType.ADMIN)
+    db.session.add(u)
 
 groups = ["1st Bishopston", "7th Bristol"]
 for group in groups:
     g = Group(name=group)
     db.session.add(g)
-
-users = [("owen", 1001)]
-for user in users:
-    u = User(name=user[0], key=user[1])
-    db.session.add(u)
 
 db.session.commit()
 ## TEST DB DATA
