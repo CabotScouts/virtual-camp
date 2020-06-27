@@ -4,8 +4,13 @@ blueprint = Blueprint("errors", __name__)
 
 
 @blueprint.app_errorhandler(401)
-def notFoundError(error):
+def unauthorisedError(error):
     return render_template("error.jinja", error=error), 401
+
+
+@blueprint.app_errorhandler(403)
+def forbiddenError(error):
+    return render_template("error.jinja", error=error), 403
 
 
 @blueprint.app_errorhandler(404)
