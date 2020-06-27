@@ -29,7 +29,7 @@ class Share(db.Model):
         self.generateName(ext)
 
     def generateName(self, ext):
-        generated = randomString(12)
+        generated = randomString(15)
         check = Share.query.filter_by(file=generated).count()
         if check > 0:
             self.generateName()
