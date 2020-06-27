@@ -11,7 +11,7 @@ class Share(db.Model):
     ip = db.Column(db.String(15), nullable=False)
 
     name = db.Column(db.String(50))
-    file = db.Column(db.String(120), nullable=False)
+    file = db.Column(db.String(20), nullable=False)
     comment = db.Column(db.Text)
 
     group_id = db.Column(db.Integer, db.ForeignKey("group.id"), nullable=False)
