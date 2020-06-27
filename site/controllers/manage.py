@@ -10,13 +10,28 @@ blueprint = Blueprint("manage", __name__, url_prefix="/manage")
 
 @app.context_processor
 def injectShareCounts():
+    def totalCount():
+        return Share.query.count()
+
+    def approvedCount():
+        return Share.query.filter_by(approved=True, flagged=False).count()
+
     def pendingCount():
-        return Share.query.filter_by(approved=False).count()
+        return Share.query.filter_by(approved=False, flagged=False).count()
 
     def flaggedCount():
         return Share.query.filter_by(flagged=True).count()
 
-    return dict(pendingCount=pendingCount, flaggedCount=flaggedCount)
+    def starredCount():
+        return Share.query.filter_by(starred=True).count()
+
+    return dict(
+        totalCount=totalCount,
+        approvedCount=approvedCount,
+        pendingCount=pendingCount,
+        flaggedCount=flaggedCount,
+        starredCount=starredCount,
+    )
 
 
 @blueprint.route("", strict_slashes=False)
@@ -45,8 +60,10 @@ def viewShare(id):
 @needs_manage
 def approvedShares():
     title = "Approved Shares"
-    shares = Share.query.filter_by(approved=True, flagged=False).order_by(
-        Share.id.desc()
+    shares = (
+        Share.query.filter_by(approved=True, flagged=False)
+        .order_by(Share.id.desc())
+        .all()
     )
     return render_template("admin/shares.jinja", title=title, shares=shares)
 
@@ -55,7 +72,11 @@ def approvedShares():
 @needs_manage
 def pendingShares():
     title = "Pending Shares"
-    shares = Share.query.filter_by(approved=False).order_by(Share.id.asc())
+    shares = (
+        Share.query.filter_by(approved=False, flagged=False)
+        .order_by(Share.id.asc())
+        .all()
+    )
     return render_template("admin/shares.jinja", title=title, shares=shares)
 
 
@@ -63,8 +84,40 @@ def pendingShares():
 @needs_manage
 def flaggedShares():
     title = "Flagged Shares"
-    shares = Share.query.filter_by(flagged=True).order_by(Share.id.asc())
+    shares = Share.query.filter_by(flagged=True).order_by(Share.id.asc()).all()
     return render_template("admin/shares.jinja", title=title, shares=shares)
+
+
+@blueprint.route("/shares/starred")
+@needs_manage
+def starredShares():
+    title = "Starred Shares"
+    shares = Share.query.filter_by(starred=True).order_by(Share.id.asc()).all()
+    return render_template("admin/shares.jinja", title=title, shares=shares)
+
+
+@blueprint.route("/shares/approve", methods=["POST"])
+@needs_manage
+def approveShare():
+    share = Share.query.filter_by(id=request.form["id"]).first()
+    share.approve()
+    return redirect(request.referrer)
+
+
+@blueprint.route("/shares/flag", methods=["POST"])
+@needs_manage
+def flagShare():
+    share = Share.query.filter_by(id=request.form["id"]).first()
+    share.flag()
+    return redirect(request.referrer)
+
+
+@blueprint.route("/shares/star", methods=["POST"])
+@needs_manage
+def starShare():
+    share = Share.query.filter_by(id=request.form["id"]).first()
+    share.star()
+    return redirect(request.referrer)
 
 
 # Groups/Users

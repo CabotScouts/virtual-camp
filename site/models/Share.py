@@ -19,7 +19,7 @@ class Share(db.Model):
 
     approved = db.Column(db.Boolean, default=False)
     flagged = db.Column(db.Boolean, default=False)
-    gallery = db.Column(db.Boolean, default=False)
+    starred = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
         return f"<Share ({self.id}, {self.file})>"
@@ -36,8 +36,45 @@ class Share(db.Model):
         else:
             self.file = f"{generated}.{ext}"
 
+    def approve(self):
+        self.approved = True
+        self.flagged = False
+        db.session.add(self)
+        db.session.commit()
+
+    def flag(self):
+        self.flagged = True
+        self.approved = False
+        db.session.add(self)
+        db.session.commit()
+
+    def star(self):
+        self.starred = not self.starred
+
+        if self.starred and not self.approved:
+            self.approved = True
+
+        db.session.add(self)
+        db.session.commit()
+
     @property
     def status(self):
+        if self.flagged:
+            return "Flagged"
+
+        if not self.approved:
+            return "Pending"
+
+        if self.starred:
+            return "Starred"
+
+        if self.approved:
+            return "Approved"
+
+        return ""
+
+    @property
+    def statusColour(self):
         # Map status of share to a bootstrap class
         if self.flagged:
             return "danger"
@@ -45,17 +82,10 @@ class Share(db.Model):
         if not self.approved:
             return "warning"
 
-        if self.gallery:
+        if self.starred:
             return "info"
 
-        return "success"
+        if self.approved:
+            return "success"
 
-    def approve(self):
-        self.approved = True
-        db.session.add(self)
-        db.session.commit()
-
-    def flag(self):
-        self.flagged = True
-        db.session.add(self)
-        db.session.commit()
+        return ""

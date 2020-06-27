@@ -9,10 +9,13 @@ from flask import (
     redirect,
     url_for,
     send_from_directory,
+    abort,
 )
+from flask_login import current_user
 
 from CabotAtHome.site import db
 from CabotAtHome.site.models import Share, Group
+from CabotAtHome.site.models.User import Permission
 from CabotAtHome.site.utils import allowedFile, getFileExtension
 
 blueprint = Blueprint("share", __name__, url_prefix="/share")
@@ -81,8 +84,13 @@ def upload():
 @blueprint.route("/view/<path:image>")
 def get(image):
     share = Share.query.filter_by(file=image).first_or_404()
-    path = os.path.join(os.getcwd(), current_app.config["UPLOAD_FOLDER"])
-    return send_from_directory(path, share.file)
+
+    if share.approved or current_user.hasPermission(Permission.MANAGE):
+        path = os.path.join(os.getcwd(), current_app.config["UPLOAD_FOLDER"])
+        return send_from_directory(path, share.file)
+
+    else:
+        abort(403)
 
 
 @blueprint.route("/gallery", defaults={"page": 0})
