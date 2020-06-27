@@ -1,4 +1,14 @@
-from flask import Blueprint, request, flash, render_template, redirect, url_for
+import os
+
+from flask import (
+    current_app,
+    Blueprint,
+    request,
+    flash,
+    render_template,
+    redirect,
+    url_for,
+)
 from flask_login import current_user
 
 from CabotAtHome.site import app, db
@@ -111,11 +121,17 @@ def starredShares(page=1):
     return render_template("admin/shares.jinja", title=title, shares=shares)
 
 
+# Share Modifiers
 @blueprint.route("/shares/approve", methods=["POST"])
 @needs_manage
 def approveShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
-    share.approve()
+    if share:
+        share.approve()
+        flash("Share approved", "success")
+    else:
+        flash("Share not found", "danger")
+
     return redirect(request.referrer)
 
 
@@ -123,7 +139,12 @@ def approveShare():
 @needs_manage
 def flagShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
-    share.flag()
+    if share:
+        share.flag()
+        flash("Share flagged", "warning")
+    else:
+        flash("Share not found", "danger")
+
     return redirect(request.referrer)
 
 
@@ -131,7 +152,36 @@ def flagShare():
 @needs_manage
 def starShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
-    share.star()
+    if share:
+        starred = share.star()
+        if starred:
+            flash("Share starred", "info")
+        else:
+            flash("Share unstarred", "warning")
+    else:
+        flash("Share not found", "danger")
+
+    return redirect(request.referrer)
+
+
+@blueprint.route("/shares/delete", methods=["POST"])
+@needs_admin
+def deleteShare():
+    share = Share.query.filter_by(id=request.form["id"]).first()
+    if share:
+        path = os.path.join(
+            os.getcwd(), current_app.config["UPLOAD_FOLDER"], share.file
+        )
+        if os.path.isfile(path):
+            os.remove(path)
+
+        # TODO: turn this into a soft delete (so we retain time & IP)
+        db.session.delete(share)
+        db.session.commit()
+        flash("Share removed", "warning")
+    else:
+        flash("Share not found", "danger")
+    # For deletes from the single view page this will 404 for now
     return redirect(request.referrer)
 
 

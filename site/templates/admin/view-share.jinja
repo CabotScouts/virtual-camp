@@ -22,7 +22,7 @@
 
       <tr>
         <td colspan="2">
-          <img class="img img-fluid" src="{{ url_for("share.get", image=share.file) }}"/>
+          <img class="img img-fluid img-thumbnail" src="{{ url_for("share.get", image=share.file) }}"/>
         </td>
       </tr>
 
@@ -33,29 +33,19 @@
 
       <tr>
         <td scope="row">Status</td>
-        <td class="text-{{ share.statusColour }}">{{ share.status }}</td>
+        <td>
+          <h4>
+            <span class="badge badge-lg badge-{{ share.statusColour }}">
+              {{ share.status }}
+            </span>
+          </h4>
+        </td>
       </tr>
 
       <tr>
         <td colspan="2" class="text-right">
           <div class="row">
-            <div class="col-12 col-md-4 mb-2">
-              <form method="POST" action="{{ url_for('manage.approveShare') }}">
-                  <input type="hidden" name="id" value="{{ share.id }}" />
-                  <button type="submit" class="btn btn-block btn-success">
-                    <i class="fas fa-check mr-2"></i>Approve
-                  </button>
-              </form>
-            </div>
-            <div class="col-12 col-md-4 mb-2">
-              <form method="POST" action="{{ url_for('manage.flagShare') }}">
-                  <input type="hidden" name="id" value="{{ share.id }}" />
-                  <button type="submit" class="btn btn-block btn-danger">
-                    <i class="fas fa-flag mr-2"></i>Flag
-                  </button>
-              </form>
-            </div>
-            <div class="col-12 col-md-4 mb-2">
+            <div class="col-12 col-md mb-2">
               <form method="POST" action="{{ url_for('manage.starShare') }}">
                   <input type="hidden" name="id" value="{{ share.id }}" />
                   <button type="submit" class="btn btn-block btn-info">
@@ -63,6 +53,34 @@
                   </button>
               </form>
             </div>
+
+            <div class="col-12 col-md mb-2">
+              <form method="POST" action="{{ url_for('manage.approveShare') }}">
+                  <input type="hidden" name="id" value="{{ share.id }}" />
+                  <button type="submit" class="btn btn-block btn-success">
+                    <i class="fas fa-check mr-2"></i>Approve
+                  </button>
+              </form>
+            </div>
+            <div class="col-12 col-md mb-2">
+              <form method="POST" action="{{ url_for('manage.flagShare') }}">
+                  <input type="hidden" name="id" value="{{ share.id }}" />
+                  <button type="submit" class="btn btn-block btn-danger">
+                    <i class="fas fa-flag mr-2"></i>Flag
+                  </button>
+              </form>
+            </div>
+
+            {% if hasAdmin() %}
+            <div class="col-12 col-md mb-2">
+              <form method="POST" action="{{ url_for('manage.deleteShare') }}">
+                  <input type="hidden" name="id" value="{{ share.id }}" />
+                  <button type="submit" class="btn btn-block btn-dark">
+                    <i class="fas fa-times mr-2"></i>Remove
+                  </button>
+              </form>
+            </div>
+            {% endif %}
           </div>
         </td>
       </tr>

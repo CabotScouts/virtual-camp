@@ -20,6 +20,7 @@ class Share(db.Model):
     approved = db.Column(db.Boolean, default=False)
     flagged = db.Column(db.Boolean, default=False)
     starred = db.Column(db.Boolean, default=False)
+    deleted = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
         return f"<Share ({self.id}, {self.file})>"
@@ -51,7 +52,12 @@ class Share(db.Model):
     def star(self):
         self.starred = not self.starred
         self.approved = True
+        db.session.add(self)
+        db.session.commit()
+        return self.starred
 
+    def delete(self):
+        self.deleted = True
         db.session.add(self)
         db.session.commit()
 
