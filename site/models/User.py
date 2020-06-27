@@ -1,4 +1,3 @@
-from enum import Enum
 from flask_login import UserMixin, AnonymousUserMixin
 
 from CabotAtHome.site import db, login_manager
