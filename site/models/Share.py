@@ -15,7 +15,7 @@ class Share(db.Model):
     comment = db.Column(db.Text)
 
     group_id = db.Column(db.Integer, db.ForeignKey("group.id"), nullable=False)
-    group = db.relationship("Group", backref=db.backref("share", lazy=True))
+    group = db.relationship("Group", backref=db.backref("shares", lazy=True))
 
     approved = db.Column(db.Boolean, default=False)
     flagged = db.Column(db.Boolean, default=False)
@@ -36,5 +36,26 @@ class Share(db.Model):
         else:
             self.file = f"{generated}.{ext}"
 
+    @property
+    def status(self):
+        # Map status of share to a bootstrap class
+        if self.flagged:
+            return "danger"
+
+        if not self.approved:
+            return "warning"
+
+        if self.gallery:
+            return "info"
+
+        return "success"
+
     def approve(self):
         self.approved = True
+        db.session.add(self)
+        db.session.commit()
+
+    def flag(self):
+        self.flagged = True
+        db.session.add(self)
+        db.session.commit()
