@@ -1,12 +1,25 @@
 from flask import Blueprint, request, flash, render_template, redirect, url_for
-from flask_login import login_required, login_user, logout_user
+from flask_login import current_user, login_required, login_user, logout_user
 
+from CabotAtHome.site import app
 from CabotAtHome.site import login_manager
 from CabotAtHome.site.models import User
+from CabotAtHome.site.models.User import Permission
 
 blueprint = Blueprint("auth", __name__)
 
 login_manager.login_view = "auth.login"
+
+
+@app.context_processor
+def injectAuthChecks():
+    def hasAdmin():
+        return current_user.hasPermission(Permission.ADMIN)
+
+    def hasManage():
+        return current_user.hasPermission(Permission.MANAGE)
+
+    return dict(hasAdmin=hasAdmin, hasManage=hasManage)
 
 
 @login_manager.user_loader
@@ -25,7 +38,7 @@ def processLogin():
     if u and (u.key == request.form["key"]):
         login_user(u)
         flash("Successfully logged in", "success")
-        return redirect(url_for("root.index"))
+        return redirect(url_for("admin.index"))
 
     else:
         flash("Username or key incorrect", "danger")
