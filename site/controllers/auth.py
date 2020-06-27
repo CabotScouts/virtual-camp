@@ -22,6 +22,12 @@ def injectAuthChecks():
     return dict(hasAdmin=hasAdmin, hasManage=hasManage)
 
 
+@app.template_filter("roleName")
+def roleName(role):
+    roles = {0: "Guest", 1: "User", 3: "Manager", 7: "Admin"}
+    return roles[role] if role in roles else "UNKNOWN"
+
+
 @login_manager.user_loader
 def loadUser(id):
     return User.query.get(id)
