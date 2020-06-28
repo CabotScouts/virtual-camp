@@ -6,8 +6,10 @@ from flask_login import LoginManager
 from flask_wtf.csrf import CSRFProtect
 
 db = SQLAlchemy()
-login_manager = LoginManager()
 csrf = CSRFProtect()
+
+login_manager = LoginManager()
+login_manager.session_protection = "strong"
 
 
 def create_app():
@@ -17,7 +19,6 @@ def create_app():
     db.init_app(app)
     login_manager.init_app(app)
     csrf.init_app(app)
-    # login_manager.session_protection = "strong"
 
     from app.controllers import registerControllers
     from app.models import User, Group, Role
