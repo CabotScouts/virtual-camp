@@ -5,7 +5,7 @@ from app.models import Group
 blueprint = Blueprint("root", __name__)
 
 
-@blueprint.context_processor
+@blueprint.app_context_processor
 def injectLinks():
     # Inject main menu links into every template render automatically
     return dict(
