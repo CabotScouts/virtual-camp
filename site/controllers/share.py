@@ -104,7 +104,9 @@ def get(image):
 @blueprint.route("/gallery")
 @blueprint.route("/gallery/<int:page>")
 def gallery(page=0):
-    shares = Share.query.filter_by(approved=True, starred=True).paginate(
-        page, 20, False
+    shares = (
+        Share.query.filter_by(approved=True, starred=True)
+        .order_by(Share.id.desc())
+        .paginate(page, 20, False)
     )
     return render_template("share/gallery.jinja", shares=shares)
