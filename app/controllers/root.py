@@ -1,7 +1,5 @@
 from flask import Blueprint, request, flash, render_template, redirect, url_for
 
-from app.models import Group
-
 blueprint = Blueprint("root", __name__)
 
 
