@@ -23,7 +23,7 @@ class Role:
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True)
-    key = db.Column(db.String(6))
+    key = db.Column(db.String(12))
 
     role = db.Column(db.Integer, nullable=False, default=Role.USER)
 
