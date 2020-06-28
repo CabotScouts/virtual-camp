@@ -1,7 +1,6 @@
 from flask import Blueprint, request, flash, render_template, redirect, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 
-from app import app
 from app import login_manager
 from app.models import User
 from app.models.User import Permission
@@ -11,7 +10,7 @@ blueprint = Blueprint("auth", __name__)
 login_manager.login_view = "auth.login"
 
 
-@app.context_processor
+@blueprint.app_context_processor
 def injectAuthChecks():
     def hasAdmin():
         return current_user.hasPermission(Permission.ADMIN)
@@ -22,7 +21,7 @@ def injectAuthChecks():
     return dict(hasAdmin=hasAdmin, hasManage=hasManage)
 
 
-@app.template_filter("roleName")
+@blueprint.app_template_filter("roleName")
 def roleName(role):
     roles = {0: "Guest", 1: "User", 3: "Manager", 7: "Admin"}
     return roles[role] if role in roles else "UNKNOWN"

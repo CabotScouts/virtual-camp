@@ -1,3 +1,3 @@
-from .User import User
-from .Group import Group
-from .Share import Share
+from .User import *
+from .Group import *
+from .Share import *

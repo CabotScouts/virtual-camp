@@ -11,7 +11,7 @@ from flask import (
 )
 from flask_login import current_user
 
-from app import app, db
+from app import db
 from app.auth import needs_manage, needs_admin
 from app.models import User, Group, Share
 
@@ -20,7 +20,7 @@ blueprint = Blueprint("manage", __name__, url_prefix="/manage")
 sharesPerPage = 20
 
 
-@app.context_processor
+@blueprint.context_processor
 def injectShareCounts():
     def totalCount():
         return Share.query.count()
@@ -181,8 +181,7 @@ def deleteShare():
         flash("Share removed", "warning")
     else:
         flash("Share not found", "danger")
-    # For deletes from the single view page this will 404 for now
-    return redirect(request.referrer)
+    return redirect(url_for("manage.index"))
 
 
 # Groups/Users

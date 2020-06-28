@@ -1,12 +1,11 @@
 from flask import Blueprint, request, flash, render_template, redirect, url_for
 
-from app import app
 from app.models import Group
 
 blueprint = Blueprint("root", __name__)
 
 
-@app.context_processor
+@blueprint.context_processor
 def injectLinks():
     # Inject main menu links into every template render automatically
     return dict(

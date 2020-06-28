@@ -1,7 +1,6 @@
 from flask import Blueprint, request, render_template, flash, redirect, url_for
 from flask_login import login_required, login_user, logout_user, current_user
 
-from app import app
 from app.models import Group, Share
 from app.models.User import Permission
 from app.auth import needs_group
@@ -9,7 +8,7 @@ from app.auth import needs_group
 blueprint = Blueprint("group", __name__, url_prefix="/group")
 
 
-@app.context_processor
+@blueprint.context_processor
 def injectAuthChecks():
     def hasGroup():
         return current_user.hasPermission(Permission.GROUP)
