@@ -8,7 +8,7 @@ from app.auth import needs_group
 blueprint = Blueprint("group", __name__, url_prefix="/group")
 
 
-@blueprint.context_processor
+@blueprint.app_context_processor
 def injectAuthChecks():
     def hasGroup():
         return current_user.hasPermission(Permission.GROUP)
