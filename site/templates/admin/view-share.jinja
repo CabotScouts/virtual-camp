@@ -60,37 +60,41 @@
           <div class="row">
             <div class="col-12 col-md mb-2">
               <form method="POST" action="{{ url_for('manage.starShare') }}">
-                  <input type="hidden" name="id" value="{{ share.id }}" />
-                  <button type="submit" class="btn btn-block btn-info">
-                    <i class="fas fa-star mr-2"></i>Star
-                  </button>
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <input type="hidden" name="id" value="{{ share.id }}" />
+                <button type="submit" class="btn btn-block btn-info">
+                  <i class="fas fa-star mr-2"></i>Star
+                </button>
               </form>
             </div>
 
             <div class="col-12 col-md mb-2">
               <form method="POST" action="{{ url_for('manage.approveShare') }}">
-                  <input type="hidden" name="id" value="{{ share.id }}" />
-                  <button type="submit" class="btn btn-block btn-success">
-                    <i class="fas fa-check mr-2"></i>Approve
-                  </button>
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <input type="hidden" name="id" value="{{ share.id }}" />
+                <button type="submit" class="btn btn-block btn-success">
+                  <i class="fas fa-check mr-2"></i>Approve
+                </button>
               </form>
             </div>
             <div class="col-12 col-md mb-2">
               <form method="POST" action="{{ url_for('manage.flagShare') }}">
-                  <input type="hidden" name="id" value="{{ share.id }}" />
-                  <button type="submit" class="btn btn-block btn-danger">
-                    <i class="fas fa-flag mr-2"></i>Flag
-                  </button>
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <input type="hidden" name="id" value="{{ share.id }}" />
+                <button type="submit" class="btn btn-block btn-danger">
+                  <i class="fas fa-flag mr-2"></i>Flag
+                </button>
               </form>
             </div>
 
             {% if hasAdmin() %}
             <div class="col-12 col-md mb-2">
               <form method="POST" action="{{ url_for('manage.deleteShare') }}">
-                  <input type="hidden" name="id" value="{{ share.id }}" />
-                  <button type="submit" class="btn btn-block btn-dark">
-                    <i class="fas fa-times mr-2"></i>Remove
-                  </button>
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <input type="hidden" name="id" value="{{ share.id }}" />
+                <button type="submit" class="btn btn-block btn-dark">
+                  <i class="fas fa-times mr-2"></i>Remove
+                </button>
               </form>
             </div>
             {% endif %}

@@ -3,6 +3,7 @@
 {% block content %}
 <h1>Users</h1>
 <form method="POST" action="{{ url_for('manage.addUser') }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
   <div class="form-row">
     <div class="form-group col align-self-center">
       <h5 class="mb-0">New user</h5>
@@ -42,6 +43,7 @@
         {{ user.role|roleName }}
         {% else %}
         <form method="POST" action="{{ url_for('manage.updateRole') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
           <input type="hidden" name="id" value="{{ user.id }}" />
           <div class="form-row">
             <div class="col-6 col-md-10">
@@ -69,6 +71,7 @@
         <div class="form-row">
           <div class="col-6">
             <form method="POST" action="{{ url_for('manage.regenerateKey') }}">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
               <input type="hidden" name="id" value="{{ user.id }}" />
               <input type="hidden" name="return" value="user" />
               <button type="submit" class="form-control d-inline btn-info btn-sm" data-toggle="tooltip" data-placement="right" title="Regenerate key"><i class="fas fa-key"></i></button>
@@ -76,6 +79,7 @@
           </div>
           <div class="col-6">
             <form method="POST" action="{{ url_for('manage.deleteUser') }}">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
               <input type="hidden" name="id" value="{{ user.id }}" />
               <button type="submit" class="form-control btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Delete user"><i class="fas fa-times"></i></button>
             </form>

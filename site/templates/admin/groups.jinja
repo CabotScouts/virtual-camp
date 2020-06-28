@@ -18,6 +18,7 @@
       <td>
         {% if hasAdmin() %}
         <form method="POST" action="{{ url_for('manage.regenerateKey') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
           <input type="hidden" name="id" value="{{ group.user.id }}" />
           <input type="hidden" name="return" value="group" />
           <button type="submit" class="form-control btn-info btn-block btn-sm" data-toggle="tooltip" data-placement="right" title="Regenerate key"><i class="fas fa-key"></i></button>

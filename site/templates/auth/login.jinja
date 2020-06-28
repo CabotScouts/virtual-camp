@@ -6,6 +6,7 @@
   <div class="card-body">
     <h4 class="card-title">Admin Login</h4>
     <form method="POST" action="{{ url_for('auth.processLogin') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
       <div class="form-row">
         <div class="form-group col-12">
           <label for="user">Username</label>

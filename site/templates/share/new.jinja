@@ -11,6 +11,7 @@
     </p>
 
     <form method="POST" action="{{ url_for('share.upload') }}" enctype="multipart/form-data">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="name">What is your name?</label>
