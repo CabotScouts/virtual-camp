@@ -12,8 +12,8 @@ from flask import (
 from flask_login import current_user
 
 from app import db
-from app.auth import needs_manage, needs_admin
 from app.models import User, Group, Share
+from app.utils.auth import needs_manage, needs_admin
 
 blueprint = Blueprint("manage", __name__, url_prefix="/manage")
 

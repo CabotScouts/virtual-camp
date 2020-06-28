@@ -2,7 +2,7 @@ from flask import Blueprint, request, render_template, flash, redirect, url_for
 from flask_login import login_required, login_user, logout_user, current_user
 
 from app.models import Group, Share, Permission
-from app.auth import needs_group
+from app.utils.auth import needs_group
 
 blueprint = Blueprint("group", __name__, url_prefix="/group")
 
