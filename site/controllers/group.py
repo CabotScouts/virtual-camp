@@ -2,7 +2,7 @@ from flask import Blueprint, request, render_template, flash, redirect, url_for
 from flask_login import login_required, login_user, logout_user, current_user
 
 from CabotAtHome.site import app
-from CabotAtHome.site.models import Group
+from CabotAtHome.site.models import Group, Share
 from CabotAtHome.site.models.User import Permission
 from CabotAtHome.site.auth import needs_group
 
@@ -17,10 +17,16 @@ def injectAuthChecks():
     return dict(hasGroup=hasGroup)
 
 
-@blueprint.route("", strict_slashes=False)
+@blueprint.route("")
+@blueprint.route("/<int:page>")
 @needs_group
-def index():
-    return render_template("group/index.jinja", group=current_user.group)
+def index(page=1):
+    shares = (
+        Share.query.filter_by(approved=True, group_id=current_user.group.id)
+        .order_by(Share.id.desc())
+        .paginate(page, 12, False)
+    )
+    return render_template("group/index.jinja", group=current_user.group, shares=shares)
 
 
 @blueprint.route("/login")

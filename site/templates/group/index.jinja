@@ -1,0 +1,62 @@
+{% extends "layouts/page.jinja" %}
+{% block title %}{{ group.name }}{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-12 col-md-6">
+    <h1>{{ group.name }}</h1>
+  </div>
+  <div class="col-6 col-md-3 ml-2 mr-n2">
+    <a href="#" class="btn btn-block btn-info">
+      <i class="fas fa-key mr-2"></i>{{ group.user.key }}
+    </a>
+  </div>
+  <div class="col-6 col-md-3 ml-n2 mr-2">
+    <a href="{{ url_for('group.logout') }}" class="btn btn-block btn-dark">
+      <i class="fas fa-sign-out-alt mr-2"></i>Logout
+    </a>
+  </div>
+  {% if shares.items|count == 0 %}
+  <div class="col-12 mt-2">
+    <p>
+      Your Group hasn't had any shares submitted yet - please encourage your Young People to share what they're getting up to with us!
+    </p>
+  </div>
+  {% else %}
+  <div class="col-12 mt-3">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 px-2">
+    {% for share in shares.items %}
+      <div class="col mb-3 px-2">
+        <div class="card h-100">
+          <a href="{{ url_for("share.get", image=share.file) }}" target="_blank">
+            <img src="{{ url_for("share.get", image=share.file) }}" class="card-img-top" />
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">{{ share.name }}</h5>
+            <p class="card-text">
+              {{ share.comment }}
+            </p>
+          </div>
+          <div class="card-footer text-muted">
+            <div class="row">
+              <div class="col-10">
+                {{ share.created_at }}
+              </div>
+              <div class="col-2 text-right">
+                {% if share.starred %}
+                <h5 class="text-info p-0 m-0"><i class="fas fa-star"></i></h5>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+  <div class="col-12">
+    {% from "components/paginate.jinja" import paginate %}
+    {{ paginate(shares) }}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

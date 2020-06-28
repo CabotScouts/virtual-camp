@@ -4,6 +4,35 @@
 <div class="row">
   <div class="col-12">
     <h1>Gallery</h1>
+    <p>
+      Fancy seeing your pictures here? <a href="{{ url_for ('share.new') }}">Share them with us</a> and we might add them to the gallery!
+    </p>
   </div>
+  {% if shares.items|count > 0 %}
+  <div class="col-12">
+    <div class="row row-cols-1 row-cols-md-2 px-2">
+    {% for share in shares.items %}
+      <div class="col mb-3 px-2">
+        <div class="card h-100">
+          {# TODO: add lightbox to these #}
+          <img src="{{ url_for("share.get", image=share.file) }}" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="card-title m-0">{{ share.name }} - {{ share.group.name }}</h5>
+            {% if share.comment %}
+            <p class="card-text mt-1">
+              {{ share.comment }}
+            </p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+  <div class="col-12">
+    {% from "components/paginate.jinja" import paginate %}
+    {{ paginate(shares) }}
+  </div>
+  {% endif %}
 </div>
 {% endblock %}
