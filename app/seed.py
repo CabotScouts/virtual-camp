@@ -1,6 +1,5 @@
 from app import db
-from app.models import User, Group
-from app.models.User import Role
+from app.models import User, Group, Role
 from app.utils import randomKey
 
 

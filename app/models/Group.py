@@ -1,6 +1,5 @@
 from app import db
-from app.models import User
-from app.models.User import Role
+from app.models import User, Role
 
 
 class Group(db.Model):

@@ -14,8 +14,7 @@ from flask import (
 from flask_login import current_user
 
 from app import db
-from app.models import Share, Group
-from app.models.User import Permission
+from app.models import Share, Group, Permission
 from app.utils import allowedFile, getFileExtension
 
 blueprint = Blueprint("share", __name__, url_prefix="/share")

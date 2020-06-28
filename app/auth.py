@@ -2,7 +2,7 @@ from functools import wraps
 from flask import redirect, url_for, abort
 from flask_login import current_user
 
-from app.models.User import Permission
+from app.models import Permission
 
 
 def needs_group(f):
