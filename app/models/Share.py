@@ -1,6 +1,7 @@
 from enum import Enum
-from CabotAtHome.site import db, login_manager
-from CabotAtHome.site.utils import randomString
+
+from app import db, login_manager
+from app.utils import randomString
 
 images = {"png", "jpg", "jpeg", "gif"}
 videos = {"mov", "mp4", "avi"}

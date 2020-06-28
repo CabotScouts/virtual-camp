@@ -1,7 +1,7 @@
-from CabotAtHome.site import db
-from CabotAtHome.site.models import User, Group
-from CabotAtHome.site.models.User import Role
-from CabotAtHome.site.utils import randomKey
+from app import db
+from app.models import User, Group
+from app.models.User import Role
+from app.utils import randomKey
 
 
 def seed():

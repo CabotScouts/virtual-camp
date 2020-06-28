@@ -1,7 +1,7 @@
 from flask_login import UserMixin, AnonymousUserMixin
 
-from CabotAtHome.site import db, login_manager
-from CabotAtHome.site.utils import randomKey
+from app import db, login_manager
+from app.utils import randomKey
 
 
 class Permission:

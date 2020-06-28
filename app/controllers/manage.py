@@ -11,9 +11,9 @@ from flask import (
 )
 from flask_login import current_user
 
-from CabotAtHome.site import app, db
-from CabotAtHome.site.auth import needs_manage, needs_admin
-from CabotAtHome.site.models import User, Group, Share
+from app import app, db
+from app.auth import needs_manage, needs_admin
+from app.models import User, Group, Share
 
 blueprint = Blueprint("manage", __name__, url_prefix="/manage")
 

@@ -1,10 +1,10 @@
 from flask import Blueprint, request, render_template, flash, redirect, url_for
 from flask_login import login_required, login_user, logout_user, current_user
 
-from CabotAtHome.site import app
-from CabotAtHome.site.models import Group, Share
-from CabotAtHome.site.models.User import Permission
-from CabotAtHome.site.auth import needs_group
+from app import app
+from app.models import Group, Share
+from app.models.User import Permission
+from app.auth import needs_group
 
 blueprint = Blueprint("group", __name__, url_prefix="/group")
 

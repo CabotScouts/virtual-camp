@@ -1,6 +1,6 @@
-from CabotAtHome.site import db
-from CabotAtHome.site.models import User
-from CabotAtHome.site.models.User import Role
+from app import db
+from app.models import User
+from app.models.User import Role
 
 
 class Group(db.Model):

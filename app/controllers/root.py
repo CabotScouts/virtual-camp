@@ -1,7 +1,7 @@
 from flask import Blueprint, request, flash, render_template, redirect, url_for
 
-from CabotAtHome.site import app
-from CabotAtHome.site.models import Group
+from app import app
+from app.models import Group
 
 blueprint = Blueprint("root", __name__)
 

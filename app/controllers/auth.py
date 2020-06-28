@@ -1,10 +1,10 @@
 from flask import Blueprint, request, flash, render_template, redirect, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 
-from CabotAtHome.site import app
-from CabotAtHome.site import login_manager
-from CabotAtHome.site.models import User
-from CabotAtHome.site.models.User import Permission
+from app import app
+from app import login_manager
+from app.models import User
+from app.models.User import Permission
 
 blueprint = Blueprint("auth", __name__)
 

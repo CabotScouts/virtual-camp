@@ -13,10 +13,10 @@ from flask import (
 )
 from flask_login import current_user
 
-from CabotAtHome.site import db
-from CabotAtHome.site.models import Share, Group
-from CabotAtHome.site.models.User import Permission
-from CabotAtHome.site.utils import allowedFile, getFileExtension
+from app import db
+from app.models import Share, Group
+from app.models.User import Permission
+from app.utils import allowedFile, getFileExtension
 
 blueprint = Blueprint("share", __name__, url_prefix="/share")
 
