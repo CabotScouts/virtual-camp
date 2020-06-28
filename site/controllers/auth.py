@@ -44,7 +44,7 @@ def processLogin():
     u = User.query.filter_by(username=username).first()
 
     if not u.hasPermission(Permission.LOGIN):
-        flash("User is not permitted to login", "danger")
+        flash("This user is not permitted to login", "danger")
         return redirect(url_for("auth.login"))
 
     if u and (u.key == request.form["key"]):
