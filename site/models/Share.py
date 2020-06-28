@@ -1,17 +1,28 @@
+from enum import Enum
 from CabotAtHome.site import db, login_manager
 from CabotAtHome.site.utils import randomString
+
+images = {"png", "jpg", "jpeg", "gif"}
+videos = {"mov", "mp4", "avi"}
+
+
+class ShareType(Enum):
+    NONE = 0
+    IMAGE = 1
+    VIDEO = 2
 
 
 class Share(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    created_on = db.Column(db.DateTime, server_default=db.func.now())
+    created_on = db.Column(db.DateTime, default=db.func.now())
     updated_on = db.Column(
-        db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now()
+        db.DateTime, server_default=db.func.now(), onupdate=db.func.now()
     )
     ip = db.Column(db.String(15), nullable=False)
 
     name = db.Column(db.String(50))
     file = db.Column(db.String(20), nullable=False)
+    filetype = db.Column(db.Enum(ShareType), default=ShareType.NONE)
     comment = db.Column(db.Text)
 
     group_id = db.Column(db.Integer, db.ForeignKey("group.id"), nullable=False)
@@ -27,7 +38,19 @@ class Share(db.Model):
 
     def __init__(self, ext, **kwargs):
         super(Share, self).__init__(**kwargs)
+
+        self.parseType(ext)
         self.generateName(ext)
+
+    def parseType(self, ext):
+        if ext in images:
+            self.filetype = ShareType.IMAGE
+
+        elif ext in videos:
+            self.filetype = ShareType.VIDEO
+
+        else:
+            self.filetype = ShareType.NONE
 
     def generateName(self, ext):
         generated = randomString(15)
@@ -36,6 +59,21 @@ class Share(db.Model):
             self.generateName()
         else:
             self.file = f"{generated}.{ext}"
+
+    def isImage(self):
+        return self.filetype == ShareType.IMAGE
+
+    def isVideo(self):
+        return self.filetype == ShareType.VIDEO
+
+    @property
+    def type(self):
+        map = {
+            ShareType.IMAGE: "Image",
+            ShareType.VIDEO: "Video",
+            ShareType.NONE: "Unknown",
+        }
+        return map[self.filetype]
 
     def approve(self):
         self.approved = True

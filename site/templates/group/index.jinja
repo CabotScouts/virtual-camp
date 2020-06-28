@@ -27,9 +27,18 @@
     {% for share in shares.items %}
       <div class="col mb-3 px-2">
         <div class="card h-100">
+          {% if share.isImage() %}
+          {# TODO: add lightbox to these #}
           <a href="{{ url_for("share.get", image=share.file) }}" target="_blank">
             <img src="{{ url_for("share.get", image=share.file) }}" class="card-img-top" />
           </a>
+          {% elif share.isVideo() %}
+          <div class="embed-responsive embed-responsive-1by1">
+            <video class="embed-responsive-item" controls>
+              <source src="{{ url_for("share.get", image=share.file) }}" />
+            </video>
+          </div>
+          {% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ share.name }}</h5>
             <p class="card-text">

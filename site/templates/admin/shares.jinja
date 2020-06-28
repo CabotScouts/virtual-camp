@@ -12,9 +12,17 @@
     {% for share in shares.items %}
     <tr id="share-{{ share.id }}" class="table-{{ share.statusColour }} d-flex">
       <td class="col-9 col-md-10 col-xl-11">
+        {% if share.isImage() %}
         <a href="{{ url_for("share.get", image=share.file) }}" target="_blank">
           <img class="img img-fluid img-thumbnail" src="{{ url_for("share.get", image=share.file) }}"/>
         </a>
+        {% elif share.isVideo() %}
+        <div class="embed-responsive embed-responsive-16by9">
+          <video class="embed-responsive-item" controls>
+            <source src="{{ url_for("share.get", image=share.file) }}" />
+          </video>
+        </div>
+        {% endif %}
         <p class="px-1 mt-1 mb-1">
           {{ share.name }} - {{ share.group.name }}
         </p>
