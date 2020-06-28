@@ -11,10 +11,10 @@ def injectLinks():
     # Inject main menu links into every template render automatically
     return dict(
         links=[
-            ("Home", "/"),
-            ("Sign Up", "/register"),
-            ("Camp Timetable", "/timetable"),
-            ("Gallery", "/gallery"),
+            ("Home", url_for("root.index")),
+            ("Sign Up", url_for("root.register")),
+            ("Camp Timetable", url_for("root.timetable")),
+            ("Gallery", url_for("share.gallery")),
         ]
     )
 
