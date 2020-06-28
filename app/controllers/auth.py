@@ -17,12 +17,15 @@ def injectAuthChecks():
     def hasManage():
         return current_user.hasPermission(Permission.MANAGE)
 
-    return dict(hasAdmin=hasAdmin, hasManage=hasManage)
+    def hasCurate():
+        return current_user.hasPermission(Permission.CURATE)
+
+    return dict(hasAdmin=hasAdmin, hasManage=hasManage, hasCurate=hasCurate)
 
 
 @blueprint.app_template_filter("roleName")
 def roleName(role):
-    roles = {0: "Guest", 1: "User", 3: "Manager", 7: "Admin"}
+    roles = {0: "Guest", 1: "User", 3: "Curator", 7: "Manager", 15: "Admin"}
     return roles[role] if role in roles else "UNKNOWN"
 
 

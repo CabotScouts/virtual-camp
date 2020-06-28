@@ -91,6 +91,7 @@ def get(image):
             and current_user.hasPermission(Permission.GROUP)
             and current_user.group_id == share.group_id
         )
+        or (share.approved and current_user.hasPermission(Permission.CURATE))
         or current_user.hasPermission(Permission.MANAGE)
     ):
         path = os.path.join(os.getcwd(), current_app.config["UPLOAD_FOLDER"])

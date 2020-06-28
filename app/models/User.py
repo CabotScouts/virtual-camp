@@ -5,19 +5,21 @@ from app.utils import randomKey
 
 
 class Permission:
-    NONE = 0b0000
-    LOGIN = 0b0001
-    GROUP = 0b1000
-    MANAGE = 0b0010
-    ADMIN = 0b0100
+    NONE = 0b00000
+    LOGIN = 0b00001
+    GROUP = 0b10000
+    CURATE = 0b00010
+    MANAGE = 0b00100
+    ADMIN = 0b01000
 
 
 class Role:
     GUEST = Permission.NONE
     USER = Permission.LOGIN
     GROUP = Permission.GROUP | Permission.LOGIN
-    MANAGER = Permission.MANAGE | Permission.LOGIN
-    ADMIN = Permission.ADMIN | Permission.MANAGE | Permission.LOGIN
+    CURATOR = Permission.CURATE | Permission.LOGIN
+    MANAGER = Permission.MANAGE | Permission.CURATE | Permission.LOGIN
+    ADMIN = Permission.ADMIN | Permission.MANAGE | Permission.CURATE | Permission.LOGIN
 
 
 class User(UserMixin, db.Model):

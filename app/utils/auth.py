@@ -22,35 +22,31 @@ def needs_group(f):
     return inner
 
 
+def needs_permission(permission):
+    def outer(f):
+        @wraps(f)
+        def inner(*args, **kwargs):
+            if current_user.hasPermission(permission):
+                return f(*args, **kwargs)
+
+            elif current_user.get_id() == None:
+                return redirect(url_for("auth.login"))
+
+            else:
+                return abort(403)
+
+        return inner
+
+    return outer
+
+
+def needs_curate(f):
+    return needs_permission(Permission.CURATE)(f)
+
+
 def needs_manage(f):
-    @wraps(f)
-    def inner(*args, **kwargs):
-        if current_user.hasPermission(Permission.MANAGE):
-            return f(*args, **kwargs)
-
-        elif current_user.get_id() == None:
-            # Not logged in - redirect to form
-            return redirect(url_for("auth.login"))
-
-        else:
-            # Logged in but not a Manager
-            return abort(403)
-
-    return inner
+    return needs_permission(Permission.MANAGE)(f)
 
 
 def needs_admin(f):
-    @wraps(f)
-    def inner(*args, **kwargs):
-        if current_user.hasPermission(Permission.ADMIN):
-            return f(*args, **kwargs)
-
-        elif current_user.get_id() == None:
-            # Not logged in - redirect to form
-            return redirect(url_for("auth.login"))
-
-        else:
-            # Logged in but not an Admin
-            return abort(403)
-
-    return inner
+    return needs_permission(Permission.ADMIN)(f)

@@ -13,7 +13,7 @@ from flask_login import current_user
 
 from app import db
 from app.models import User, Group, Share
-from app.utils.auth import needs_manage, needs_admin
+from app.utils.auth import needs_curate, needs_manage, needs_admin
 
 blueprint = Blueprint("manage", __name__, url_prefix="/manage")
 
@@ -47,7 +47,7 @@ def injectShareCounts():
 
 
 @blueprint.route("", strict_slashes=False)
-@needs_manage
+@needs_curate
 def index():
     return render_template("admin/index.jinja")
 
@@ -63,7 +63,7 @@ def allShares(page=1):
 
 
 @blueprint.route("/shares/view/<int:id>")
-@needs_manage
+@needs_curate
 def viewShare(id):
     share = Share.query.filter_by(id=id).first_or_404()
     return render_template("admin/view-share.jinja", share=share)
@@ -71,7 +71,7 @@ def viewShare(id):
 
 @blueprint.route("/shares/approved")
 @blueprint.route("/shares/approved/<int:page>")
-@needs_manage
+@needs_curate
 def approvedShares(page=1):
     title = "Approved Shares"
     shares = (
@@ -110,7 +110,7 @@ def flaggedShares(page=1):
 
 @blueprint.route("/shares/starred")
 @blueprint.route("/shares/starred/<int:page>")
-@needs_manage
+@needs_curate
 def starredShares(page=1):
     title = "Starred Shares"
     shares = (

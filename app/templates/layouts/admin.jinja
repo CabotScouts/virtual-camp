@@ -22,30 +22,36 @@
             Manage
           </a>
 
+          {% if hasManage() %}
           <a href="{{ url_for('manage.pendingShares') }}" class="list-group-item">
             Pending Shares
             <span class="badge badge-pill badge-warning text-white ml-2">{{ pendingCount() }}</span>
           </a>
+          {% endif %}
 
           <a href="{{ url_for('manage.approvedShares') }}" class="list-group-item">
             Approved Shares
             <span class="badge badge-pill badge-success ml-2">{{ approvedCount() }}</span>
           </a>
-          
+
+          {% if hasManage() %}
           <a href="{{ url_for('manage.flaggedShares') }}" class="list-group-item">
             Flagged Shares
             <span class="badge badge-pill badge-danger ml-2">{{ flaggedCount() }}</span>
           </a>
+          {% endif %}
 
           <a href="{{ url_for('manage.starredShares') }}" class="list-group-item">
             Starred Shares
             <span class="badge badge-pill badge-info ml-2">{{ starredCount() }}</span>
           </a>
 
+          {% if hasManage() %}
           <a href="{{ url_for('manage.allShares') }}" class="list-group-item">
             All Shares
             <span class="badge badge-pill badge-primary ml-2">{{ totalCount() }}</span>
           </a>
+          {% endif %}
 
           {% if hasAdmin() %}
           <a href="{{ url_for('manage.users') }}" class="list-group-item">
@@ -53,9 +59,11 @@
           </a>
           {% endif %}
 
+          {% if hasManage() %}
           <a href="{{ url_for('manage.groups') }}" class="list-group-item">
             Groups
           </a>
+          {% endif %}
 
           <a href="{{ url_for('auth.logout') }}" class="list-group-item">
             Logout
