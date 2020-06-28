@@ -7,21 +7,29 @@
   No shares in this category
 </p>
 {% else %}
-<table class="table table-hover">
+<table class="table table-sm table-hover">
   <tbody>
     {% for share in shares.items %}
     <tr id="share-{{ share.id }}" class="table-{{ share.statusColour }} d-flex">
-      <td class="col-10 col-md-10 col-xl-11">
+      <td class="col-9 col-md-10 col-xl-11">
         <a href="{{ url_for("share.get", image=share.file) }}" target="_blank">
           <img class="img img-fluid img-thumbnail" src="{{ url_for("share.get", image=share.file) }}"/>
         </a>
+        <p class="px-1 mt-1 mb-1">
+          {{ share.name }} - {{ share.group.name }}
+        </p>
+        {% if share.comment %}
+        <p class="px-1 mt-1 mb-0">
+          {{ share.comment }}
+        </p>
+        {% endif %}
       </td>
 
-      <td class="col-2 col-md-2 col-xl-1">
+      <td class="col-3 col-md-2 col-xl-1">
         <div class="mb-1">
           <form method="POST" action="{{ url_for('manage.starShare') }}">
               <input type="hidden" name="id" value="{{ share.id }}" />
-              <button type="submit" class="form-control btn btn-info">
+              <button type="submit" class="form-control btn btn-sm btn-info">
                 <i class="fas fa-star"></i>
               </button>
           </form>
@@ -30,7 +38,7 @@
         <div class="mb-1">
           <form method="POST" action="{{ url_for('manage.approveShare') }}">
               <input type="hidden" name="id" value="{{ share.id }}" />
-              <button type="submit" class="form-control btn btn-success">
+              <button type="submit" class="form-control btn btn-sm btn-success">
                 <i class="fas fa-check"></i>
               </button>
           </form>
@@ -39,14 +47,14 @@
         <div class="mb-1">
           <form method="POST" action="{{ url_for('manage.flagShare') }}">
               <input type="hidden" name="id" value="{{ share.id }}" />
-              <button type="submit" class="form-control btn btn-danger text-white">
+              <button type="submit" class="form-control btn btn-sm btn-danger text-white">
                 <i class="fas fa-flag"></i>
               </button>
           </form>
         </div>
 
         <div class="mb-1">
-          <a href="{{ url_for('manage.viewShare', id=share.id) }}" class="btn btn-block btn-primary">
+          <a href="{{ url_for('manage.viewShare', id=share.id) }}" class="btn btn-sm btn-block btn-primary">
             <i class="fas fa-eye"></i>
           </a>
         </div>
@@ -55,7 +63,7 @@
         <div class="mb-1">
           <form method="POST" action="{{ url_for('manage.deleteShare') }}">
               <input type="hidden" name="id" value="{{ share.id }}" />
-              <button type="submit" class="form-control btn btn-dark">
+              <button type="submit" class="form-control btn btn-sm btn-dark">
                 <i class="fas fa-times"></i>
               </button>
           </form>
