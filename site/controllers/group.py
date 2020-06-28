@@ -44,7 +44,7 @@ def processLogin():
         return redirect(url_for("group.index"))
 
     else:
-        flash("Username or key incorrect", "danger")
+        flash("Key incorrect", "danger")
         return redirect(url_for("group.login"))
 
 

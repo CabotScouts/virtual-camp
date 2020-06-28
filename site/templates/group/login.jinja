@@ -19,13 +19,21 @@
         <div class="form-group col-12">
           <label for="key">Key</label>
           <input required class="form-control" id="key" name="key" type="text" value="{{ key }}" />
-          <div class="invalid-feedback">
-            Invalid key
-          </div>
         </div>
 
         <div class="form-group col-12 mt-2 mb-0">
-            <button type="submit" class="btn btn-block btn-success"><i class="fas fa-sign-in-alt pr-2"></i>Login</button>
+          {% with messages = get_flashed_messages(with_categories=True) %}
+          {% if messages %}
+            {% for type, message in messages %}
+            <div class="alert alert-{{ type }} text-center">
+              {{ message }}
+            </div>
+            {% endfor %}
+          {% endif %}
+          {% endwith %}
+          <button type="submit" class="btn btn-block btn-success">
+            <i class="fas fa-sign-in-alt pr-2"></i>Login
+          </button>
         </div>
       </div>
     </form>
