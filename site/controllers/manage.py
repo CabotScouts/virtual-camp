@@ -196,7 +196,8 @@ def users():
 @blueprint.route("/users/add", methods=["POST"])
 @needs_admin
 def addUser():
-    user = User.query.filter_by(username=request.form["username"]).first()
+    username = request.form["username"].lower()
+    user = User.query.filter_by(username=username).first()
 
     if user:
         flash("A user with that name already exists", "danger")
@@ -206,7 +207,7 @@ def addUser():
         flash("A username is required", "danger")
         return redirect(url_for("manage.users"))
 
-    new = User(username=request.form["username"], role=request.form["role"])
+    new = User(username=username, role=request.form["role"])
     db.session.add(new)
     db.session.commit()
 
