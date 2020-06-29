@@ -22,7 +22,7 @@ def needs_group(f):
     return inner
 
 
-def needs_permission(permission):
+def needs(permission):
     def outer(f):
         @wraps(f)
         def inner(*args, **kwargs):
@@ -40,13 +40,17 @@ def needs_permission(permission):
     return outer
 
 
+def needs_login(f):
+    return needs(Permission.LOGIN)(f)
+
+
 def needs_curate(f):
-    return needs_permission(Permission.CURATE)(f)
+    return needs(Permission.CURATE)(f)
 
 
 def needs_manage(f):
-    return needs_permission(Permission.MANAGE)(f)
+    return needs(Permission.MANAGE)(f)
 
 
 def needs_admin(f):
-    return needs_permission(Permission.ADMIN)(f)
+    return needs(Permission.ADMIN)(f)

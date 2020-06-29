@@ -20,7 +20,12 @@ def injectAuthChecks():
     def hasCurate():
         return current_user.hasPermission(Permission.CURATE)
 
-    return dict(hasAdmin=hasAdmin, hasManage=hasManage, hasCurate=hasCurate)
+    def hasLogin():
+        return current_user.hasPermission(Permission.LOGIN)
+
+    return dict(
+        hasAdmin=hasAdmin, hasManage=hasManage, hasCurate=hasCurate, hasLogin=hasLogin
+    )
 
 
 @blueprint.app_template_filter("roleName")

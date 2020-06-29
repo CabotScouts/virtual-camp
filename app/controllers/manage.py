@@ -13,7 +13,7 @@ from flask_login import current_user
 
 from app import db
 from app.models import User, Group, Share
-from app.utils.auth import needs_curate, needs_manage, needs_admin
+from app.utils import auth
 
 blueprint = Blueprint("manage", __name__, url_prefix="/manage")
 
@@ -47,7 +47,7 @@ def injectShareCounts():
 
 
 @blueprint.route("", strict_slashes=False)
-@needs_curate
+@auth.needs_login
 def index():
     return render_template("admin/index.jinja")
 
@@ -55,7 +55,7 @@ def index():
 # Shares
 @blueprint.route("/shares")
 @blueprint.route("/shares/<int:page>")
-@needs_manage
+@auth.needs_manage
 def allShares(page=1):
     title = "All Shares"
     shares = Share.query.order_by(Share.id.desc()).paginate(page, sharesPerPage, False)
@@ -63,7 +63,7 @@ def allShares(page=1):
 
 
 @blueprint.route("/shares/view/<int:id>")
-@needs_curate
+@auth.needs_curate
 def viewShare(id):
     share = Share.query.filter_by(id=id).first_or_404()
     return render_template("admin/view-share.jinja", share=share)
@@ -71,7 +71,7 @@ def viewShare(id):
 
 @blueprint.route("/shares/approved")
 @blueprint.route("/shares/approved/<int:page>")
-@needs_curate
+@auth.needs_curate
 def approvedShares(page=1):
     title = "Approved Shares"
     shares = (
@@ -84,7 +84,7 @@ def approvedShares(page=1):
 
 @blueprint.route("/shares/pending")
 @blueprint.route("/shares/pending/<int:page>")
-@needs_manage
+@auth.needs_manage
 def pendingShares(page=1):
     title = "Pending Shares"
     shares = (
@@ -97,7 +97,7 @@ def pendingShares(page=1):
 
 @blueprint.route("/shares/flagged")
 @blueprint.route("/shares/flagged/<int:page>")
-@needs_manage
+@auth.needs_manage
 def flaggedShares(page=1):
     title = "Flagged Shares"
     shares = (
@@ -110,7 +110,7 @@ def flaggedShares(page=1):
 
 @blueprint.route("/shares/starred")
 @blueprint.route("/shares/starred/<int:page>")
-@needs_curate
+@auth.needs_curate
 def starredShares(page=1):
     title = "Starred Shares"
     shares = (
@@ -123,7 +123,7 @@ def starredShares(page=1):
 
 # Share Modifiers
 @blueprint.route("/shares/approve", methods=["POST"])
-@needs_manage
+@auth.needs_manage
 def approveShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
     if share:
@@ -136,7 +136,7 @@ def approveShare():
 
 
 @blueprint.route("/shares/flag", methods=["POST"])
-@needs_manage
+@auth.needs_manage
 def flagShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
     if share:
@@ -149,7 +149,7 @@ def flagShare():
 
 
 @blueprint.route("/shares/star", methods=["POST"])
-@needs_manage
+@auth.needs_manage
 def starShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
     if share:
@@ -165,7 +165,7 @@ def starShare():
 
 
 @blueprint.route("/shares/delete", methods=["POST"])
-@needs_admin
+@auth.needs_admin
 def deleteShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
     if share:
@@ -186,14 +186,14 @@ def deleteShare():
 
 # Groups/Users
 @blueprint.route("/users")
-@needs_admin
+@auth.needs_admin
 def users():
     users = User.query.filter_by(group=None).order_by(User.username)
     return render_template("admin/users.jinja", users=users)
 
 
 @blueprint.route("/users/add", methods=["POST"])
-@needs_admin
+@auth.needs_admin
 def addUser():
     username = request.form["username"].lower()
     user = User.query.filter_by(username=username).first()
@@ -214,7 +214,7 @@ def addUser():
 
 
 @blueprint.route("users/regenerate-key", methods=["POST"])
-@needs_admin
+@auth.needs_admin
 def regenerateKey():
     id = request.form["id"]
 
@@ -236,7 +236,7 @@ def regenerateKey():
 
 
 @blueprint.route("users/update-role", methods=["POST"])
-@needs_admin
+@auth.needs_admin
 def updateRole():
     id = request.form["id"]
 
@@ -257,7 +257,7 @@ def updateRole():
 
 
 @blueprint.route("users/delete", methods=["POST"])
-@needs_admin
+@auth.needs_admin
 def deleteUser():
     id = request.form["id"]
 
@@ -277,7 +277,7 @@ def deleteUser():
 
 
 @blueprint.route("/groups")
-@needs_manage
+@auth.needs_manage
 def groups():
     groups = Group.query.all()
     return render_template("admin/groups.jinja", groups=groups)

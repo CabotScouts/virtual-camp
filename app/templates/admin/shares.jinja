@@ -34,6 +34,7 @@
       </td>
 
       <td class="col-3 col-md-2 col-xl-1">
+        {% if share.starred %}
         <div class="mb-1">
           <form method="POST" action="{{ url_for('manage.starShare') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
@@ -43,6 +44,7 @@
               </button>
           </form>
         </div>
+        {% endif %}
 
         {% if hasManage() %}
         <div class="mb-1">
