@@ -2,6 +2,9 @@ from os import path
 from urllib.parse import urlparse, urljoin
 import string
 import random
+from datetime import datetime
+import inflect
+import math
 
 from flask import current_app
 
@@ -14,6 +17,35 @@ def randomKey(length):
 def randomString(length):
     letters = string.ascii_letters
     return "".join(random.choice(letters) for x in range(length))
+
+
+def pluralise(word, n):
+    if abs(n) != 1:
+        i = inflect.engine()
+        return i.plural(word)
+    else:
+        return word
+
+
+def timeAgo(then):
+    now = datetime.utcnow()
+    diff = now - then
+
+    if diff.seconds < 60:
+        seconds = math.floor(diff.seconds)
+        return f"{ seconds } { pluralise('second', seconds) } ago"
+
+    elif diff.seconds < 3600:
+        minutes = math.floor(diff.seconds / 60)
+        return f"{ minutes } { pluralise('minute', minutes) } ago"
+
+    elif diff.seconds < 86400:
+        hours = math.floor(diff.seconds / 60 / 60)
+        return f"{ hours } { pluralise('hour', hours) } ago"
+
+    else:
+        days = math.floor(diff.seconds / 60 / 60 / 24)
+        return f"{ days } { pluralise('day', days) } ago"
 
 
 def isSafeUrl(target, request):

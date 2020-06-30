@@ -1,7 +1,7 @@
 from enum import Enum
 
 from app import db, login_manager
-from app.utils import randomString
+from app.utils import randomString, timeAgo
 
 images = {"png", "jpg", "jpeg", "gif"}
 videos = {"mov", "mp4", "avi"}
@@ -15,8 +15,8 @@ class ShareType(Enum):
 
 class Share(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    created_on = db.Column(db.DateTime, default=db.func.now())
-    updated_on = db.Column(
+    created_at = db.Column(db.DateTime, default=db.func.now())
+    updated_at = db.Column(
         db.DateTime, server_default=db.func.now(), onupdate=db.func.now()
     )
     ip = db.Column(db.String(15), nullable=False)
@@ -138,3 +138,7 @@ class Share(db.Model):
             return "success"
 
         return ""
+
+    @property
+    def posted(self):
+        return timeAgo(self.created_at)
