@@ -3,8 +3,9 @@ from urllib.parse import urlparse, urljoin
 import string
 import random
 from datetime import datetime
-import inflect
 import math
+
+import inflect
 
 from flask import current_app
 
