@@ -1,6 +1,7 @@
 from flask import Blueprint, request, render_template, flash, redirect, url_for
 from flask_login import login_required, login_user, logout_user, current_user
 
+from app import limiter
 from app.models import Group, Share, Permission
 from app.utils.auth import needs_group
 
@@ -28,6 +29,8 @@ def index(page=1):
 
 
 @blueprint.route("/login")
+@limiter.limit("10/minute")
+@limiter.limit("50/hour")
 def login():
     if current_user.is_authenticated and current_user.hasPermission(Permission.GROUP):
         return redirect(url_for("group.index"))
@@ -37,6 +40,8 @@ def login():
 
 
 @blueprint.route("/login", methods=["POST"])
+@limiter.limit("5/minute")
+@limiter.limit("25/hour")
 def processLogin():
     g = Group.query.filter_by(id=request.form["group"]).first()
     if g and g.user.validateKey(request.form["key"]):

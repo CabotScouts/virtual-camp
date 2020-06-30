@@ -28,6 +28,11 @@ def methodNotAllowed(error):
     return render_template("error.jinja", error=error), 405
 
 
+@blueprint.app_errorhandler(429)
+def tooManyRequests(error):
+    return render_template("error.jinja", error="429 Too Many Requests"), 429
+
+
 @blueprint.app_errorhandler(504)
 def serverError(error):
     return render_template("error.jinja", error=error), 500

@@ -1,7 +1,7 @@
 from flask import Blueprint, request, flash, render_template, redirect, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 
-from app import login_manager
+from app import login_manager, limiter
 from app.models import User, Permission
 
 blueprint = Blueprint("auth", __name__)
@@ -39,7 +39,9 @@ def loadUser(id):
     return User.query.get(id)
 
 
-@blueprint.route("/login", methods=["GET"])
+@blueprint.route("/login")
+@limiter.limit("10/minute")
+@limiter.limit("50/hour")
 def login():
     if current_user.is_authenticated and current_user.hasPermission(Permission.LOGIN):
         return redirect(url_for("manage.index"))
@@ -48,6 +50,8 @@ def login():
 
 
 @blueprint.route("/login", methods=["POST"])
+@limiter.limit("5/minute")
+@limiter.limit("25/hour")
 def processLogin():
     username = request.form["user"].lower()
     u = User.query.filter_by(username=username).first()
