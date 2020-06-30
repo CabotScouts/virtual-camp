@@ -41,7 +41,10 @@ def loadUser(id):
 
 @blueprint.route("/login", methods=["GET"])
 def login():
-    return render_template("auth/login.jinja")
+    if current_user.is_authenticated and current_user.hasPermission(Permission.LOGIN):
+        return redirect(url_for("manage.index"))
+    else:
+        return render_template("auth/login.jinja")
 
 
 @blueprint.route("/login", methods=["POST"])

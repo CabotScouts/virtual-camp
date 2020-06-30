@@ -29,8 +29,11 @@ def index(page=1):
 
 @blueprint.route("/login")
 def login():
-    groups = Group.query.all()
-    return render_template("group/login.jinja", groups=groups)
+    if current_user.is_authenticated:
+        return redirect(url_for("group.index"))
+    else:
+        groups = Group.query.all()
+        return render_template("group/login.jinja", groups=groups)
 
 
 @blueprint.route("/login", methods=["POST"])

@@ -16,7 +16,7 @@ class Permission:
 class Role:
     GUEST = Permission.NONE
     USER = Permission.LOGIN
-    GROUP = Permission.GROUP | Permission.LOGIN
+    GROUP = Permission.GROUP
     CURATOR = Permission.CURATE | Permission.LOGIN
     MANAGER = Permission.MANAGE | Permission.CURATE | Permission.LOGIN
     ADMIN = Permission.ADMIN | Permission.MANAGE | Permission.CURATE | Permission.LOGIN
