@@ -16,9 +16,7 @@ class ShareType(Enum):
 class Share(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, default=db.func.now())
-    updated_at = db.Column(
-        db.DateTime, server_default=db.func.now(), onupdate=db.func.now()
-    )
+    updated_at = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
     ip = db.Column(db.String(15), nullable=False)
 
     name = db.Column(db.String(50))
