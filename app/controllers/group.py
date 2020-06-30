@@ -29,7 +29,7 @@ def index(page=1):
 
 @blueprint.route("/login")
 def login():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated and current_user.hasPermission(Permission.GROUP):
         return redirect(url_for("group.index"))
     else:
         groups = Group.query.all()
