@@ -149,15 +149,25 @@ def flagShare():
 
 
 @blueprint.route("/shares/star", methods=["POST"])
-@auth.needs_manage
+@auth.needs_curate
 def starShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
     if share:
-        starred = share.star()
-        if starred:
-            flash("Share starred", "info")
-        else:
-            flash("Share unstarred", "warning")
+        share.star(request.form["caption"])
+        flash("Share starred", "success")
+    else:
+        flash("Share not found", "danger")
+
+    return redirect(request.referrer)
+
+
+@blueprint.route("/shares/unstar", methods=["POST"])
+@auth.needs_curate
+def unstarShare():
+    share = Share.query.filter_by(id=request.form["id"]).first()
+    if share:
+        starred = share.unstar()
+        flash("Share unstarred", "warning")
     else:
         flash("Share not found", "danger")
 

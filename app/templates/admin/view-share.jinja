@@ -39,6 +39,26 @@
         <td>{{ share.comment }}</td>
       </tr>
 
+      <tr>
+        <td colspan="2">
+          <form method="POST" action="{{ url_for('manage.starShare') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <input type="hidden" name="id" value="{{ share.id }}" />
+            <div class="form-row">
+              <div class="form-group col-12">
+                <label for="caption">Star this share</label>
+                <textarea class="form-control" id="caption" name="caption" rows="4">{% if share.caption %}{{ share.caption }}{% endif %}</textarea>
+              </div>
+              <div class="form-group col-12 col-md-4 self-align-right">
+                <button type="submit" class="form-control btn btn-sm btn-info">
+                  <i class="fas fa-star mr-2"></i>Star
+                </button>
+              </div>
+            </div>
+          </form>
+        </td>
+      </tr>
+
       {% if hasAdmin() %}
       <tr>
         <td scope="row">Submitter IP</td>

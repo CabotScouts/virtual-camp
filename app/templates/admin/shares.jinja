@@ -36,7 +36,7 @@
       <td class="col-3 col-md-2 col-xl-1">
         {% if share.starred %}
         <div class="mb-1">
-          <form method="POST" action="{{ url_for('manage.starShare') }}">
+          <form method="POST" action="{{ url_for('manage.unstarShare') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
               <input type="hidden" name="id" value="{{ share.id }}" />
               <button type="submit" class="form-control btn btn-sm btn-info">

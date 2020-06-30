@@ -25,6 +25,7 @@ class Share(db.Model):
     file = db.Column(db.String(20), nullable=False)
     filetype = db.Column(db.Enum(ShareType), default=ShareType.NONE)
     comment = db.Column(db.Text)
+    caption = db.Column(db.Text)
 
     group_id = db.Column(db.Integer, db.ForeignKey("group.id"), nullable=False)
     group = db.relationship("Group", backref=db.backref("shares", lazy=True))
@@ -88,12 +89,17 @@ class Share(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def star(self):
-        self.starred = not self.starred
+    def star(self, caption):
+        self.starred = True
         self.approved = True
+        self.caption = caption
         db.session.add(self)
         db.session.commit()
-        return self.starred
+
+    def unstar(self):
+        self.starred = False
+        db.session.add(self)
+        db.session.commit()
 
     def delete(self):
         self.deleted = True
