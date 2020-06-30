@@ -107,6 +107,13 @@ footer {
   margin-bottom: 20px;
 }
 
+.gallery-card {
+  .card-footer {
+    background: 0;
+    border: 0;
+  }
+}
+
 /* -- Navbar -- */
 .navbar-brand {
   font-size: 2rem;
