@@ -26,41 +26,47 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 px-2">
     {% for share in shares.items %}
       <div class="col mb-3 px-2">
-        <div class="card h-100">
+        <div class="card h-100 gallery-card">
           {% if share.isImage() %}
           {# TODO: add lightbox to these #}
             <img src="{{ url_for("share.get", image=share.file) }}" class="card-img-top" />
-            <div class="card-img-overlay p-2">
-              <p class="card-text text-right mt-0 gallery-download">
-                <a href="{{ url_for("share.get", image=share.file) }}" class="badge badge-light" target="_blank">
+            <!-- <div class="card-img-overlay p-2">
+              <p class="card-text text-right mt-0">
+                <a href="{{ url_for("share.get", image=share.file) }}" class="badge badge-info text-light download" target="_blank">
                   <i class="fas fa-download"></i>
                 </a>
               </p>
-            </div>
+            </div> -->
           {% elif share.isVideo() %}
-          <div class="embed-responsive embed-responsive-1by1">
+          <div class="embed-responsive embed-responsive-1by1 card-img-top">
             <video class="embed-responsive-item" controls>
               <source src="{{ url_for("share.get", image=share.file) }}" />
             </video>
           </div>
           {% endif %}
           <div class="card-body">
-            <h5 class="card-title">{{ share.name }}</h5>
-            <p class="card-text">
+            <h5 class="card-title float-left mt-1 mb-0">{{ share.name }}</h5>
+            <p class="card-text float-right mb-0">
+
+            </p>
+            <p class="card-text mt-2">
               {{ share.comment }}
             </p>
           </div>
           <div class="card-footer text-muted">
             <div class="row">
-              <div class="col-10">
-                {{ share.created_at }}
+              <div class="col-8">
+                <small>{{ share.created_at }}</small>
               </div>
-              <div class="col-2 text-right">
+              <div class="col-4 text-right">
                 {% if share.featured %}
-                <a class="text-info p-0 m-0" href="{{ url_for('share.featured', id=share.id)}}" data-toggle="tooltip" data-placement="top" title="Featured in the gallery">
+                <a class="text-info mr-2" href="{{ url_for('share.featured', id=share.id)}}" data-toggle="tooltip" data-placement="top" title="Featured in the gallery">
                   <i class="fas fa-star"></i>
                 </a>
                 {% endif %}
+                <a class="text-primary" href="{{ url_for("share.get", image=share.file) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Download share">
+                  <i class="fas fa-download"></i>
+                </a>
               </div>
             </div>
           </div>
