@@ -13,7 +13,7 @@
     </div>
     <div class="form-group col-10 col-lg-4">
       <select class="form-control" name="role">
-        <option disabled>Choose</option>
+        <option disabled selected>Choose Role</option>
         <option value="0">Guest</option>
         <option value="1">User</option>
         <option value="3">Curator</option>
@@ -50,7 +50,7 @@
             <div class="col-6 col-md-10">
               <select class="form-control" name="role">
                 <option selected value="{{ user.role }}">{{ user.role|roleName }}</option>
-                <option disabled>New Role</option>
+                <option disabled>Change Role</option>
                 <option value="0">Guest</option>
                 <option value="1">User</option>
                 <option value="3">Curator</option>
