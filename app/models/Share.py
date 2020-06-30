@@ -30,7 +30,7 @@ class Share(db.Model):
 
     approved = db.Column(db.Boolean, default=False)
     flagged = db.Column(db.Boolean, default=False)
-    starred = db.Column(db.Boolean, default=False)
+    featured = db.Column(db.Boolean, default=False)
     deleted = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
@@ -87,15 +87,15 @@ class Share(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def star(self, caption):
-        self.starred = True
+    def feature(self, caption):
+        self.featured = True
         self.approved = True
         self.caption = caption
         db.session.add(self)
         db.session.commit()
 
-    def unstar(self):
-        self.starred = False
+    def unfeature(self):
+        self.featured = False
         db.session.add(self)
         db.session.commit()
 
@@ -112,8 +112,8 @@ class Share(db.Model):
         if not self.approved:
             return "Pending"
 
-        if self.starred:
-            return "Starred"
+        if self.featured:
+            return "Featured"
 
         if self.approved:
             return "Approved"
@@ -129,7 +129,7 @@ class Share(db.Model):
         if not self.approved:
             return "warning"
 
-        if self.starred:
+        if self.featured:
             return "info"
 
         if self.approved:

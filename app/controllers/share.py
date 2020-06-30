@@ -85,7 +85,7 @@ def get(image):
     share = Share.query.filter_by(file=image).first_or_404()
 
     if (
-        share.starred
+        share.featured
         or (
             share.approved
             and current_user.hasPermission(Permission.GROUP)
@@ -105,8 +105,14 @@ def get(image):
 @blueprint.route("/gallery/<int:page>")
 def gallery(page=0):
     shares = (
-        Share.query.filter_by(approved=True, starred=True)
+        Share.query.filter_by(approved=True, featured=True)
         .order_by(Share.id.desc())
         .paginate(page, 20, False)
     )
     return render_template("share/gallery.jinja", shares=shares)
+
+
+@blueprint.route("/featured/<int:id>")
+def featured(id):
+    share = Share.query.filter_by(approved=True, featured=True, id=id).first_or_404()
+    return render_template("share/featured.jinja", share=share)

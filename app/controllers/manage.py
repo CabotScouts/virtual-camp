@@ -34,15 +34,15 @@ def injectShareCounts():
     def flaggedCount():
         return Share.query.filter_by(flagged=True).count()
 
-    def starredCount():
-        return Share.query.filter_by(starred=True).count()
+    def featuredCount():
+        return Share.query.filter_by(featured=True).count()
 
     return dict(
         totalCount=totalCount,
         approvedCount=approvedCount,
         pendingCount=pendingCount,
         flaggedCount=flaggedCount,
-        starredCount=starredCount,
+        featuredCount=featuredCount,
     )
 
 
@@ -108,13 +108,13 @@ def flaggedShares(page=1):
     return render_template("admin/shares.jinja", title=title, shares=shares)
 
 
-@blueprint.route("/shares/starred")
-@blueprint.route("/shares/starred/<int:page>")
+@blueprint.route("/shares/featured")
+@blueprint.route("/shares/featured/<int:page>")
 @auth.needs_curate
-def starredShares(page=1):
-    title = "Starred Shares"
+def featuredShares(page=1):
+    title = "Featured Shares"
     shares = (
-        Share.query.filter_by(starred=True)
+        Share.query.filter_by(featured=True)
         .order_by(Share.id.asc())
         .paginate(page, sharesPerPage, False)
     )
@@ -148,26 +148,26 @@ def flagShare():
     return redirect(request.referrer)
 
 
-@blueprint.route("/shares/star", methods=["POST"])
+@blueprint.route("/shares/feature", methods=["POST"])
 @auth.needs_curate
-def starShare():
+def featureShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
     if share:
-        share.star(request.form["caption"])
-        flash("Share starred", "success")
+        share.feature(request.form["caption"])
+        flash("Share featured", "success")
     else:
         flash("Share not found", "danger")
 
     return redirect(request.referrer)
 
 
-@blueprint.route("/shares/unstar", methods=["POST"])
+@blueprint.route("/shares/unfeature", methods=["POST"])
 @auth.needs_curate
-def unstarShare():
+def unfeatureShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
     if share:
-        starred = share.unstar()
-        flash("Share unstarred", "warning")
+        featurered = share.unfeature()
+        flash("Share unfeatured", "warning")
     else:
         flash("Share not found", "danger")
 

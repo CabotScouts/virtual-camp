@@ -46,21 +46,30 @@
 
       <tr>
         <td colspan="2">
-          <form method="POST" action="{{ url_for('manage.starShare') }}">
+          <form method="POST" action="{{ url_for('manage.featureShare') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             <input type="hidden" name="id" value="{{ share.id }}" />
             <div class="form-row">
               <div class="form-group col-12">
-                <label for="caption">Star this share</label>
+                <label for="caption">Feature this share</label>
                 <textarea class="form-control" id="caption" name="caption" rows="4">{% if share.caption %}{{ share.caption }}{% endif %}</textarea>
               </div>
               <div class="form-group col-12 col-md-4 self-align-right">
                 <button type="submit" class="form-control btn btn-sm btn-info">
-                  <i class="fas fa-star mr-2"></i>Star
+                  <i class="fas fa-star mr-2"></i>Feature
                 </button>
               </div>
             </div>
           </form>
+          {% if share.featured %}
+          <form method="POST" action="{{ url_for('manage.unfeatureShare') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <input type="hidden" name="id" value="{{ share.id }}" />
+            <button type="submit" class="btn btn-block btn-dark">
+              <i class="fas fa-check mr-2"></i>Unfeature
+            </button>
+          </form>
+          {% endif %}
         </td>
       </tr>
 

@@ -44,9 +44,9 @@
           {% endif %}
 
           {% if hasCurate() %}
-          <a href="{{ url_for('manage.starredShares') }}" class="list-group-item">
-            Starred Shares
-            <span class="badge badge-pill badge-info ml-2">{{ starredCount() }}</span>
+          <a href="{{ url_for('manage.featuredShares') }}" class="list-group-item">
+            Featured Shares
+            <span class="badge badge-pill badge-info ml-2">{{ featuredCount() }}</span>
           </a>
           {% endif %}
 

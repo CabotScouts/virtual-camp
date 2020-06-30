@@ -29,9 +29,14 @@
         <div class="card h-100">
           {% if share.isImage() %}
           {# TODO: add lightbox to these #}
-          <a href="{{ url_for("share.get", image=share.file) }}" target="_blank">
             <img src="{{ url_for("share.get", image=share.file) }}" class="card-img-top" />
-          </a>
+            <div class="card-img-overlay p-2">
+              <p class="card-text text-right mt-0 gallery-download">
+                <a href="{{ url_for("share.get", image=share.file) }}" class="badge badge-light" target="_blank">
+                  <i class="fas fa-download"></i>
+                </a>
+              </p>
+            </div>
           {% elif share.isVideo() %}
           <div class="embed-responsive embed-responsive-1by1">
             <video class="embed-responsive-item" controls>
@@ -51,8 +56,8 @@
                 {{ share.created_at }}
               </div>
               <div class="col-2 text-right">
-                {% if share.starred %}
-                <a class="text-info p-0 m-0" href="#" data-toggle="tooltip" data-placement="top" title="Featured in the gallery">
+                {% if share.featured %}
+                <a class="text-info p-0 m-0" href="{{ url_for('share.featured', id=share.id)}}" data-toggle="tooltip" data-placement="top" title="Featured in the gallery">
                   <i class="fas fa-star"></i>
                 </a>
                 {% endif %}

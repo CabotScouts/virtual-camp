@@ -5,7 +5,7 @@
   <div class="col-12">
     <h1>Gallery</h1>
     <p>
-      Fancy seeing your pictures here? <a href="{{ url_for ('share.new') }}">Share them with us</a> and we might add them to the gallery!
+      Want to see your pictures here? <a href="{{ url_for ('share.new') }}">Share them with us</a> and we might feature them in the gallery and on our <a href="{{ url_for('root.live') }}">live stream</a>!
     </p>
   </div>
   {% if shares.items|count > 0 %}
@@ -30,7 +30,11 @@
           </div>
           {% endif %}
           <div class="card-footer">
-            <p class="card-text text-right"><small class="text-muted">{{ share.posted }}</small></p>
+            <p class="card-text text-right">
+              <a href="{{ url_for('share.featured', id=share.id)}}" class="text-muted">
+                <small>{{ share.posted }}</small>
+              </a>
+            </p>
           </div>
         </div>
       </div>
