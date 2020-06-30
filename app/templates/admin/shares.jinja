@@ -34,6 +34,12 @@
       </td>
 
       <td class="col-3 col-md-2 col-xl-1">
+        <div class="mb-1">
+          <a href="{{ url_for('manage.viewShare', id=share.id) }}" class="btn btn-sm btn-block btn-primary">
+            <i class="fas fa-eye"></i>
+          </a>
+        </div>
+
         {% if share.starred %}
         <div class="mb-1">
           <form method="POST" action="{{ url_for('manage.unstarShare') }}">
@@ -56,7 +62,9 @@
             </button>
           </form>
         </div>
+        {% endif %}
 
+        {% if hasCurate() %}
         <div class="mb-1">
           <form method="POST" action="{{ url_for('manage.flagShare') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
@@ -67,12 +75,6 @@
           </form>
         </div>
         {% endif %}
-
-        <div class="mb-1">
-          <a href="{{ url_for('manage.viewShare', id=share.id) }}" class="btn btn-sm btn-block btn-primary">
-            <i class="fas fa-eye"></i>
-          </a>
-        </div>
 
         {% if hasAdmin() %}
         <div class="mb-1">

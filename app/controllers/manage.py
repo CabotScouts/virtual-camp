@@ -136,7 +136,7 @@ def approveShare():
 
 
 @blueprint.route("/shares/flag", methods=["POST"])
-@auth.needs_manage
+@auth.needs_curate
 def flagShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
     if share:
