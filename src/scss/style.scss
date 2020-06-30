@@ -23,6 +23,9 @@ $scout-section-green: #004851;
 $alert-bg-level: -10;
 $alert-color-level: 8;
 
+$table-accent-bg: rgba($primary, 0.1);
+$table-hover-bg: rgba($primary, 0.2);
+
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
@@ -39,28 +42,28 @@ body.dark {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
   color: $dark;
-  font-weight: 700;
+  font-weight: 900;
   margin-bottom: 0.8rem;
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 1.9rem;
 }
 
 h2 {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
 }
 
 h3 {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 }
 
 h4 {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 
 h5 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 h6 {
@@ -105,6 +108,17 @@ footer {
 .login-form {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.timetable {
+  h2, h3 {
+    font-weight: 900;
+    margin-bottom: 0;
+  }
+
+  td {
+    vertical-align: middle;
+  }
 }
 
 .gallery-card {
