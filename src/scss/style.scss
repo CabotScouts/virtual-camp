@@ -23,8 +23,8 @@ $scout-section-green: #004851;
 $alert-bg-level: -10;
 $alert-color-level: 8;
 
-$table-accent-bg: rgba($primary, 0.1);
-$table-hover-bg: rgba($primary, 0.2);
+$table-accent-bg: #e9ecef;
+$table-hover-bg: rgba($primary, 0.1);
 
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
