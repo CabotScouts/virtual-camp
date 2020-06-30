@@ -111,12 +111,12 @@ footer {
 }
 
 .timetable {
-  h2, h3 {
+  h2, h3, h4, h5 {
     font-weight: 900;
     margin-bottom: 0;
   }
 
-  td {
+  thead th, td {
     vertical-align: middle;
   }
 }
