@@ -11,6 +11,10 @@
         <p>
           <a href="https://bristolcabotscouts.org.uk" target="_blank"><img class="cabot-logo" src="{{ url_for('static', filename='cabot-stacked-inv.png') }}" /></a>
         </p>
+        <p class="small login-links">
+          <a class="text-reset mr-2" href="{{ url_for('group.login') }}">Group Login</a>
+          <a class="text-reset ml-2" href="{{ url_for('auth.login') }}">User Login</a>
+        </p>
       </div>
     </div>
   </div>
