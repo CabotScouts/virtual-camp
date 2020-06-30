@@ -53,7 +53,7 @@ def processLogin():
         flash("This user is not permitted to login", "danger")
         return redirect(url_for("auth.login"))
 
-    if u and (u.key == request.form["key"]):
+    if u and u.validateKey(request.form["key"]):
         login_user(u)
         flash("Successfully logged in", "success")
         return redirect(url_for("manage.index"))

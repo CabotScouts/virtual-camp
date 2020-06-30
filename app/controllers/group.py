@@ -36,7 +36,7 @@ def login():
 @blueprint.route("/login", methods=["POST"])
 def processLogin():
     g = Group.query.filter_by(id=request.form["group"]).first()
-    if g and (g.user.key == request.form["key"]):
+    if g and g.user.validateKey(request.form["key"]):
         login_user(g.user)
         flash("Successfully logged in", "success")
         return redirect(url_for("group.index"))

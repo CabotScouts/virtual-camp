@@ -25,7 +25,7 @@ class Role:
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True)
-    key = db.Column(db.String(12))
+    loginKey = db.Column(db.String(12))
 
     role = db.Column(db.Integer, nullable=False, default=Role.USER)
 
@@ -47,8 +47,19 @@ class User(UserMixin, db.Model):
     def name(self):
         return self.username or self.group.name
 
+    @property
+    def key(self):
+        return "*****" if self.id == 1 else self.loginKey
+
+    @key.setter
+    def key(self, key):
+        self.loginKey = key
+
     def generateKey(self):
-        self.key = randomKey(6)
+        self.loginKey = randomKey(6)
+
+    def validateKey(self, key):
+        return key == self.loginKey
 
     def hasPermission(self, permission):
         return (self.role & permission) > 0
