@@ -28,9 +28,20 @@ def methodNotAllowed(error):
     return render_template("error.jinja", error=error), 405
 
 
+@blueprint.app_errorhandler(413)
+def requestTooLarge(error):
+    return render_template("error.jinja", error=error), 413
+
+
 @blueprint.app_errorhandler(429)
 def tooManyRequests(error):
-    return render_template("error.jinja", error="429 Too Many Requests"), 429
+    return (
+        render_template(
+            "error.jinja",
+            error="429 Too Many Requests: You've tried to access this page too many times, please wait and try again later",
+        ),
+        429,
+    )
 
 
 @blueprint.app_errorhandler(504)

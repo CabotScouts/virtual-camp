@@ -10,6 +10,7 @@ from flask import (
     url_for,
     send_from_directory,
     abort,
+    jsonify,
 )
 from flask_login import current_user
 
@@ -80,6 +81,15 @@ def upload():
         return redirect(url_for("share.new"))
 
 
+@blueprint.errorhandler(413)
+def uploadTooLarge(error):
+    flash(
+        '<i class="fas fa-exclamation-circle pr-2"></i>The file you\'ve tried to share is too big to be uploaded',
+        "danger",
+    )
+    return redirect(url_for("share.new"))
+
+
 @blueprint.route("/view/<path:image>")
 def get(image):
     share = Share.query.filter_by(file=image).first_or_404()
@@ -116,3 +126,19 @@ def gallery(page=0):
 def featured(id):
     share = Share.query.filter_by(approved=True, featured=True, id=id).first_or_404()
     return render_template("share/featured.jinja", share=share)
+
+
+@blueprint.route("/wall")
+def wallFeatured():
+    shares = (
+        Share.query.filter_by(approved=True, featured=True)
+        .order_by(Share.id.desc())
+        .paginate(p, n, False)
+    )
+    mapped = [share.toJSON() for share in shares.items]
+    return jsonify(
+        status=200,
+        count=len(mapped),
+        shares=mapped,
+        next=url_for("share.wallFeatured", n=n, p=shares.next_num, _external=True),
+    )
