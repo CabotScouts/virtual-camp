@@ -13,7 +13,7 @@ from flask_login import current_user
 
 from app import db
 from app.models import User, Group, Share
-from app.utils import auth
+from app.utils import auth, isSafeUrl
 
 blueprint = Blueprint("manage", __name__, url_prefix="/manage")
 
@@ -185,10 +185,15 @@ def deleteShare():
         if os.path.isfile(path):
             os.remove(path)
 
-        # TODO: turn this into a soft delete (so we retain time & IP)
         db.session.delete(share)
         db.session.commit()
         flash("Share removed", "warning")
+
+        ret = request.form["return"]
+        if isSafeUrl(ret, request):
+            return redirect(ret)
+        else:
+            return redirect(url_for("manage.index"))
     else:
         flash("Share not found", "danger")
     return redirect(url_for("manage.index"))

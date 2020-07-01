@@ -81,6 +81,7 @@
           <form method="POST" action="{{ url_for('manage.deleteShare') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             <input type="hidden" name="id" value="{{ share.id }}" />
+            <input type="hidden" name="return" value="{{ request.url }}" />
             <button type="submit" class="form-control btn btn-sm btn-dark">
               <i class="fas fa-times"></i>
             </button>
