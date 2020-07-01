@@ -7,7 +7,7 @@ def seed(app):
     with app.app_context():
         db.create_all()
 
-        u = User(username="root", key=1001, role=Role.ADMIN)
+        u = User(username="admin", key=1001, role=Role.ADMIN)
         db.session.add(u)
 
         groups = [
