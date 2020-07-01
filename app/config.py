@@ -3,6 +3,7 @@ ContentSecurityPolicy = {
         "'self'",
         "fonts.googleapis.com",
         "fonts.gstatic.com",
+        "docs.google.com",
         "*.youtube.com",
     ],
     "img-src": ["*", "data:"],
