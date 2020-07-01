@@ -49,7 +49,7 @@ class User(UserMixin, db.Model):
 
     @property
     def key(self):
-        return "*****" if self.id == 1 else self.loginKey
+        return '<i class="fas fa-lock"></i>' if self.id == 1 else self.loginKey
 
     @key.setter
     def key(self, key):
