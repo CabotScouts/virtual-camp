@@ -35,18 +35,18 @@
 
       <td class="col-3 col-md-2 col-xl-1">
         <div class="mb-1">
-          <a href="{{ url_for('manage.viewShare', id=share.id) }}" class="btn btn-sm btn-block btn-primary">
+          <a href="{{ url_for('manage.viewShare', id=share.id) }}" class="btn btn-sm btn-block btn-primary" data-toggle="tooltip" data-placement="left" title="View">
             <i class="fas fa-eye"></i>
           </a>
         </div>
 
-        {% if share.starred %}
+        {% if share.featured %}
         <div class="mb-1">
-          <form method="POST" action="{{ url_for('manage.unstarShare') }}">
+          <form method="POST" action="{{ url_for('manage.unfeatureShare') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
               <input type="hidden" name="id" value="{{ share.id }}" />
-              <button type="submit" class="form-control btn btn-sm btn-info">
-                <i class="fas fa-star"></i>
+              <button type="submit" class="form-control btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="left" title="Unfeature">
+                <i class="fas fa-folder-minus"></i>
               </button>
           </form>
         </div>
@@ -57,7 +57,7 @@
           <form method="POST" action="{{ url_for('manage.approveShare') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             <input type="hidden" name="id" value="{{ share.id }}" />
-            <button type="submit" class="form-control btn btn-sm btn-success">
+            <button type="submit" class="form-control btn btn-sm btn-success" data-toggle="tooltip" data-placement="left" title="Approve">
               <i class="fas fa-check"></i>
             </button>
           </form>
@@ -69,7 +69,7 @@
           <form method="POST" action="{{ url_for('manage.flagShare') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             <input type="hidden" name="id" value="{{ share.id }}" />
-            <button type="submit" class="form-control btn btn-sm btn-danger text-white">
+            <button type="submit" class="form-control btn btn-sm btn-danger text-white" data-toggle="tooltip" data-placement="left" title="Flag">
               <i class="fas fa-flag"></i>
             </button>
           </form>
@@ -82,7 +82,7 @@
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             <input type="hidden" name="id" value="{{ share.id }}" />
             <input type="hidden" name="return" value="{{ request.url }}" />
-            <button type="submit" class="form-control btn btn-sm btn-dark">
+            <button type="submit" class="form-control btn btn-sm btn-dark" data-toggle="tooltip" data-placement="left" title="Delete">
               <i class="fas fa-times"></i>
             </button>
           </form>
