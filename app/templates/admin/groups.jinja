@@ -2,31 +2,32 @@
 {% block title %}Groups - Admin{% endblock %}
 {% block content %}
 <h1>Groups</h1>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Group</th>
-      <th scope="col">Key</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for group in groups %}
-    <tr>
-      <td class="align-middle">{{ group.name }}</td>
-      <td class="align-middle">{{ group.user.key }}</td>
-      <td>
-        {% if hasAdmin() %}
-        <form method="POST" action="{{ url_for('manage.regenerateKey') }}">
-          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-          <input type="hidden" name="id" value="{{ group.user.id }}" />
-          <input type="hidden" name="return" value="group" />
-          <button type="submit" class="form-control btn-info btn-block btn-sm" data-toggle="tooltip" data-placement="right" title="Regenerate key"><i class="fas fa-key"></i></button>
-        </form>
-        {% endif %}
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Group</th>
+        <th scope="col" colspan="2">Key</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for group in groups %}
+      <tr>
+        <td class="align-middle">{{ group.name }}</td>
+        <td class="align-middle">{{ group.user.key }}</td>
+        <td class="align-middle">
+          {% if hasAdmin() %}
+          <form method="POST" action="{{ url_for('manage.regenerateKey') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <input type="hidden" name="id" value="{{ group.user.id }}" />
+            <input type="hidden" name="return" value="group" />
+            <button type="submit" class="form-control btn-info btn-block btn-sm" data-toggle="tooltip" data-placement="right" title="Regenerate key"><i class="fas fa-key"></i></button>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}
