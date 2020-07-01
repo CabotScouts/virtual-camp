@@ -8,10 +8,18 @@ def injectLinks():
     # Inject main menu links into every template render automatically
     return dict(
         links=[
-            ("Home", url_for("root.index")),
-            ("Sign Up", url_for("root.register")),
-            ("Camp Timetable", url_for("root.timetable")),
-            ("Gallery", url_for("share.gallery")),
+            ("Home", "The event homepage", url_for("root.index")),
+            ("Sign Up", "Sign up for the event", url_for("root.register")),
+            (
+                "Camp Programme",
+                "The programme for the weekend",
+                url_for("root.programme"),
+            ),
+            (
+                "Gallery",
+                "A gallery of images and videos sent into the event",
+                url_for("share.gallery"),
+            ),
         ]
     )
 
@@ -31,9 +39,9 @@ def register():
     return render_template("root/registration.jinja")
 
 
-@blueprint.route("/timetable")
-def timetable():
-    return render_template("root/timetable.jinja")
+@blueprint.route("/programme")
+def programme():
+    return render_template("root/programme.jinja")
 
 
 @blueprint.route("/live")

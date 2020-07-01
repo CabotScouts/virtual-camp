@@ -1,27 +1,35 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="container-md">
-      <a class="navbar-brand wow mr-3" href="/">Way Out West!</a>
+      <a class="navbar-brand wow mr-3" href="{{ url_for('root.index') }}" title="The event homepage">Way Out West!</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks" aria-controls="navbarLinks" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarLinks">
         <ul class="navbar-nav mr-auto">
-          {% for title, link in links %}
+          {% for title, description, link in links %}
             <li class="nav-item{{ ' active' if request.path == link }}">
-              <a class="nav-link" href="{{ link }}">{{ title }}</a>
+              <a class="nav-link" href="{{ link }}" title="{{ description }}">{{ title }}</a>
             </li>
           {% endfor %}
         </ul>
       </div>
       <div class="d-none d-xl-block">
-        <a class="btn btn-success" href="{{ url_for('share.new') }}"><i class="fas fa-star pr-2"></i>Share what you're doing</a>
-        <a class="btn btn-danger ml-2" href="{{ url_for('root.live') }}"><i class="fas fa-video pr-2"></i>Watch live</a>
+        <a class="btn btn-success" href="{{ url_for('share.new') }}" title="Share your images and video with us">
+          <i class="fas fa-star pr-2"></i>Share what you're doing
+        </a>
+        <a class="btn btn-danger ml-2" href="{{ url_for('root.live') }}" title="Watch the event livestream">
+          <i class="fas fa-video pr-2"></i>Watch live
+        </a>
         {% if hasGroup() %}
-        <a class="btn btn-info ml-2" href="{{ url_for('group.index') }}"><i class="far fa-images pr-1"></i> Group Shares</a>
+        <a class="btn btn-info ml-2" href="{{ url_for('group.index') }}" title="See what your group members have shared with us">
+          <i class="far fa-images pr-1"></i> Group Shares
+        </a>
         {% elif hasLogin() %}
-        <a class="btn btn-info ml-2" href="{{ url_for('manage.index') }}"><i class="fas fa-edit"></i> Manage</a>
+        <a class="btn btn-info ml-2" href="{{ url_for('manage.index') }}" title="Manage the website">
+          <i class="fas fa-edit"></i> Manage
+        </a>
         {% endif %}
       </div>
     </div>
