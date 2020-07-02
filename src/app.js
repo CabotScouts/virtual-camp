@@ -1,5 +1,5 @@
-import 'bootstrap';
 import $ from 'jquery';
+import 'bootstrap'
 import bsCustomFileInput from 'bs-custom-file-input';
 
 (function () {
