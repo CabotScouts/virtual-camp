@@ -22,6 +22,7 @@ class Config:
     ]
     COMPRESS_LEVEL = 6
     COMPRESS_MIN_SIZE = 500
+    SEND_FILE_MAX_AGE_DEFAULT = 31536000
 
     MAX_CONTENT_LENGTH = 50 * 1024 * 1024
     UPLOAD_FOLDER = "app/uploads"
