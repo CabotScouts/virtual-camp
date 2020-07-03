@@ -1,3 +1,5 @@
+from flask import current_app
+
 from app import db
 from app.models import User, Group, Role
 from app.utils import randomKey
@@ -5,10 +7,19 @@ from app.utils import randomKey
 
 def seed(app):
     with app.app_context():
+        print("Creating app database:")
+
         db.create_all()
 
-        u = User(username="admin", key=1001, role=Role.ADMIN)
+        print("Created!\n")
+        print("Adding root user:")
+
+        rkey = current_app.config["ROOT_KEY"]
+        u = User(username="admin", key=rkey, role=Role.ADMIN)
         db.session.add(u)
+
+        print(f"Root user added, key: { rkey }\n")
+        print("Adding Group data:")
 
         groups = [
             "1st Bishopston",
@@ -35,5 +46,10 @@ def seed(app):
         for group in groups:
             g = Group(name=group)
             db.session.add(g)
+            print(f"Added { g.name }")
+
+        print("Groups added\n")
 
         db.session.commit()
+
+        print("Database seeding complete")

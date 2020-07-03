@@ -1,3 +1,13 @@
+import os
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+from app.utils import randomString, randomKey
+
+env = Path("..") / ".env"
+load_dotenv(dotenv_path=env)
+
 ContentSecurityPolicy = {
     "default-src": [
         "'self'",
@@ -11,7 +21,8 @@ ContentSecurityPolicy = {
 
 
 class Config:
-    SECRET_KEY = "cats"
+    SECRET_KEY = os.getenv("SECRET_KEY", randomString(25))
+    ROOT_KEY = os.getenv("ROOT_KEY", randomKey(8))
 
     COMPRESS_MIMETYPES = [
         "text/html",
@@ -40,3 +51,15 @@ class Config:
     }
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+
+class LocalConfig(Config):
+    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
+
+
+class DevConfig(Config):
+    pass
+
+
+class ProdConfig(Config):
+    pass

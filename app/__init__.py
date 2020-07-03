@@ -21,7 +21,7 @@ limiter = Limiter(key_func=get_remote_address)
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object("app.config.Config")
+    app.config.from_object("app.config.LocalConfig")
 
     talisman.init_app(app, content_security_policy=ContentSecurityPolicy)
     compress.init_app(app)
