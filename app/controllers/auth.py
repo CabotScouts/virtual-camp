@@ -1,4 +1,12 @@
-from flask import Blueprint, request, flash, render_template, redirect, url_for
+from flask import (
+    current_app,
+    Blueprint,
+    request,
+    flash,
+    render_template,
+    redirect,
+    url_for,
+)
 from flask_login import current_user, login_required, login_user, logout_user
 
 from app import login_manager, limiter
@@ -66,6 +74,9 @@ def processLogin():
         return redirect(url_for("manage.index"))
 
     else:
+        current_app.logger.warning(
+            f"Incorrect username/key from { request.remote_addr }"
+        )
         flash("Username or key incorrect", "danger")
         return redirect(url_for("auth.login"))
 

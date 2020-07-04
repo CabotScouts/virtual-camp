@@ -50,6 +50,7 @@ def processLogin():
         return redirect(url_for("group.index"))
 
     else:
+        current_app.logger.warning(f"Incorrect Group key from { request.remote_addr }")
         flash("Key incorrect", "danger")
         return redirect(url_for("group.login"))
 

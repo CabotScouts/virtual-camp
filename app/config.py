@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from logging.config import dictConfig
 
 from dotenv import load_dotenv
 
@@ -8,16 +9,35 @@ from app.utils import randomString, randomKey
 env = Path("..") / ".env"
 load_dotenv(dotenv_path=env)
 
-ContentSecurityPolicy = {
-    "default-src": [
-        "'self'",
-        "fonts.googleapis.com",
-        "fonts.gstatic.com",
-        "docs.google.com",
-        "*.youtube.com",
-    ],
-    "img-src": ["*", "data:"],
-}
+
+def loadConfig(config, app):
+    configs = {
+        "development": DevConfig,
+        "production": ProdConfig,
+    }
+
+    app.config.from_object(configs[config])
+
+
+def setupLogging():
+    dictConfig(
+        {
+            "version": 1,
+            "formatters": {
+                "default": {
+                    "format": "[%(asctime)s] %(levelname)s in %(module)s: %(message)s",
+                }
+            },
+            "handlers": {
+                "wsgi": {
+                    "class": "logging.StreamHandler",
+                    "stream": "ext://flask.logging.wsgi_errors_stream",
+                    "formatter": "default",
+                }
+            },
+            "root": {"level": "INFO", "handlers": ["wsgi"]},
+        }
+    )
 
 
 class Config:
@@ -53,13 +73,28 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
-class LocalConfig(Config):
+class DevConfig(Config):
+    CSP = {
+        "default-src": [
+            "'self'",
+            "fonts.googleapis.com",
+            "fonts.gstatic.com",
+            "docs.google.com",
+            "*.youtube.com",
+        ],
+        "img-src": ["*", "data:"],
+    }
+
     SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
 
 
-class DevConfig(Config):
-    pass
+class ProdConfig(DevConfig):
+    user = os.getenv("DB_USER")
+    password = os.getenv("DB_PASS")
+    server = os.getenv("DB_HOST", "127.0.0.1")
+    port = os.getenv("DB_PORT", "")
+    database = os.getenv("DB_NAME")
 
-
-class ProdConfig(Config):
-    pass
+    SQLALCHEMY_DATABASE_URI = (
+        f"mysql://{ user }:{ password }@{ server }:{ port }/{ database }"
+    )
