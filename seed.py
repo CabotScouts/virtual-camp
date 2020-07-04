@@ -1,5 +1,3 @@
-from flask import current_app
-
 from app import db
 from app.models import User, Group, Role
 
@@ -13,7 +11,7 @@ def seed(app):
         app.logger.info("...created!")
         app.logger.info("Adding root user...")
 
-        rkey = current_app.config["ROOT_KEY"]
+        rkey = app.config["ROOT_KEY"]
         u = User(username="admin", key=rkey, role=Role.ADMIN)
         db.session.add(u)
 
@@ -52,3 +50,10 @@ def seed(app):
         db.session.commit()
 
         app.logger.info("Database seeding complete")
+
+
+if __name__ == "__main__":
+    from app import create_app
+
+    app = create_app("development")
+    seed(app)

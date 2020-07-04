@@ -1,6 +1,3 @@
-import os
-from datetime import datetime
-
 from flask import Flask
 from flask_talisman import Talisman
 from flask_compress import Compress
@@ -24,7 +21,7 @@ def create_app(config):
     setupLogging()
     app = Flask(__name__)
     app.logger.info(" --- Way Out West! --- ")
-    app.logger.info(f"Launching with { config } config at { datetime.now() }")
+    app.logger.info(f"Launching with { config } config")
     loadConfig(config, app)
 
     talisman.init_app(app, content_security_policy=app.config["CSP"])
@@ -35,9 +32,6 @@ def create_app(config):
     limiter.init_app(app)
 
     from app.controllers import registerControllers
-    from app.models import User, Group, Role
-    from app.seed import seed
 
-    seed(app)
     registerControllers(app)
     return app

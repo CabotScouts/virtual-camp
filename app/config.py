@@ -79,13 +79,9 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
-class LocalConfig(Config):
-    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
+class DevConfig(Config):
+    SQLALCHEMY_DATABASE_URI = f"sqlite:///{ os.getenv('DB_FILE', '')}"
 
-    CSP = {"default-src": "*"}
-
-
-class DevConfig(LocalConfig):
     CSP = {
         "default-src": [
             "'self'",
