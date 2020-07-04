@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+
 from flask import (
     current_app,
     Blueprint,
@@ -108,6 +109,9 @@ def get(image):
         return send_from_directory(path, share.file)
 
     else:
+        current_app.logger.warning(
+            f"attempt at viewing forbidden share from { request.remote_addr }"
+        )
         abort(403)
 
 

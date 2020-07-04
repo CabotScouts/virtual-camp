@@ -1,4 +1,12 @@
-from flask import Blueprint, request, render_template, flash, redirect, url_for
+from flask import (
+    current_app,
+    Blueprint,
+    request,
+    render_template,
+    flash,
+    redirect,
+    url_for,
+)
 from flask_login import login_required, login_user, logout_user, current_user
 
 from app import limiter
@@ -44,13 +52,23 @@ def login():
 @limiter.limit("25/hour")
 def processLogin():
     g = Group.query.filter_by(id=request.form["group"]).first()
-    if g and g.user.validateKey(request.form["key"]):
-        login_user(g.user)
-        flash("Successfully logged in", "success")
-        return redirect(url_for("group.index"))
+    if g:
+        if g.user.validateKey(request.form["key"]):
+            login_user(g.user)
+            current_app.logger.info(
+                f"Group login ({ g.name }) from { request.remote_addr }"
+            )
+            flash("Successfully logged in", "success")
+            return redirect(url_for("group.index"))
 
+        else:
+            current_app.logger.warning(
+                f"incorrect Group key for { g.name } from { request.remote_addr }"
+            )
+            flash("Key incorrect", "danger")
+            return redirect(url_for("group.login"))
     else:
-        current_app.logger.warning(f"Incorrect Group key from { request.remote_addr }")
+        current_app.logger.warning(f"invalid Group from { request.remote_addr }")
         flash("Key incorrect", "danger")
         return redirect(url_for("group.login"))
 

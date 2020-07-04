@@ -1,10 +1,10 @@
 import os
+import logging
 from pathlib import Path
-from logging.config import dictConfig
 
 from dotenv import load_dotenv
 
-from app.utils import randomString, randomKey
+from app.utils import randomString, randomKey, ConsoleFormat
 
 env = Path("..") / ".env"
 load_dotenv(dotenv_path=env)
@@ -19,25 +19,31 @@ def loadConfig(config, app):
     app.config.from_object(configs[config])
 
 
+class AppFormatter(logging.Formatter):
+    colours = {
+        logging.DEBUG: ConsoleFormat.Blue,
+        logging.INFO: ConsoleFormat.Green,
+        logging.WARNING: ConsoleFormat.Yellow,
+        logging.CRITICAL: ConsoleFormat.Red,
+    }
+
+    def format(self, record):
+        l = f"[%(asctime)s][{ self.colours[record.levelno] }{ ConsoleFormat.Bold }%(levelname)s{ ConsoleFormat.Reset}] %(message)s"
+        f = logging.Formatter(l)
+        return f.format(record)
+
+
 def setupLogging():
-    dictConfig(
-        {
-            "version": 1,
-            "formatters": {
-                "default": {
-                    "format": "[%(asctime)s] %(levelname)s in %(module)s: %(message)s",
-                }
-            },
-            "handlers": {
-                "wsgi": {
-                    "class": "logging.StreamHandler",
-                    "stream": "ext://flask.logging.wsgi_errors_stream",
-                    "formatter": "default",
-                }
-            },
-            "root": {"level": "INFO", "handlers": ["wsgi"]},
-        }
-    )
+    level = os.getenv("LOG_LEVEL", "INFO")
+
+    logger = logging.getLogger("app")
+    logger.setLevel(level)
+
+    handler = logging.StreamHandler()
+    handler.setLevel(level)
+    handler.setFormatter(AppFormatter())
+
+    logger.addHandler(handler)
 
 
 class Config:
@@ -73,7 +79,13 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
-class DevConfig(Config):
+class LocalConfig(Config):
+    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
+
+    CSP = {"default-src": "*"}
+
+
+class DevConfig(LocalConfig):
     CSP = {
         "default-src": [
             "'self'",
@@ -84,8 +96,6 @@ class DevConfig(Config):
         ],
         "img-src": ["*", "data:"],
     }
-
-    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
 
 
 class ProdConfig(DevConfig):

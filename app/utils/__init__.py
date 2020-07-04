@@ -64,3 +64,20 @@ def allowedFile(filename):
 
 def getFileExtension(filename):
     return filename.rsplit(".", 1)[1].lower()
+
+
+class ConsoleFormat:
+    Reset = "\033[0m"
+
+    Red = "\033[31m"
+    Yellow = "\033[33m"
+    Green = "\033[32m"
+    Blue = "\033[34m"
+    Magenta = "\033[35m"
+
+    Bold = "\033[1m"
+    Italic = "\033[3m"
+    Underline = "\033[4m"
+
+    Tab = "\t"
+    Newline = "\n"

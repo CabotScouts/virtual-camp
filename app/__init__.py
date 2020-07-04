@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 from flask import Flask
 from flask_talisman import Talisman
@@ -20,11 +21,10 @@ limiter = Limiter(key_func=get_remote_address)
 
 
 def create_app(config):
-    print(" --- Way Out West! --- \n")
-    print(f"Launching with { config } config\n")
     setupLogging()
-
     app = Flask(__name__)
+    app.logger.info(" --- Way Out West! --- ")
+    app.logger.info(f"Launching with { config } config at { datetime.now() }")
     loadConfig(config, app)
 
     talisman.init_app(app, content_security_policy=app.config["CSP"])

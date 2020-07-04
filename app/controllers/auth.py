@@ -70,13 +70,14 @@ def processLogin():
 
     if u and u.validateKey(request.form["key"]):
         login_user(u)
+        current_app.logger.info(
+            f"user login ({ u.username }) from { request.remote_addr }"
+        )
         flash("Successfully logged in", "success")
         return redirect(url_for("manage.index"))
 
     else:
-        current_app.logger.warning(
-            f"Incorrect username/key from { request.remote_addr }"
-        )
+        current_app.logger.error(f"incorrect username/key from { request.remote_addr }")
         flash("Username or key incorrect", "danger")
         return redirect(url_for("auth.login"))
 
