@@ -52,7 +52,7 @@
         </div>
         {% endif %}
 
-        {% if hasManage() %}
+        {% if hasManage() and share.approved == False %}
         <div class="mb-1">
           <form method="POST" action="{{ url_for('manage.approveShare') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
@@ -64,7 +64,7 @@
         </div>
         {% endif %}
 
-        {% if hasCurate() %}
+        {% if hasCurate() and share.flagged == False %}
         <div class="mb-1">
           <form method="POST" action="{{ url_for('manage.flagShare') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
