@@ -24,11 +24,11 @@
             </video>
           </div>
           {% endif %}
-          {% if share.caption %}
           <div class="card-body pb-0">
+          {% if share.caption %}
             <p class="card-text">{{ share.caption }}</p>
-          </div>
           {% endif %}
+          </div>
           <div class="card-footer">
             <p class="card-text text-right">
               <a href="{{ url_for('share.featured', id=share.id)}}" class="text-muted">
