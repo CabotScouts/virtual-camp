@@ -4,10 +4,10 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from app.utils import randomString, randomKey, ConsoleFormat
-
 env = Path("..") / ".env"
 load_dotenv(dotenv_path=env)
+
+from app.utils import randomString, randomKey, ConsoleFormat
 
 
 def loadConfig(config, app):
