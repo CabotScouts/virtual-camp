@@ -2,10 +2,10 @@ import os
 
 from dotenv import load_dotenv
 
+load_dotenv()
+
 from app import db
 from app.models import User, Group, Role
-
-load_dotenv()
 
 
 def seed(app):
