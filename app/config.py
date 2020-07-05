@@ -24,7 +24,7 @@ class AppFormatter(logging.Formatter):
         logging.DEBUG: ConsoleFormat.Blue,
         logging.INFO: ConsoleFormat.Green,
         logging.WARNING: ConsoleFormat.Yellow,
-        logging.CRITICAL: ConsoleFormat.Red,
+        logging.ERROR: ConsoleFormat.Red,
     }
 
     def format(self, record):
