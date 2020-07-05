@@ -98,9 +98,6 @@ class ProdConfig(DevConfig):
     user = os.getenv("DB_USER")
     password = os.getenv("DB_PASS")
     server = os.getenv("DB_HOST", "127.0.0.1")
-    port = os.getenv("DB_PORT", "")
     database = os.getenv("DB_NAME")
 
-    SQLALCHEMY_DATABASE_URI = (
-        f"mysql://{ user }:{ password }@{ server }:{ port }/{ database }"
-    )
+    SQLALCHEMY_DATABASE_URI = f"mysql://{ user }:{ password }@{ server }/{ database }"
