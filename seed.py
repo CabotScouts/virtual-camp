@@ -1,5 +1,11 @@
+import os
+
+from dotenv import load_dotenv
+
 from app import db
 from app.models import User, Group, Role
+
+load_dotenv()
 
 
 def seed(app):
@@ -11,7 +17,7 @@ def seed(app):
         app.logger.info("...created!")
         app.logger.info("Adding root user...")
 
-        rkey = app.config["ROOT_KEY"]
+        rkey = os.getenv("ROOT_KEY", None)
         u = User(username="admin", key=rkey, role=Role.ADMIN)
         db.session.add(u)
 
@@ -55,5 +61,5 @@ def seed(app):
 if __name__ == "__main__":
     from app import create_app
 
-    app = create_app("development")
+    app = create_app(os.getenv("ENVIRONMENT"))
     seed(app)
