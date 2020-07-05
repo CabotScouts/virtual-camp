@@ -50,6 +50,17 @@ class Config:
     SECRET_KEY = os.getenv("SECRET_KEY", randomString(25))
     ROOT_KEY = os.getenv("ROOT_KEY", randomKey(8))
 
+    CSP = {
+        "default-src": [
+            "'self'",
+            "fonts.googleapis.com",
+            "fonts.gstatic.com",
+            "docs.google.com",
+            "*.youtube.com",
+        ],
+        "img-src": ["*", "data:"],
+    }
+
     COMPRESS_MIMETYPES = [
         "text/html",
         "text/css",
@@ -82,19 +93,8 @@ class Config:
 class DevConfig(Config):
     SQLALCHEMY_DATABASE_URI = f"sqlite:///{ os.getenv('DEV_DB_FILE', '')}"
 
-    CSP = {
-        "default-src": [
-            "'self'",
-            "fonts.googleapis.com",
-            "fonts.gstatic.com",
-            "docs.google.com",
-            "*.youtube.com",
-        ],
-        "img-src": ["*", "data:"],
-    }
 
-
-class ProdConfig(DevConfig):
+class ProdConfig(Config):
     user = os.getenv("DB_USER")
     password = os.getenv("DB_PASS")
     server = os.getenv("DB_HOST", "127.0.0.1")
