@@ -80,7 +80,7 @@ class Config:
 
 
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = f"sqlite:///{ os.getenv('DB_FILE', '')}"
+    SQLALCHEMY_DATABASE_URI = f"sqlite:///{ os.getenv('DEV_DB_FILE', '')}"
 
     CSP = {
         "default-src": [
