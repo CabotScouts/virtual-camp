@@ -102,7 +102,7 @@ def flaggedShares(page=1):
     title = "Flagged Shares"
     shares = (
         Share.query.filter_by(flagged=True)
-        .order_by(Share.id.asc())
+        .order_by(Share.id.desc())
         .paginate(page, sharesPerPage, False)
     )
     return render_template("admin/shares.jinja", title=title, shares=shares)
@@ -115,7 +115,7 @@ def featuredShares(page=1):
     title = "Featured Shares"
     shares = (
         Share.query.filter_by(featured=True)
-        .order_by(Share.id.asc())
+        .order_by(Share.id.desc())
         .paginate(page, sharesPerPage, False)
     )
     return render_template("admin/shares.jinja", title=title, shares=shares)
