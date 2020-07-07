@@ -7,7 +7,7 @@ from flask_wtf.csrf import CSRFProtect
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
-from app.config import loadConfig, setupLogging
+from app.config import loadConfig, setupLogging, enableAutoescape
 
 talisman = Talisman()
 compress = Compress()
@@ -23,6 +23,7 @@ def create_app(config):
     app.logger.info(" --- Way Out West! --- ")
     app.logger.info(f"Launching with { config } config")
     loadConfig(config, app)
+    enableAutoescape(app)
 
     talisman.init_app(app, content_security_policy=app.config["CSP"])
     compress.init_app(app)

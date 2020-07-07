@@ -3,6 +3,7 @@ import logging
 from pathlib import Path
 
 from dotenv import load_dotenv
+from jinja2 import select_autoescape
 
 env = Path("..") / ".env"
 load_dotenv(dotenv_path=env)
@@ -44,6 +45,10 @@ def setupLogging():
     handler.setFormatter(AppFormatter())
 
     logger.addHandler(handler)
+
+
+def enableAutoescape(app):
+    app.jinja_env.autoescape = select_autoescape(default_for_string=True, default=True)
 
 
 class Config:

@@ -9,7 +9,7 @@
       {% if messages %}
         {% for type, message in messages %}
         <div class="alert alert-{{ type }}">
-          {{ message }}
+          {{ message|safe }}
         </div>
         {% endfor %}
       {% endif %}
