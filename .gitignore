@@ -3,5 +3,5 @@ __pycache__
 node_modules
 .DS_Store
 design_assets
-app/uploads
+app/uploads/*
 *.sqlite
