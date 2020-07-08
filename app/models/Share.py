@@ -143,7 +143,7 @@ class Share(db.Model):
     def posted(self):
         return timeAgo(self.created_at)
 
-    def toJSON(self):
+    def serialise(self):
         return dict(
             file=url_for("share.get", image=self.file, _external=True),
             caption=self.caption,
