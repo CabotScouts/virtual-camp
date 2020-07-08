@@ -130,19 +130,3 @@ def gallery(page=0):
 def featured(id):
     share = Share.query.filter_by(approved=True, featured=True, id=id).first_or_404()
     return render_template("share/featured.jinja", share=share)
-
-
-@blueprint.route("/wall")
-def wallFeatured():
-    shares = (
-        Share.query.filter_by(approved=True, featured=True)
-        .order_by(Share.id.desc())
-        .paginate(p, n, False)
-    )
-    mapped = [share.toJSON() for share in shares.items]
-    return jsonify(
-        status=200,
-        count=len(mapped),
-        shares=mapped,
-        next=url_for("share.wallFeatured", n=n, p=shares.next_num, _external=True),
-    )
