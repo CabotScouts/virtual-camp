@@ -6,6 +6,7 @@ from flask_login import LoginManager
 from flask_wtf.csrf import CSRFProtect
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from flask_json import FlaskJSON
 
 from app.config import loadConfig, setupLogging, enableAutoescape
 
@@ -15,6 +16,7 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 csrf = CSRFProtect()
 limiter = Limiter(key_func=get_remote_address)
+json = FlaskJSON()
 
 
 def create_app(config):
@@ -31,6 +33,7 @@ def create_app(config):
     login_manager.init_app(app)
     csrf.init_app(app)
     limiter.init_app(app)
+    json.init_app(app)
 
     from app.controllers import registerControllers
 
