@@ -6,13 +6,13 @@
   </div>
   <div class="col-12 col-md-8">
     <p>On Saturday 25<sup>th</sup> to Sunday 26<sup>th</sup> of July, Cabot are holding a virtual camp for all young people in the District!</p>
-    <p>During the weekend each section will have their own programme of activities, and there'll also be some shared events for everybody to join in with - have a look at the <a href="{{ url_for('root.programme') }}" title="The programme for the weekend">camp programme</a> to see what's happening.</p>
-    <p>Each section will be representing a different part of the West Country - <strong class="beavers">Cornwall (Beavers)</strong>, <strong class="cubs">Somerset (Cubs)</strong>, <strong class="scouts">Devon (Scouts)</strong> and <strong class="explorers">Bristol (Explorers and Network)</strong> - if you haven't already, make sure you <a href="{{ url_for('root.register') }}">sign up for the camp</a> to receive your section's activity pack and camp badge.</p>
+    <p>During the weekend each section will have their own programme of activities to take part in, and there'll also be some shared events on our live stream for everybody to join in with - we'll be releasing the camp programme soon so you'll get to see what's happening during the weekend!</p>
+    <p>Each section is representing a different part of the West Country - <strong class="beavers">Cornwall (Beavers)</strong>, <strong class="cubs">Somerset (Cubs)</strong>, <strong class="scouts">Devon (Scouts)</strong> and <strong class="explorers">Bristol (Explorers and Network)</strong> - if you haven't already, make sure you <a href="{{ url_for('root.register') }}">sign up for the camp</a> to receive your section's activity pack and camp badge.</p>
   </div>
   <div class="col-12 col-md-4">
     <div>
       <p>
-        BADGE IMAGE
+        <img class="img img-fluid" alt="Way Out West Camp Badge" src="{{ url_for('static', filename='badge-mockup.png')}}" />
       </p>
     </div>
     <div class="d-xl-none">
@@ -25,7 +25,7 @@
       {% endif %}
     </div>
   </div>
-  <div class="col-12">
+  {#<div class="col-12">
     <hr />
     <h2>Activity Links</h2>
   </div>
@@ -84,6 +84,6 @@
         Hunger Games
       </li>
     </ul>
-  </div>
+  </div>#}
 </div>
 {% endblock %}
