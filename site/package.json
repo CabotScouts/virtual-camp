@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "cabotathome",
+  "name": "wayoutwest",
   "version": "1.0.0",
   "description": "",
   "dependencies": {
@@ -40,7 +40,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cabotexplorers/wow/issues"
+    "url": "https://github.com/CabotExplorers/wayoutwest"
   },
-  "homepage": "https://github.com/cabotexplorers/wow#readme"
+  "homepage": "https://github.com/CabotExplorers/wayoutwest#readme"
 }
