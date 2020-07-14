@@ -23,35 +23,35 @@
           </a>
 
           {% if hasManage() %}
-          <a href="{{ url_for('manage.pendingShares') }}" class="list-group-item">
+          <a href="{{ url_for('manage.pendingShares') }}" class="list-group-item d-flex justify-content-between align-items-center">
             Pending Shares
             <span class="badge badge-pill badge-warning text-white ml-2">{{ pendingCount() }}</span>
           </a>
           {% endif %}
 
           {% if hasCurate() %}
-          <a href="{{ url_for('manage.approvedShares') }}" class="list-group-item">
+          <a href="{{ url_for('manage.approvedShares') }}" class="list-group-item d-flex justify-content-between align-items-center">
             Approved Shares
             <span class="badge badge-pill badge-success ml-2">{{ approvedCount() }}</span>
           </a>
           {% endif %}
 
           {% if hasManage() %}
-          <a href="{{ url_for('manage.flaggedShares') }}" class="list-group-item">
+          <a href="{{ url_for('manage.flaggedShares') }}" class="list-group-item d-flex justify-content-between align-items-center">
             Flagged Shares
             <span class="badge badge-pill badge-danger ml-2">{{ flaggedCount() }}</span>
           </a>
           {% endif %}
 
           {% if hasCurate() %}
-          <a href="{{ url_for('manage.featuredShares') }}" class="list-group-item">
+          <a href="{{ url_for('manage.featuredShares') }}" class="list-group-item d-flex justify-content-between align-items-center">
             Featured Shares
             <span class="badge badge-pill badge-info ml-2">{{ featuredCount() }}</span>
           </a>
           {% endif %}
 
           {% if hasManage() %}
-          <a href="{{ url_for('manage.allShares') }}" class="list-group-item">
+          <a href="{{ url_for('manage.allShares') }}" class="list-group-item d-flex justify-content-between align-items-center">
             All Shares
             <span class="badge badge-pill badge-primary ml-2">{{ totalCount() }}</span>
           </a>
