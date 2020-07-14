@@ -10,10 +10,21 @@
       </div>
       <div class="col-12 col-lg-3">
         <div class="list-group">
-          <a href="{{ url_for('activities.beavers') }}" class="list-group-item beavers">Beavers</a>
-          <a href="{{ url_for('activities.cubs') }}" class="list-group-item cubs">Cubs</a>
-          <a href="{{ url_for('activities.scouts') }}" class="list-group-item scouts">Scouts</a>
-          <a href="{{ url_for('activities.explorers') }}" class="list-group-item explorers">Explorers and Network</a>
+          <a href="{{ url_for('activities.index') }}" class="list-group-item">
+            <h4 class="mb-0">All Activities</h4>
+          </a>
+          <a href="{{ url_for('activities.beavers') }}" class="list-group-item">
+            <h4 class="beavers mb-0">Beavers</h4>
+          </a>
+          <a href="{{ url_for('activities.cubs') }}" class="list-group-item cubs">
+            <h4 class="cubs mb-0">Cubs</h4>
+          </a>
+          <a href="{{ url_for('activities.scouts') }}" class="list-group-item scouts">
+            <h4 class="scouts mb-0">Scouts</h4>
+          </a>
+          <a href="{{ url_for('activities.explorers') }}" class="list-group-item explorers">
+            <h4 class="explorers mb-0">Explorers and Network</h4>
+          </a>
         </div>
       </div>
     </div>

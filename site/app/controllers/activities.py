@@ -1,4 +1,11 @@
-from flask import Blueprint, request, flash, render_template, redirect, url_for
+from flask import (
+    Blueprint,
+    request,
+    flash,
+    render_template,
+    redirect,
+    url_for,
+)
 
 blueprint = Blueprint("activities", __name__, url_prefix="/activities")
 

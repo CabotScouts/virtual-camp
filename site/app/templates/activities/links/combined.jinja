@@ -1,0 +1,20 @@
+<div class="col-12">
+  <h2>Camp Activities</h2>
+  <p>Here you can find some extra information about all the different activites each section can have a go at over the weekend. Have a look at <a href="{{ url_for('root.programme') }}">the programme</a> to see when's the best time to do them, and don't forget to <a href="{{ url_for('share.new') }}">share your pictures and videos</a> to show us what you've been getting up to!</p>
+</div>
+<div class="col-12 col-sm-6 col-lg-3">
+  <h3 class="beavers">Beavers</h3>
+  {% include "activities/links/beavers.jinja" %}
+</div>
+<div class="col-12 col-sm-6 col-lg-3">
+  <h3 class="cubs">Cubs</h3>
+  {% include "activities/links/cubs.jinja" %}
+</div>
+<div class="col-12 col-sm-6 col-lg-3">
+  <h3 class="scouts">Scouts</h3>
+  {% include "activities/links/scouts.jinja" %}
+</div>
+<div class="col-12 col-sm-6 col-lg-3">
+  <h3 class="explorers">Explorers and Network</h3>
+  {% include "activities/links/explorers.jinja" %}
+</div>
