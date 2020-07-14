@@ -1,27 +1,47 @@
 <template>
   <div id="app">
-    TEST
+    <HeaderBar />
+    <!-- <Wall /> -->
+    <FooterMarquee />
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import HeaderBar from './components/HeaderBar.vue'
+import FooterMarquee from './components/FooterMarquee.vue'
 
 export default {
   name: 'App',
-  components: {
 
-  }
+  components: {
+    HeaderBar,
+    FooterMarquee
+  },
+
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+body {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+
+  // background-color: #f8f9fa;
+  background-color: darken(#0583c7, 4%);
+  // background-color: #2b2d42;
+  color: #ffffff;
+  font-family: 'Source Sans Pro', sans-serif;
+
+  #app {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+
+    header {
+    }
+  }
 }
 </style>

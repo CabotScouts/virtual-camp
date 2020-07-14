@@ -1,9 +1,35 @@
-from flask import Blueprint, jsonify, url_for
+from datetime import datetime
+
+from flask import current_app, Blueprint, request, jsonify, url_for
 from flask_json import JsonError, json_response
 
-from app.models import Share
+from app.models import Share, StreamLink
 
 blueprint = Blueprint("wall", __name__, url_prefix="/wall")
+
+
+# @blueprint.route("init")
+# def init():
+#     now = datetime.now()
+#     then = request.args.get("timestamp")
+#     key = request.args.get("key")
+#     check = False
+#
+#     if key and key == current_app.config["STREAM_AUTH_KEY"]:
+#         link = StreamLink()
+#         return json_response(token=link.token)
+#     else:
+#         raise JsonError(status=403, error="Incorrect authorisation key")
+#
+#
+# @blueprint.route("heartbeat")
+# def heartbeat():
+#     pass
+
+
+@blueprint.route("messages")
+def messages():
+    pass
 
 
 @blueprint.route("shares")

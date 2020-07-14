@@ -96,10 +96,13 @@ class Config:
 
 
 class DevConfig(Config):
+    STREAM_AUTH_KEY = "WOW"
     SQLALCHEMY_DATABASE_URI = f"sqlite:///{ os.getenv('DEV_DB_FILE', '')}"
 
 
 class ProdConfig(Config):
+    STREAM_AUTH_KEY = os.getenv("STREAM_AUTH_KEY")
+
     user = os.getenv("DB_USER")
     password = os.getenv("DB_PASS")
     server = os.getenv("DB_HOST", "127.0.0.1")
