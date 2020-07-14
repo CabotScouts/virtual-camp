@@ -1,0 +1,23 @@
+{% extends "layouts/root.jinja" %}
+{% block body %}
+{% include "components/header.jinja" %}
+<main class="page">
+  <div class="container-md">
+    {% include "components/messages.jinja" %}
+    <div class="row">
+      <div class="col-12 col-lg-9">
+        {% block content %}{% endblock %}
+      </div>
+      <div class="col-12 col-lg-3">
+        <div class="list-group">
+          <a href="{{ url_for('activities.beavers') }}" class="list-group-item beavers">Beavers</a>
+          <a href="{{ url_for('activities.cubs') }}" class="list-group-item cubs">Cubs</a>
+          <a href="{{ url_for('activities.scouts') }}" class="list-group-item scouts">Scouts</a>
+          <a href="{{ url_for('activities.explorers') }}" class="list-group-item explorers">Explorers and Network</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% include "components/footer.jinja" %}
+{% endblock %}
