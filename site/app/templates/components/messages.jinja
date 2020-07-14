@@ -1,0 +1,13 @@
+{% with messages = get_flashed_messages(with_categories=True) %}
+{% if messages %}
+<div class="row">
+  <div class=col-12>
+  {% for type, message in messages %}
+  <div class="alert alert-{{ type }}">
+    {{ message|safe }}
+  </div>
+  {% endfor %}
+  </div>
+</div>
+{% endif %}
+{% endwith %}
