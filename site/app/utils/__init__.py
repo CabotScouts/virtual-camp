@@ -29,23 +29,24 @@ def pluralise(word, n):
 
 
 def timeAgo(then):
+    # FUTURE: switch from using seconds to proper timedelta attributes
     now = datetime.utcnow()
-    diff = now - then
+    diff = (now - then).total_seconds()
 
-    if diff.seconds < 60:
-        seconds = math.floor(diff.seconds)
+    if diff < 60:
+        seconds = math.floor(diff)
         return f"{ seconds } { pluralise('second', seconds) } ago"
 
-    elif diff.seconds < 3600:
-        minutes = math.floor(diff.seconds / 60)
+    elif diff < 3600:
+        minutes = math.floor(diff / 60)
         return f"{ minutes } { pluralise('minute', minutes) } ago"
 
-    elif diff.seconds < 86400:
-        hours = math.floor(diff.seconds / 60 / 60)
+    elif diff < 86400:
+        hours = math.floor(diff / 60 / 60)
         return f"{ hours } { pluralise('hour', hours) } ago"
 
     else:
-        days = math.floor(diff.seconds / 60 / 60 / 24)
+        days = math.floor(diff / 60 / 60 / 24)
         return f"{ days } { pluralise('day', days) } ago"
 
 
