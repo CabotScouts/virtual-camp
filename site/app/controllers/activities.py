@@ -10,7 +10,7 @@ from flask import (
 blueprint = Blueprint("activities", __name__, url_prefix="/activities")
 
 
-@blueprint.route("/")
+@blueprint.route("")
 def index():
     return render_template("activities/index.jinja")
 
