@@ -2,10 +2,14 @@
 {% block content %}
   <h1>Cubs</h1>
   {% include "activities/links/cubs.jinja" %}
-  <hr />
+  <hr class="mt-4" />
   <h2 id="booklet">Activity Booklet</h2>
+  <p>
+    All of the Cub activities for the weekend can be found in the activity booklet - if you don't already have a copy download one below and have a look through!
+  </p>
+  <a href="{{ url_for('static', filename='activities/cubs.pdf') }}" target="_blank" class="btn btn-success">Download the Cub activity booklet</a>
 
 
-  <hr />
+  <hr class="mt-4" />
   <h2 id="cheese-rolling">Cheddar Cheese Rolling</h2>
 {% endblock %}

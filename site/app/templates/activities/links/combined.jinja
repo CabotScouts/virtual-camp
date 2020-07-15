@@ -1,20 +1,20 @@
 <div class="col-12">
   <h2>Camp Activities</h2>
-  <p>Here you can find some extra information about all the different activites each section can have a go at over the weekend. Have a look at <a href="{{ url_for('root.programme') }}">the programme</a> to see when's the best time to do them, and don't forget to <a href="{{ url_for('share.new') }}">share your pictures and videos</a> to show us what you've been getting up to!</p>
+  <p>Here you can find information about all the different activites each section can have a go at during <span class="wow">Way Out West!</span>. Have a look at <a href="{{ url_for('root.programme') }}">the programme</a> to see when the best time to do them is, and don't forget to <a href="{{ url_for('share.new') }}">share your pictures and videos</a> to show us what you've been getting up to!</p>
 </div>
 <div class="col-12 col-sm-6 col-lg-3">
-  <a href="{{ url_for('activities.beavers') }}"><h3 class="beavers">Beavers</h3></a>
+  <h3><a href="{{ url_for('activities.beavers') }}" class="beavers">Beavers</a></h3>
   {% include "activities/links/beavers.jinja" %}
 </div>
 <div class="col-12 col-sm-6 col-lg-3">
-  <a href="{{ url_for('activities.cubs') }}"><h3 class="cubs">Cubs</h3></a>
+  <h3><a href="{{ url_for('activities.cubs') }}" class="cubs">Cubs</a></h3>
   {% include "activities/links/cubs.jinja" %}
 </div>
 <div class="col-12 col-sm-6 col-lg-3">
-  <a href="{{ url_for('activities.scouts') }}"><h3 class="scouts">Scouts</h3></a>
+  <h3><a href="{{ url_for('activities.scouts') }}" class="scouts">Scouts</a></h3>
   {% include "activities/links/scouts.jinja" %}
 </div>
 <div class="col-12 col-sm-6 col-lg-3">
-  <a href="{{ url_for('activities.explorers') }}"><h3 class="explorers">Explorers and Network</h3></a>
+  <h3><a href="{{ url_for('activities.explorers') }}" class="explorers">Explorers and Network</a></h3>
   {% include "activities/links/explorers.jinja" %}
 </div>
