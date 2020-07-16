@@ -105,6 +105,30 @@ footer {
   text-shadow: 1px 1px darken($primary, 4%);
 }
 
+table.t-3 {
+  th, td {
+    width: 33.3%
+  }
+}
+
+table.t-4 {
+  th, td {
+    width: 25%
+  }
+}
+
+table.t-5 {
+  th, td {
+    width: 20%
+  }
+}
+
+table.t-6 {
+  th, td {
+    width: 16.6%
+  }
+}
+
 .alert p:last-of-type {
   margin-bottom: 0;
 }
@@ -123,6 +147,27 @@ footer {
   thead th, td {
     vertical-align: middle;
   }
+
+  th, td {
+    border-left: $table-border-width solid lighten($table-border-color, 5%);
+  }
+
+  th:first-of-type, td:first-of-type {
+    border-left: 0;
+  }
+
+  tr.now, tr.now td, td.now {
+    background-color: theme-color-level("info", $table-bg-level) !important;
+    border-color: lighten(theme-color-level("info", $table-border-level), 5%) !important;
+  }
+
+  // td.empty {
+  //   background-color: $table-hover-bg;
+  // }
+}
+
+.timetable:first-of-type {
+  margin-bottom: 100px;
 }
 
 .gallery-card {

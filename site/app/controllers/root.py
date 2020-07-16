@@ -41,7 +41,14 @@ def register():
 
 @blueprint.route("/programme")
 def programme():
-    return render_template("root/programme.jinja")
+    return render_template(
+        "root/programme.jinja",
+        now={
+            "day": request.args.get("d", ""),
+            "hour": int(request.args.get("h", 0)),
+            "min": int(request.args.get("m", 0)),
+        },
+    )
 
 
 @blueprint.route("/live")
