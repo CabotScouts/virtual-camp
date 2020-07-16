@@ -1,7 +1,10 @@
-<div class="col-12">
+<div class="col-12 mb-2">
   <h2>Camp Activities</h2>
-  <p>Here you can find information about all the different activites each section can have a go at during <span class="wow">Way Out West!</span>. Have a look at <a href="{{ url_for('root.programme') }}">the programme</a> to see when the best time to do them is, and don't forget to <a href="{{ url_for('share.new') }}">share your pictures and videos</a> to show us what you've been getting up to!</p>
+  <p>
+    Here you can find out about all the different activities for each section to have a go at during <span class="wow">Way Out West!</span> The suggested times for them are on the <a href="{{ url_for('root.programme') }}">the programme</a>, but feel free to do them whenever, and in whatever order works best for you.
+  </p>
 </div>
+
 <div class="col-12 col-sm-6 col-lg-3">
   <h3><a href="{{ url_for('activities.beavers') }}" class="beavers">Beavers</a></h3>
   {% include "activities/links/beavers.jinja" %}
@@ -17,4 +20,10 @@
 <div class="col-12 col-sm-6 col-lg-3">
   <h3><a href="{{ url_for('activities.explorers') }}" class="explorers">Explorers and Network</a></h3>
   {% include "activities/links/explorers.jinja" %}
+</div>
+
+<div class="col-12 mt-2">
+  <p>
+    Don't forget to <a href="{{ url_for('share.new') }}">share your pictures and videos</a> with us so everyone can see what you've been getting up to!
+  </p>
 </div>

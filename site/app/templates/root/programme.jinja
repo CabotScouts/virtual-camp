@@ -1,6 +1,6 @@
 {% macro highlight(day, minH, minM, maxH, maxM) %}{% if day == now.day and (now.hour > minH or (now.hour == minH and now.min >= minM)) and (now.hour < maxH or ( now.hour == maxH and now.min < maxM)) %} class="now"{% endif %}{% endmacro %}
 {% extends "layouts/page.jinja" %}
-{% block title %}Programme{% endblock %}
+{% block title %}Camp Programme{% endblock %}
 {% block content %}
 <div class="row">
   <div class="col-12">
@@ -58,7 +58,7 @@
 
           <tr{{ highlight('sat', 12, 00, 12, 30) }}>
             <td>12:00pm - 12:30pm</td>
-            <td><a href="{{ url_for('activities.beavers') }}#booklet">Zoom - Catchup</a></td>
+            <td><a href="{{ url_for('activities.beavers') }}#booklet">Zoom Catchup</a></td>
             <td colspan="3" class="empty"></td>
           </tr>
 
@@ -111,20 +111,20 @@
 
           <tr{{ highlight('sat', 16, 00, 16, 30) }}>
             <td>4:00pm - 4:30pm</td>
-            <td><a href="{{ url_for('activities.beavers') }}#booklet">Zoom - Catchup</a></td>
+            <td><a href="{{ url_for('activities.beavers') }}#booklet">Zoom Catchup</a></td>
             <td colspan="3" class="empty"></td>
           </tr>
 
           <tr{{ highlight('sat', 16, 30, 17, 00) }}>
             <td>4:30pm - 5:00pm</td>
             <td class="empty"></td>
-            <td>Zoom - Catchup</td>
+            <td>Zoom Catchup</td>
             <td colspan="2" class="empty"></td>
           </tr>
 
           <tr{{ highlight('sat', 18, 00, 19, 00) }}>
             <td>6:00pm</td>
-            <td colspan="4">Dinner Time</td>
+            <td colspan="4">Dinner</td>
           </tr>
 
           <tr{{ highlight('sat', 19, 00, 20, 30) }}>
@@ -213,7 +213,7 @@
 
           <tr{{ highlight('sun', 12, 30, 14, 0) }}>
             <td>12:30pm</td>
-            <td colspan="4">Lunch Time</td>
+            <td colspan="4">Lunch</td>
           </tr>
 
           <tr{{ highlight('sun', 14, 00, 16, 0) }}>

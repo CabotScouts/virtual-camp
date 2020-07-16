@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import Blueprint, request, flash, render_template, redirect, url_for
 
 blueprint = Blueprint("root", __name__)
@@ -41,12 +43,22 @@ def register():
 
 @blueprint.route("/programme")
 def programme():
+    n = datetime.now()
+
+    # Actual - 25 = sat, 26 = sun
+    s = {25: "sat", 26: "sun"}
+    dn = n.day
+    ds = s[dn] if dn in s else ""
+
+    h = n.hour
+    m = n.minute
+
     return render_template(
         "root/programme.jinja",
         now={
-            "day": request.args.get("d", ""),
-            "hour": int(request.args.get("h", 0)),
-            "min": int(request.args.get("m", 0)),
+            "day": request.args.get("d", ds),
+            "hour": int(request.args.get("h", h)),
+            "min": int(request.args.get("m", m)),
         },
     )
 
