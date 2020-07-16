@@ -7,7 +7,7 @@
     <div class="table-responsive">
       <table id="saturday" class="table t-5 text-center timetable">
         <thead>
-          <tr class="t-layout">
+          <tr>
             <th><h2>Saturday</h2></th>
             <th><h3 class="beavers">Beavers</h3></th>
             <th><h3 class="cubs">Cubs</h3></th>
@@ -52,13 +52,13 @@
 
           <tr{{ highlight('sat', 10, 30, 11, 00) }}>
             <td>10:30am - 11:00am</td>
-            <td>Zoom - Welcome to Camp</td>
+            <td><a href="{{ url_for('activities.beavers') }}#booklet">Zoom - Welcome to Camp</a></td>
             <td colspan="3" class="empty"></td>
           </tr>
 
           <tr{{ highlight('sat', 12, 00, 12, 30) }}>
             <td>12:00pm - 12:30pm</td>
-            <td>Zoom - Catchup</td>
+            <td><a href="{{ url_for('activities.beavers') }}#booklet">Zoom - Catchup</a></td>
             <td colspan="3" class="empty"></td>
           </tr>
 
@@ -79,7 +79,9 @@
           </tr>
 
           <tr{{ highlight('sat', 14, 00, 18, 00) }}>
-            <td rowspan="3">Scones for Afternoon Tea</td>
+            <td rowspan="3">
+              <a href="{{ url_for('activities.beavers') }}#booklet">Scones for Afternoon Tea</a>
+            </td>
             <td>Mug Cake Making</td>
             <td rowspan="2"><a href="{{ url_for('activities.scouts') }}#orange-race">Orange Race</a></td>
             <td rowspan="5"{{ highlight('sat', 14, 00, 18, 00) }}>
@@ -97,7 +99,9 @@
           </tr>
 
           <tr{{ highlight('sat', 14, 00, 18, 00) }}>
-            <td rowspan="2">Washing Up</td>
+            <td rowspan="2">
+              <a href="{{ url_for('activities.beavers') }}#booklet">Washing Up</a>
+            </td>
             <td>Flying Dragons</td>
           </tr>
 
@@ -107,7 +111,7 @@
 
           <tr{{ highlight('sat', 16, 00, 16, 30) }}>
             <td>4:00pm - 4:30pm</td>
-            <td>Zoom - Catchup</td>
+            <td><a href="{{ url_for('activities.beavers') }}#booklet">Zoom - Catchup</a></td>
             <td colspan="3" class="empty"></td>
           </tr>
 
@@ -139,7 +143,7 @@
 
       <table id="sunday" class="table t-5 text-center timetable">
         <thead>
-          <tr class="t-layout">
+          <tr>
             <th><h2>Sunday</h2></th>
             <th><h3 class="beavers">Beavers</h3></th>
             <th><h3 class="cubs">Cubs</h3></th>
@@ -176,7 +180,7 @@
 
           <tr{{ highlight('sun', 10, 0, 10, 20) }}>
             <td>10:00am - 10:20am</td>
-            <td>Zoom Catchup</td>
+            <td><a href="{{ url_for('activities.beavers') }}#booklet">Zoom Catchup</a></td>
             <td colspan="3" class="empty"></td>
           </tr>
 
