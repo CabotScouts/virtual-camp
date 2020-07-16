@@ -22,7 +22,7 @@
           </tr>
 
           <tr{{ highlight('sat', 10, 15, 12, 30) }}>
-            <td rowspan="4">Morning Activities<br />10:15am onwards</td>
+            <td rowspan="4">Morning Activities</td>
             <td><a href="{{ url_for('activities.beavers') }}#coat-of-arms">Coat of Arms</a></td>
             <td>Coat of Arms</td>
             <td rowspan="4">
@@ -74,7 +74,7 @@
           </tr>
 
           <tr{{ highlight('sat', 14, 00, 18, 00) }}>
-            <td rowspan="6">Afternoon Activities<br />2:00pm onwards</td>
+            <td rowspan="6">Afternoon Activities</td>
             <td colspan="4">Den Building</td>
           </tr>
 
@@ -136,11 +136,7 @@
           </tr>
         </tbody>
       </table>
-    </div>
-  </div>
 
-  <div class="col-12">
-    <div class="table-responsive">
       <table id="sunday" class="table t-5 text-center timetable">
         <thead>
           <tr class="t-layout">
@@ -158,13 +154,13 @@
           </tr>
 
           <tr{{ highlight('sun', 10, 0, 12, 30) }}>
-            <td rowspan="3">Morning Activities<br />10:00am onwards</td>
+            <td rowspan="3">Morning Activities</td>
             <td>
               <a href="{{ url_for('activities.beavers') }}#bottle-message">Message in a Bottle</a>
             </td>
             <td>Junk Modelling - Famous Landmark</td>
             <td><a href="{{ url_for('activities.scouts') }}#floaty-boaty">Floaty Boaty</a></td>
-            <td><a href="{{ url_for('activities.explorers') }}#cabot-council">Cabot Council</a></td>
+            <td rowspan="2"><a href="{{ url_for('activities.explorers') }}#gert-lush">Gert Lush Challenges</a></td>
           </tr>
 
           <tr{{ highlight('sun', 10, 0, 12, 30) }}>
@@ -172,7 +168,6 @@
               <a href="{{ url_for('activities.beavers') }}#junk-modelling">Junk Modelling - Castles</a>
             </td>
             <td colspan="2">Let's get Creative: Postcard Design</td>
-            <td><a href="{{ url_for('activities.explorers') }}#gert-lush">Gert Lush Challenges</a></td>
           </tr>
 
           <tr{{ highlight('sun', 10, 0, 12, 30) }}>
@@ -204,6 +199,12 @@
             <td colspan="2" class="empty"></td>
             <td>Kahoot</td>
             <td class="empty"></td>
+          </tr>
+
+          <tr{{ highlight('sun', 11, 00, 12, 00) }}>
+            <td>11:00am - 12:00pm</td>
+            <td colspan="3" class="empty"></td>
+            <td><a href="{{ url_for('activities.explorers') }}#cabot-council">Cabot Council</a></td>
           </tr>
 
           <tr{{ highlight('sun', 12, 30, 14, 0) }}>
