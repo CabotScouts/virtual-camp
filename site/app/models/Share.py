@@ -148,4 +148,5 @@ class Share(db.Model):
             file=url_for("share.get", image=self.file, _external=True),
             caption=self.caption,
             posted=self.created_at.timestamp(),
+            type="image" if self.isImage() else "video",
         )
