@@ -163,7 +163,7 @@
               <a href="{{ url_for('activities.beavers') }}#bottle-message">Message in a Bottle</a>
             </td>
             <td>Junk Modelling - Famous Landmark</td>
-            <td><a href="{{ url_for('activities.scouts') }}#floaty-boaty">Floaty Boaty</a></td>
+            <td rowspan="2"><a href="{{ url_for('activities.scouts') }}#floaty-boaty">Floaty Boaty</a></td>
             <td rowspan="2"><a href="{{ url_for('activities.explorers') }}#gert-lush">Gert Lush Challenges</a></td>
           </tr>
 
@@ -171,7 +171,7 @@
             <td>
               <a href="{{ url_for('activities.beavers') }}#junk-modelling">Junk Modelling - Castles</a>
             </td>
-            <td colspan="2">Let's get Creative: Postcard Design</td>
+            <td>Let's get Creative - Postcard Design</td>
           </tr>
 
           <tr{{ highlight('sun', 10, 0, 12, 30) }}>
@@ -187,21 +187,21 @@
           <tr{{ highlight('sun', 10, 20, 10, 30) }}>
             <td>10:20am - 10:30am</td>
             <td colspan="2" class="empty"></td>
-            <td>Zoom Catchup</td>
+            <td><a href="{{ url_for('activities.scouts') }}#booklet">Zoom Catchup</a></td>
             <td class="empty"></td>
           </tr>
 
           <tr{{ highlight('sun', 10, 30, 10, 45) }}>
             <td>10:30am - 10:45am</td>
             <td class="empty"></td>
-            <td>Zoom Catchup</td>
+            <td><a href="{{ url_for('activities.cubs') }}#booklet">Zoom Catchup</a></td>
             <td colspan="2" class="empty"></td>
           </tr>
 
           <tr{{ highlight('sun', 10, 45, 11, 30) }}>
             <td>10:45am - 11:30am</td>
             <td colspan="2" class="empty"></td>
-            <td>Kahoot</td>
+            <td><a href="{{ url_for('activities.scouts') }}#booklet">Kahoot</a></td>
             <td class="empty"></td>
           </tr>
 
