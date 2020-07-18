@@ -2,6 +2,18 @@
 {% block title %}Camp Activities{% endblock %}
 {% block content %}
 <div class="row">
-{% include "activities/links/combined.jinja" %}
+  <div class="col-12 mb-2">
+    <h2>Camp Activities</h2>
+    <p>
+      These are all the different activities for each section to have a go at during <span class="wow">Way Out West!</span> The suggested times for them are on the <a href="{{ url_for('root.programme') }}">the programme</a>, but feel free to do them whenever, and in whatever order works best for you.
+    </p>
+    <p>
+      The WOW! Welcome Pack has lots of useful information, including your section's kit list - download it and have a read. If you haven't already, make sure you <a href="{{ url_for('root.register') }}">sign up for the camp</a> to receive a camp badge and login links for your section's zoom calls.
+    </p>
+    <p>
+      <a href="{{ url_for('static', filename='activities/welcome-pack.pdf')}}" class="btn btn-success" target="_blank">Download the WOW! Welcome Pack</a>
+    </p>
+  </div>
+  {% include "activities/links/combined.jinja" %}
 </div>
 {% endblock %}
