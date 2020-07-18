@@ -19,7 +19,7 @@
 </template>
 
 <script type="text/javascript">
-const sharesURL = "https://camp.cabotscouts.org.uk/wall/shares/30"
+const sharesURL = "https://camp.cabotscouts.org.uk/wall/shares/45"
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -43,42 +43,40 @@ export default {
     this.fetchMedia().then(() => {
       this.currentIdx = -1
       if(!this.changeTimer) this.changeMedia()
-      this.fetchTimer = setInterval(()  => this.fetchMedia(), 180000) // refresh every 5 mins
+      this.fetchTimer = setInterval(()  => this.fetchMedia(), 180000)
     })
   },
 
   methods: {
     fetchMedia: async function() {
       return await fetch(sharesURL).then(response => response.json()).then(data => {
+        if(this.media.length > 0 && data.media[0].file != this.media[0].file) this.currentIdx = -1
         this.media = data.media
       })
     },
 
     changeMedia: async function() {
-      this.current = false
-      await sleep(1500)
       clearInterval(this.changeTimer)
-      this.currentIdx = ((this.currentIdx + 1) == this.media.length) ? 0 : this.currentIdx + 1
+      this.current = false
+      await sleep(2000)
+      this.currentIdx = ((this.currentIdx + 1) >= this.media.length) ? 0 : this.currentIdx + 1
       this.current = this.media[this.currentIdx]
 
+      var timer = 20000;
       if(this.current.type == "video") {
         this.$nextTick(() => {
           this.$refs.video.addEventListener('loadedmetadata', () => {
-            if(this.media.length > 1) {
-              this.changeTimer = setInterval(
-                () => this.changeMedia(),
-                (this.$refs["video"].duration * 1000) + 5000
-              )
-            }
-
+            timer = (this.$refs["video"].duration * 1000) + 5000
             this.$refs["video"].play()
           })
         })
       }
+
+      if(this.media.length > 1) {
+        this.changeTimer = setInterval(() => this.changeMedia(), timer)
+      }
       else {
-        if(this.media.length > 1) {
-          this.changeTimer = setInterval(() => this.changeMedia(), 30000)
-        }
+        this.changeTimer = false
       }
     },
   }
