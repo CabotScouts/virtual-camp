@@ -5,7 +5,7 @@
 </template>
 
 <script>
-const messageURL = "http://camp.cabotscouts.org.uk/wall/message"
+const messageURL = "https://camp.cabotscouts.org.uk/wall/message"
 
 export default {
   name: 'FooterMarquee',
