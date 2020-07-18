@@ -3,16 +3,15 @@ from datetime import datetime
 from flask import current_app, Blueprint, request, jsonify, url_for
 from flask_json import JsonError, json_response
 
-from app.models import Share
+from app.models import Share, Message
 
 blueprint = Blueprint("wall", __name__, url_prefix="/wall")
 
 
 @blueprint.route("message")
 def messages():
-    response = json_response(
-        message="This is a message; eventually it will be editable from the website management panel!"
-    )
+    m = Message.query.first()
+    response = json_response(message=m.message)
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
