@@ -43,7 +43,7 @@ export default {
     this.fetchMedia().then(() => {
       this.currentIdx = -1
       if(!this.changeTimer) this.changeMedia()
-      this.fetchTimer = setInterval(()  => this.fetchMedia(), 300000) // refresh every 5 mins
+      this.fetchTimer = setInterval(()  => this.fetchMedia(), 180000) // refresh every 5 mins
     })
   },
 

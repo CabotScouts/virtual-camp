@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <marquee scrollamount="5">{{ message }}</marquee>
+    <marquee scrollamount="6">{{ message }}</marquee>
   </footer>
 </template>
 
@@ -19,13 +19,15 @@ export default {
 
   mounted() {
     this.fetchMessage()
-    this.timer = setInterval(() => this.fetchMessage(), 120000)
+    this.timer = setInterval(() => this.fetchMessage(), 60000)
   },
 
   methods: {
     fetchMessage: function() {
       fetch(messageURL).then(response => response.json()).then(data => {
-        this.message = data.message
+        if(this.message != data.message) {
+          this.message = data.message
+        }
       })
     }
   }
