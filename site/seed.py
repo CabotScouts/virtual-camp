@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from app import db
-from app.models import User, Group, Role
+from app.models import User, Group, Role, Message
 
 
 def seed(app):
@@ -52,6 +52,11 @@ def seed(app):
             app.logger.info(f" - added { g.name }")
 
         app.logger.info("...Groups added!")
+
+        app.logger.info("Adding livestream message...")
+        m = Message(message="", updated_by=0)
+        db.session.add(m)
+        app.logger.info("...message added")
 
         db.session.commit()
 
