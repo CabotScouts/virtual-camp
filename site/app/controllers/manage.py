@@ -50,7 +50,7 @@ def injectShareCounts():
 @auth.needs_login
 def index():
     m = Message.query.first()
-    return render_template("admin/index.jinja", m=m)
+    return render_template("manage/index.jinja", m=m)
 
 
 @blueprint.route("", strict_slashes=False, methods=["POST"])
@@ -62,7 +62,7 @@ def lsMessageUpdate():
     db.session.add(m)
     db.session.commit()
     flash("Livestream message updated", "success")
-    return render_template("admin/index.jinja", m=m)
+    return render_template("manage/index.jinja", m=m)
 
 
 # Shares
@@ -72,14 +72,14 @@ def lsMessageUpdate():
 def allShares(page=1):
     title = "All Shares"
     shares = Share.query.order_by(Share.id.desc()).paginate(page, sharesPerPage, False)
-    return render_template("admin/shares.jinja", title=title, shares=shares)
+    return render_template("manage/shares.jinja", title=title, shares=shares)
 
 
 @blueprint.route("/shares/view/<int:id>")
 @auth.needs_curate
 def viewShare(id):
     share = Share.query.filter_by(id=id).first_or_404()
-    return render_template("admin/view-share.jinja", share=share)
+    return render_template("manage/view-share.jinja", share=share)
 
 
 @blueprint.route("/shares/approved")
@@ -92,7 +92,7 @@ def approvedShares(page=1):
         .order_by(Share.id.desc())
         .paginate(page, sharesPerPage, False)
     )
-    return render_template("admin/shares.jinja", title=title, shares=shares)
+    return render_template("manage/shares.jinja", title=title, shares=shares)
 
 
 @blueprint.route("/shares/pending")
@@ -105,7 +105,7 @@ def pendingShares(page=1):
         .order_by(Share.id.asc())
         .paginate(page, sharesPerPage, False)
     )
-    return render_template("admin/shares.jinja", title=title, shares=shares)
+    return render_template("manage/shares.jinja", title=title, shares=shares)
 
 
 @blueprint.route("/shares/flagged")
@@ -118,7 +118,7 @@ def flaggedShares(page=1):
         .order_by(Share.id.desc())
         .paginate(page, sharesPerPage, False)
     )
-    return render_template("admin/shares.jinja", title=title, shares=shares)
+    return render_template("manage/shares.jinja", title=title, shares=shares)
 
 
 @blueprint.route("/shares/featured")
@@ -131,7 +131,7 @@ def featuredShares(page=1):
         .order_by(Share.id.desc())
         .paginate(page, sharesPerPage, False)
     )
-    return render_template("admin/shares.jinja", title=title, shares=shares)
+    return render_template("manage/shares.jinja", title=title, shares=shares)
 
 
 # Share Modifiers
@@ -217,7 +217,7 @@ def deleteShare():
 @auth.needs_admin
 def users():
     users = User.query.filter_by(group=None).order_by(User.username)
-    return render_template("admin/users.jinja", users=users)
+    return render_template("manage/users.jinja", users=users)
 
 
 @blueprint.route("/users/add", methods=["POST"])
@@ -308,4 +308,4 @@ def deleteUser():
 @auth.needs_manage
 def groups():
     groups = Group.query.all()
-    return render_template("admin/groups.jinja", groups=groups)
+    return render_template("manage/groups.jinja", groups=groups)
