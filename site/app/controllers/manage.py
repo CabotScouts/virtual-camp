@@ -12,7 +12,7 @@ from flask import (
 from flask_login import current_user
 
 from app import db
-from app.models import User, Group, Share
+from app.models import User, Group, Share, Message
 from app.utils import auth, isSafeUrl
 
 blueprint = Blueprint("manage", __name__, url_prefix="/manage")
@@ -46,10 +46,23 @@ def injectShareCounts():
     )
 
 
-@blueprint.route("", strict_slashes=False)
+@blueprint.route("", strict_slashes=False, methods=["GET"])
 @auth.needs_login
 def index():
-    return render_template("admin/index.jinja")
+    m = Message.query.first()
+    return render_template("admin/index.jinja", m=m)
+
+
+@blueprint.route("", strict_slashes=False, methods=["POST"])
+@auth.needs_manage
+def lsMessageUpdate():
+    m = Message.query.first()
+    m.message = request.form["message"]
+    m.updated_by = current_user.id
+    db.session.add(m)
+    db.session.commit()
+    flash("Livestream message updated", "success")
+    return render_template("admin/index.jinja", m=m)
 
 
 # Shares

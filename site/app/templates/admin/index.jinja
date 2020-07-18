@@ -1,5 +1,35 @@
 {% extends "layouts/admin.jinja" %}
 {% block title %}Admin{% endblock %}
 {% block content %}
-<h1>What to put here?</h1>
+<h1>Hello 👋</h1>
+<p>
+
+</p>
+<p>
+  <a href="/_ls" class="btn btn-success" target="_blank">
+    Launch livestream web app view
+  </a>
+</p>
+{% if hasManage() %}
+<hr />
+<h2>Livestream Message Control</h2>
+<p class="muted small">
+  Last updated at {{ m.updated_at }} by {{ m.user.username }}
+</p>
+<form method="POST" action="{{ url_for('manage.lsMessageUpdate' )}}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+  <div class="form-row">
+    <div class="form-group col-12">
+      <textarea class="form-control" id="message" name="message" rows="3">{{ m.message }}</textarea>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-12">
+      <button type="submit" class="btn btn-primary">
+        Update Message
+      </button>
+    </div>
+  </div>
+</form>
+{% endif %}
 {% endblock %}
