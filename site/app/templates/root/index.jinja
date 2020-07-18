@@ -3,9 +3,16 @@
 <div class="row">
   <div class="col-12 col-md-8 align-self-center">
     <h1>Way Out West!</h1>
-    <p>On Saturday 25<sup>th</sup> to Sunday 26<sup>th</sup> of July, Cabot are holding a virtual camp for all young people in the District!</p>
-    <p>During the weekend each section will have their own programme of activities to take part in, and there'll also be some shared events on our live stream for everybody to join in with - we'll be releasing the camp programme soon so you'll get to see what's happening during the weekend!</p>
-    <p>Each section is representing a different part of the West Country - <strong class="beavers">Cornwall (Beavers)</strong>, <strong class="cubs">Somerset (Cubs)</strong>, <strong class="scouts">Devon (Scouts)</strong> and <strong class="explorers">Bristol (Explorers and Network)</strong></p>
+    <p>
+      On Saturday 25<sup>th</sup> to Sunday 26<sup>th</sup> of July, Cabot are holding a virtual camp for all young people in the District!
+    </p>
+
+    <p>
+      Each section is representing a different part of the West Country - <strong class="beavers">Cornwall (Beavers)</strong>, <strong class="cubs">Somerset (Cubs)</strong>, <strong class="scouts">Devon (Scouts)</strong> and <strong class="explorers">Bristol (Explorers and Network)</strong>.
+    </p>
+    <p>
+      the weekend each will have their own programme of activities to take part in, and there'll also be some shared events on our live stream for everybody to join together - have a look at <a href="{{ url_for('root.programme') }}">the camp programme</a> to see what's happening and when.
+    </p>
   </div>
   <div class="col-12 col-md-4">
     <div>
@@ -38,6 +45,12 @@
       <a href="{{ url_for('static', filename='activities/welcome-pack.pdf')}}" class="btn btn-success" target="_blank">Download the WOW! Welcome Pack</a>
     </p>
   </div>
-  {#{% include "activities/links/combined.jinja" %}#}
+  <div class="col-12 mb-2">
+    <hr />
+  </div>
+  <div class="col-12 mb-2">
+    <h2>Activity Quick Links</h2>
+  </div>
+  {% include "activities/links/combined.jinja" %}
 </div>
 {% endblock %}

@@ -33,7 +33,7 @@
           <tr{{ highlight('sat', 10, 15, 12, 30) }}>
             <td rowspan="4">Morning Activities</td>
             <td><a href="{{ url_for('activities.beavers') }}#coat-of-arms">Coat of Arms</a></td>
-            <td>Coat of Arms</td>
+            <td><a href="{{ url_for('activities.cubs') }}#booklet">Coat of Arms</a></td>
             <td rowspan="4">
               <a href="{{ url_for('activities.scouts') }}#buckaroo">Ten Tors Buckaroo</a>
             </td>
@@ -44,19 +44,19 @@
 
           <tr{{ highlight('sat', 10, 15, 12, 30) }}>
             <td><a href="{{ url_for('activities.beavers') }}#booklet">Design and Prepare Lunch</a></td>
-            <td>Cheddar Cheese Rolling</td>
+            <td><a href="{{ url_for('activities.cubs') }}#booklet">Cheddar Cheese Rolling</a></td>
           </tr>
 
           <tr{{ highlight('sat', 10, 15, 12, 30) }}>
             <td>
               <a href="{{ url_for('activities.beavers') }}#discover-cornwall">Discover Cornwall</a>
             </td>
-            <td>Helter Skelter Game</td>
+            <td><a href="{{ url_for('activities.cubs') }}#booklet">Helter Skelter Game</a></td>
           </tr>
 
           <tr{{ highlight('sat', 10, 15, 12, 30) }}>
             <td><a href="{{ url_for('activities.beavers') }}#booklet">Prepare your Paper</a></td>
-            <td>Somerset Games</td>
+            <td><a href="{{ url_for('activities.cubs') }}#booklet">Somerset Games</a></td>
           </tr>
 
           <tr{{ highlight('sat', 10, 30, 11, 00) }}>
@@ -91,7 +91,7 @@
             <td rowspan="3">
               <a href="{{ url_for('activities.beavers') }}#booklet">Scones for Afternoon Tea</a>
             </td>
-            <td>Mug Cake Making</td>
+            <td><a href="{{ url_for('activities.cubs') }}#booklet">Mug Cake Making</a></td>
             <td rowspan="2"><a href="{{ url_for('activities.scouts') }}#orange-race">Orange Race</a></td>
             <td rowspan="5"{{ highlight('sat', 14, 00, 18, 00) }}>
               <a href="{{ url_for('activities.explorers') }}#gert-lush">Gert Lush Challenges</a>
@@ -99,11 +99,11 @@
           </tr>
 
           <tr{{ highlight('sat', 14, 00, 18, 00) }}>
-            <td>Design and Make a Sculpture</td>
+            <td><a href="{{ url_for('activities.cubs') }}#booklet">Design and Make a Sculpture</a></td>
           </tr>
 
           <tr{{ highlight('sat', 14, 00, 18, 00) }}>
-            <td>Chocolate Archeology</td>
+            <td><a href="{{ url_for('activities.cubs') }}#booklet">Chocolate Archeology</a></td>
             <td rowspan="3"><a href="{{ url_for('activities.scouts') }}#beast">BEAST</a></td>
           </tr>
 
@@ -111,11 +111,11 @@
             <td rowspan="2">
               <a href="{{ url_for('activities.beavers') }}#booklet">Washing Up</a>
             </td>
-            <td>Flying Dragons</td>
+            <td><a href="{{ url_for('activities.cubs') }}#booklet">Flying Dragons</a></td>
           </tr>
 
           <tr{{ highlight('sat', 14, 00, 18, 00) }}>
-            <td>Carnival Time</td>
+            <td><a href="{{ url_for('activities.cubs') }}#booklet">Carnival Time</a></td>
           </tr>
 
           <tr{{ highlight('sat', 16, 00, 16, 30) }}>
@@ -127,7 +127,7 @@
           <tr{{ highlight('sat', 16, 30, 17, 00) }}>
             <td>4:30pm - 5:00pm</td>
             <td class="empty"></td>
-            <td>Zoom Catchup</td>
+            <td><a href="{{ url_for('activities.cubs') }}#booklet">Zoom Catchup</a></td>
             <td colspan="2" class="empty"></td>
           </tr>
 
@@ -171,16 +171,26 @@
             <td>
               <a href="{{ url_for('activities.beavers') }}#bottle-message">Message in a Bottle</a>
             </td>
-            <td>Junk Modelling - Famous Landmark</td>
-            <td rowspan="2"><a href="{{ url_for('activities.scouts') }}#floaty-boaty">Floaty Boaty</a></td>
-            <td rowspan="2"><a href="{{ url_for('activities.explorers') }}#gert-lush">Gert Lush Challenges</a></td>
+            <td>
+              <a href="{{ url_for('activities.cubs') }}#booklet">Junk Modelling - Famous Landmark</a>
+            </td>
+            <td rowspan="2">
+              <a href="{{ url_for('activities.scouts') }}#floaty-boaty">Floaty Boaty</a>
+            </td>
+            <td rowspan="2">
+              <a href="{{ url_for('activities.explorers') }}#gert-lush">Gert Lush Challenges</a>
+            </td>
           </tr>
 
           <tr{{ highlight('sun', 10, 0, 12, 30) }}>
             <td>
               <a href="{{ url_for('activities.beavers') }}#junk-modelling">Junk Modelling - Castles</a>
             </td>
-            <td>Let's get Creative - Postcard Design</td>
+            <td>
+              <a href="{{ url_for('activities.cubs') }}#booklet">
+                Let's get Creative - Postcard Design
+              </a>
+            </td>
           </tr>
 
           <tr{{ highlight('sun', 10, 0, 12, 30) }}>
