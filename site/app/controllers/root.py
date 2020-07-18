@@ -44,22 +44,14 @@ def register():
 @blueprint.route("/programme")
 def programme():
     n = datetime.now()
-
-    # Actual - 25 = sat, 26 = sun
-    s = {25: "sat", 26: "sun"}
     dn = n.day
+    s = {25: "sat", 26: "sun"}
     ds = s[dn] if dn in s else ""
-
     h = n.hour
     m = n.minute
 
     return render_template(
-        "root/programme.jinja",
-        now={
-            "day": request.args.get("d", ds),
-            "hour": int(request.args.get("h", h)),
-            "min": int(request.args.get("m", m)),
-        },
+        "root/programme.jinja", now={"day": ds, "hour": h, "min": m,},
     )
 
 
