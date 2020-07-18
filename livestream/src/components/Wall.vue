@@ -48,8 +48,8 @@ export default {
   },
 
   methods: {
-    fetchMedia: function() {
-      return fetch(sharesURL).then(response => response.json()).then(data => {
+    fetchMedia: async function() {
+      return await fetch(sharesURL).then(response => response.json()).then(data => {
         this.media = data.media
       })
     },
@@ -135,13 +135,5 @@ main {
       }
     }
   }
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .8s;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0;
 }
 </style>

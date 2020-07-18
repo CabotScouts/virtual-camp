@@ -39,4 +39,12 @@ body {
     justify-content: space-between;
   }
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .8s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 </style>
