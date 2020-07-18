@@ -13,6 +13,7 @@ def messages():
     m = Message.query.first()
     response = json_response(message=m.message)
     response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Cache-Control", "no-cache, no-store, must-revalidate")
     return response
 
 
@@ -27,4 +28,5 @@ def shares(number=30, page=1):
         total=all.count(), count=len(serialised), media=serialised, next=shares.next_num
     )
     response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Cache-Control", "no-cache, no-store, must-revalidate")
     return response
