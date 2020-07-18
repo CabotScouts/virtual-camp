@@ -1,13 +1,14 @@
 <template>
   <div id="app">
     <HeaderBar />
-    <!-- <Wall /> -->
-    <FooterMarquee />
+    <Wall />
+    <FooterMarquee/>
   </div>
 </template>
 
 <script>
 import HeaderBar from './components/HeaderBar.vue'
+import Wall from './components/Wall.vue'
 import FooterMarquee from './components/FooterMarquee.vue'
 
 export default {
@@ -15,9 +16,9 @@ export default {
 
   components: {
     HeaderBar,
+    Wall,
     FooterMarquee
-  },
-
+  }
 }
 </script>
 
@@ -26,10 +27,7 @@ body {
   height: 100vh;
   margin: 0;
   overflow: hidden;
-
-  // background-color: #f8f9fa;
   background-color: darken(#0583c7, 4%);
-  // background-color: #2b2d42;
   color: #ffffff;
   font-family: 'Source Sans Pro', sans-serif;
 
@@ -39,9 +37,6 @@ body {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-
-    header {
-    }
   }
 }
 </style>
