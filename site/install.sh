@@ -1,5 +1,5 @@
 #!/bin/bash
-mkvirtualenv WayOutWest
-workon WayOutWest
+python -m venv wayoutwest
+source ./wayoutwest/bin/activate
 pip install -r requirements.txt
 deactivate
