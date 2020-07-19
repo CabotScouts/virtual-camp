@@ -44,7 +44,9 @@ def login():
         return redirect(url_for("group.index"))
     else:
         groups = Group.query.all()
-        return render_template("group/login.jinja", groups=groups)
+        return render_template(
+            "group/login.jinja", groups=groups, back=request.referrer
+        )
 
 
 @blueprint.route("/login", methods=["POST"])
@@ -66,11 +68,17 @@ def processLogin():
                 f"incorrect Group key for { g.name } from { request.remote_addr }"
             )
             flash("Key incorrect", "danger")
-            return redirect(url_for("group.login"))
+            groups = Group.query.all()
+            return render_template(
+                "group/login.jinja", groups=groups, back=request.form["return"]
+            )
     else:
         current_app.logger.warning(f"invalid Group from { request.remote_addr }")
         flash("Key incorrect", "danger")
-        return redirect(url_for("group.login"))
+        groups = Group.query.all()
+        return render_template(
+            "group/login.jinja", groups=groups, back=request.form["return"]
+        )
 
 
 @blueprint.route("/logout")

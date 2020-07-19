@@ -54,7 +54,7 @@ def login():
     if current_user.is_authenticated and current_user.hasPermission(Permission.LOGIN):
         return redirect(url_for("manage.index"))
     else:
-        return render_template("auth/login.jinja")
+        return render_template("auth/login.jinja", back=request.referrer)
 
 
 @blueprint.route("/login", methods=["POST"])
@@ -66,7 +66,7 @@ def processLogin():
 
     if u and not u.hasPermission(Permission.LOGIN):
         flash("This user is not permitted to login", "danger")
-        return redirect(url_for("auth.login"))
+        return render_template("auth/login.jinja", back=request.form["return"])
 
     if u and u.validateKey(request.form["key"]):
         login_user(u)
@@ -79,7 +79,7 @@ def processLogin():
     else:
         current_app.logger.error(f"incorrect username/key from { request.remote_addr }")
         flash("Username or key incorrect", "danger")
-        return redirect(url_for("auth.login"))
+        return render_template("auth/login.jinja", back=request.form["return"])
 
 
 @blueprint.route("/logout")
