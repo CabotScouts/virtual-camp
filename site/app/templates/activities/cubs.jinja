@@ -5,18 +5,19 @@
   {% include "activities/links/cubs.jinja" %}
   <hr class="mt-4" />
   <h2 id="booklet">Activity Booklet</h2>
-  <!-- <p>
-    All of the Cub activities for the weekend can be found in the activity booklet - if you don't already have a copy download one below and have a look through!
-  </p> -->
   <p>
-    The Cub activity booklet is on it's way - check back soon to get your copy!
+    All of the Cub activities for the weekend can be found in the activity booklet - if you don't already have a copy download one below and have a look through!
   </p>
   <p>
-    <!-- <a href="{{ url_for('static', filename='activities/cubs.pdf') }}" target="_blank" class="btn btn-success">Download the Cub activity booklet</a> -->
+    <a href="{{ url_for('static', filename='activities/cubs.pdf') }}" target="_blank" class="btn btn-success">Download the Cub activity booklet</a>
   </p>
 
-  <!-- <hr class="mt-4" />
-  <h2 id="cheese-rolling">Cheddar Cheese Rolling</h2> -->
+  <hr class="mt-4" />
+  <h2 id="coat-of-arms">Coat of Arms</h2>
+  <div class="embed-responsive embed-responsive-16by9 mb-3">
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lunRp-F-ElA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+
   <hr class="mt-4" />
   <h2 id="helter-skelter">Helter Skelter Game</h2>
   <p>
@@ -41,4 +42,11 @@
   <p>
     <a href="https://en.wikipedia.org/wiki/Glastonbury_Tor" target="_blank" rel="noreferrer" class="btn btn-success">Glastonbury Tor Information</a>
   </p>
+
+  <hr class="mt-4" />
+  <h2 id="somerset-sounds">Somerset Sounds Virtual Tours</h2>
+  <p>
+    <a href="{{ url_for('static', filename='activities/cubs/virtual-tours.pdf') }}" target="_blank" rel="noreferrer" class="btn btn-success">Go on some virtual tours!</a>
+  </p>
+
 {% endblock %}
