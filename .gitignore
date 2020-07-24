@@ -4,3 +4,5 @@ node_modules
 .DS_Store
 design_assets
 *.sqlite
+
+site/wayoutwest
