@@ -128,7 +128,8 @@ main {
       p {
         margin: 0;
         max-height: 60vh;
-        font-size: 1.25rem;
+        font-size: 2.5rem;
+        font-weight: 500;
         line-height: 1.5;
       }
     }

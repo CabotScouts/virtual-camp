@@ -50,14 +50,14 @@ header {
   margin-top: -0.2rem;
 
   font-family: 'Sriracha', cursive;
-  font-size: 2rem;
+  font-size: 2.2rem;
 
 }
 
 #clock {
   font-family: 'Lato', sans-serif;
   font-weight: 900;
-  font-size: 3rem;
+  font-size: 3.5rem;
 
   .sep {
     padding: 0 5px;
