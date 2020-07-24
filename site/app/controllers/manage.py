@@ -17,7 +17,7 @@ from app.utils import auth, isSafeUrl
 
 blueprint = Blueprint("manage", __name__, url_prefix="/manage")
 
-sharesPerPage = 20
+sharesPerPage = 10
 
 
 @blueprint.context_processor
