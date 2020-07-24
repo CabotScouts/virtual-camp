@@ -13,12 +13,74 @@
     <p>
       <a href="{{ url_for('static', filename='activities/welcome-pack.pdf')}}" class="btn btn-success" target="_blank">Download the WOW! Welcome Pack</a>
     </p>
-  </div>
-  {% include "activities/links/combined.jinja" %}
-  <div class="col-12 mt-2">
     <p>
       Don't forget to <a href="{{ url_for('share.new') }}">share your pictures and videos</a> with us so everyone can see what you've been getting up to!
     </p>
   </div>
+
+  <div class="col-12">
+    <hr />
+  </div>
+
+  {% include "activities/links/combined.jinja" %}
+
+  <div class="col-12 mb-3">
+    <hr />
+  </div>
+
+  <div class="col-12 col-md-4">
+    <h3 id="den-building">Den Building</h3>
+    <p>
+      Make your den to sleep in for the night, inside or out. Try it out. Set up your sleeping bag, pillow, sleeping mat and don’t forget your cuddly toy. Who's is the most comfortable - take a snap!
+    </p>
+    <p>
+      If you're short of ideas for your den, here are some plans from IKEA!
+    </p>
+    <p>
+      <a href="https://www.dezeen.com/2020/05/15/ikea-forts-children-lockdown-coronavirus/" target="_blank" rel="noopener" class="btn btn-success">Den Building Blueprints</a>
+    </p>
+  </div>
+
+  <div class="col-12 col-md-4">
+    <h3 id="family-quiz">Family Quiz</h3>
+    <p>
+      Join the whole camp for a fun family quiz on Saturday evening! Grab a pen and paper and join us on the livestream from 7pm.
+    </p>
+    <p>
+      <a class="btn btn-danger" href="{{ url_for('root.live') }}" title="Watch the event livestream">
+        <i class="fas fa-video pr-2"></i>Watch live
+      </a>
+    </p>
+  </div>
+
+  <div class="col-12 col-md-4">
+    <h3 id="penny-hike">Penny Hike</h3>
+    <p>
+      <ul>
+        <li>
+          Make sure you are wearing your group necker.
+        </li>
+        <li>
+          Wear clothes suitable for the weather and shoes that are comfy to walk in.
+        </li>
+        <li>
+          Walk with at least one other adult from your house.
+        </li>
+        <li>
+          Take a coin with you.
+        </li>
+        <li>
+          Whenever you reach a road/path junction, toss your coin - if it's heads turn left, if it's tails turn right.
+        </li>
+        <li>
+          Say hello to any other scouts you see on your hike.
+        </li>
+        <li>
+          Remember to be back home in time for the closing ceremony at 4pm!
+        </li>
+      </ul>
+    </p>
+  </div>
+
 </div>
 {% endblock %}

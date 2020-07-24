@@ -84,7 +84,7 @@
 
           <tr{{ highlight('sat', 14, 00, 18, 00) }}>
             <td rowspan="6">Afternoon Activities</td>
-            <td colspan="4">Den Building</td>
+            <td colspan="4"><a href="{{ url_for('activities.index') }}#den-building">Den Building</a></td>
           </tr>
 
           <tr{{ highlight('sat', 14, 00, 18, 00) }}>
@@ -138,7 +138,7 @@
 
           <tr{{ highlight('sat', 19, 00, 20, 30) }}>
             <td>7:00pm</td>
-            <td colspan="4"><a href="{{ url_for('root.live') }}">Family Quiz</a></td>
+            <td colspan="4"><a href="{{ url_for('activities.index') }}#family-quiz">Family Quiz</a></td>
           </tr>
 
           <tr{{ highlight('sat', 20, 30, 21, 30) }}>
@@ -237,7 +237,7 @@
 
           <tr{{ highlight('sun', 14, 00, 16, 0) }}>
             <td>2:00pm</td>
-            <td colspan="4">Penny Hike</td>
+            <td colspan="4"><a href="{{ url_for('activities.index') }}#penny-hike">Penny Hike</a></td>
           </tr>
           <tr{{ highlight('sun', 16, 0, 16, 30) }}>
             <td>4:00pm</td>
