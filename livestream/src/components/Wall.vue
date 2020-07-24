@@ -19,7 +19,7 @@
 </template>
 
 <script type="text/javascript">
-const sharesURL = "https://camp.cabotscouts.org.uk/wall/shares/45"
+const sharesURL = "https://camp.cabotscouts.org.uk/wall/shares/60"
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -50,7 +50,8 @@ export default {
   methods: {
     fetchMedia: async function() {
       return await fetch(sharesURL).then(response => response.json()).then(data => {
-        if(this.media.length > 0 && data.media[0].file != this.media[0].file) this.currentIdx = -1
+        const l = data.media.length
+        if(this.media.length > 0 && data.media[l-1].file != this.media[l-1].file) this.currentIdx = -1
         this.media = data.media
       })
     },
@@ -62,7 +63,7 @@ export default {
       this.currentIdx = ((this.currentIdx + 1) >= this.media.length) ? 0 : this.currentIdx + 1
       this.current = this.media[this.currentIdx]
 
-      var timer = 20000;
+      var timer = 18000;
       if(this.current.type == "video") {
         this.$nextTick(() => {
           this.$refs.video.addEventListener('loadedmetadata', () => {
