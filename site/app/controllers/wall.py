@@ -24,8 +24,13 @@ def shares(number=30, page=1):
     all = Share.query.filter_by(approved=True, featured=True)
     shares = all.order_by(Share.id.desc()).paginate(page, number, False)
     serialised = [share.serialise() for share in shares.items]
+    serialised.reverse()
+
     response = json_response(
-        total=all.count(), count=len(serialised), media=serialised, next=shares.next_num
+        total=all.count(),
+        count=len(serialised),
+        media=serialised,
+        next=shares.next_num,
     )
     response.headers.add("Access-Control-Allow-Origin", "*")
     response.headers.add("Cache-Control", "no-cache, no-store, must-revalidate")
