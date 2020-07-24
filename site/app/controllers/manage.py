@@ -110,7 +110,7 @@ def pendingShares(page=1):
 
 @blueprint.route("/shares/flagged")
 @blueprint.route("/shares/flagged/<int:page>")
-@auth.needs_manage
+@auth.needs_admin
 def flaggedShares(page=1):
     title = "Flagged Shares"
     shares = (

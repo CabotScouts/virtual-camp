@@ -36,7 +36,7 @@
           </a>
           {% endif %}
 
-          {% if hasManage() %}
+          {% if hasAdmin() %}
           <a href="{{ url_for('manage.flaggedShares') }}" class="list-group-item d-flex justify-content-between align-items-center">
             Flagged Shares
             <span class="badge badge-pill badge-danger ml-2">{{ flaggedCount() }}</span>
