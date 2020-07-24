@@ -1,7 +1,7 @@
 from flask_login import UserMixin, AnonymousUserMixin
 
 from app import db, login_manager
-from app.utils import randomString
+from app.utils import randomKey
 
 
 class Permission:
@@ -56,7 +56,7 @@ class User(UserMixin, db.Model):
         self.loginKey = key
 
     def generateKey(self):
-        self.loginKey = randomString(12)
+        self.loginKey = randomKey(8)
 
     def validateKey(self, key):
         return key == self.loginKey
