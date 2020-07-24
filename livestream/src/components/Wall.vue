@@ -106,6 +106,10 @@ main {
         margin: 0;
         padding: 0;
       }
+
+      img {
+        image-orientation: from-image;
+      }
     }
 
     .media.video {
