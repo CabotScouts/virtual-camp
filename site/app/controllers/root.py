@@ -47,7 +47,7 @@ def programme():
     dn = n.day
     s = {25: "sat", 26: "sun"}
     ds = s[dn] if dn in s else ""
-    h = n.hour
+    h = (n.hour + 1)
     m = n.minute
 
     return render_template(
