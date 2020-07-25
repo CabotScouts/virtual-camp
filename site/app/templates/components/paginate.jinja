@@ -16,10 +16,15 @@
     </li>
     {% endif %}
     {% for page in query.iter_pages() %}
+    {% if page %}
       <li class="page-item {% if page == query.page %}active{% endif %}">
         <a class="page-link" href="{{ url_for(request.endpoint, page=page) }}">
           {{ page }}
         </a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <span>...</span>
       </li>
     {% endfor %}
     {% if query.has_next %}
