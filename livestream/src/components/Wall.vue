@@ -19,7 +19,7 @@
 </template>
 
 <script type="text/javascript">
-const sharesURL = "https://camp.cabotscouts.org.uk/wall/shares/20"
+const sharesURL = "https://camp.cabotscouts.org.uk/wall/shares/30"
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -63,21 +63,18 @@ export default {
       this.currentIdx = ((this.currentIdx + 1) >= this.media.length) ? 0 : this.currentIdx + 1
       this.current = this.media[this.currentIdx]
 
-      var timer = 18000;
       if(this.current.type == "video") {
         this.$nextTick(() => {
-          this.$refs.video.addEventListener('loadedmetadata', () => {
-            timer = (this.$refs["video"].duration * 1000) + 5000
-            this.$refs["video"].play()
+          this.$refs["video"].addEventListener('loadedmetadata', () => {
+            var timer = (this.$refs.video.duration * 1000) + 1000
+            this.changeTimer = setInterval(() => this.changeMedia(), timer)
+            // console.log("Calculated " + timer)
+            this.$refs.video.play()
           })
         })
       }
-
-      if(this.media.length > 1) {
-        this.changeTimer = setInterval(() => this.changeMedia(), timer)
-      }
       else {
-        this.changeTimer = false
+        this.changeTimer = setInterval(() => this.changeMedia(), 18000)
       }
     },
   }
