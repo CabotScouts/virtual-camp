@@ -19,7 +19,7 @@
 </template>
 
 <script type="text/javascript">
-const sharesURL = "https://camp.cabotscouts.org.uk/wall/shares/40"
+const sharesURL = "https://camp.cabotscouts.org.uk/wall/shares/20"
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
