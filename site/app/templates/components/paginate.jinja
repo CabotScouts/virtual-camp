@@ -5,13 +5,13 @@
     {% if query.has_prev %}
     <li class="page-item">
       <a class="page-link" href="{{ url_for(request.endpoint, page=query.prev_num) }}">
-        Previous
+        <i class="fas fa-arrow-left"></i>
       </a>
     </li>
     {% else %}
     <li class="page-item disabled">
       <a class="page-link" href="#">
-        Previous
+        <i class="fas fa-arrow-left"></i>
       </a>
     </li>
     {% endif %}
@@ -31,13 +31,13 @@
     {% if query.has_next %}
     <li class="page-item">
       <a class="page-link" href="{{ url_for(request.endpoint, page=query.next_num) }}">
-        Next
+        <i class="fas fa-arrow-right"></i>
       </a>
     </li>
     {% else %}
     <li class="page-item disabled">
       <a class="page-link" href="#">
-        Next
+        <i class="fas fa-arrow-right"></i>
       </a>
     </li>
     {% endif %}
