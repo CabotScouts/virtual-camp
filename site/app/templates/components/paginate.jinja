@@ -15,7 +15,7 @@
       </a>
     </li>
     {% endif %}
-    {% for page in query.iter_pages() %}
+    {% for page in query.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=3) %}
     {% if page %}
       <li class="page-item {% if page == query.page %}active{% endif %}">
         <a class="page-link" href="{{ url_for(request.endpoint, page=page) }}">
