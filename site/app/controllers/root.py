@@ -11,7 +11,7 @@ def injectLinks():
     return dict(
         links=[
             ("Home", "The event homepage", url_for("root.index")),
-            ("Sign Up", "Sign up for the event", url_for("root.register")),
+            # ("Sign Up", "Sign up for the event", url_for("root.register")),
             (
                 "Camp Programme",
                 "The programme for the weekend",

@@ -22,7 +22,7 @@
     </div>
     <div class="d-xl-none">
       <a class="btn btn-block btn-success" href="{{ url_for('share.new') }}"><i class="fas fa-star pr-2"></i>Share what you're doing</a>
-      <a class="btn btn-block btn-danger" href="{{ url_for('root.live') }}"><i class="fas fa-video pr-2"></i>Watch live</a>
+      {#}<a class="btn btn-block btn-danger" href="{{ url_for('root.live') }}"><i class="fas fa-video pr-2"></i>Watch live</a>{#}
       {% if hasGroup() %}
       <a class="btn btn-block btn-info" href="{{ url_for('group.index') }}"><i class="far fa-images pr-1"></i> Group Shares</a>
       {% elif hasLogin() %}
@@ -38,9 +38,9 @@
     <p>
       We're looking forward to seeing you all on camp! To help you get ready we've put together a welcome pack to explain how the camp will work and when things are happening. Make sure you take a look at your section's kit list and check you've got everything you need!
     </p>
-    <p>
+    {#}<p>
       If you haven't already, make sure you <a href="{{ url_for('root.register') }}">sign up for the camp</a> to receive a camp badge and login links for your section's zoom calls.
-    </p>
+    </p>{#}
     <p>
       <a href="{{ url_for('static', filename='activities/welcome-pack.pdf')}}" class="btn btn-success" target="_blank">Download the WOW! Welcome Pack</a>
     </p>
