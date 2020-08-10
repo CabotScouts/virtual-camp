@@ -5,7 +5,16 @@
   <div class="col-12">
     <h1>Send in your pictures and videos</h1>
   </div>
-  <div class="col-12 col-lg-8">
+  <div class="col-12">
+    <p>
+      Thank you for coming <span class="wow">Way Out West!</span> with us!
+    </p>
+    <p>
+      We're not accepting any new photo or video uploads now, but you can have a look at everything that was sent in on our <a href="{{ url_for("share.gallery") }}">gallery</a>!
+    </p>
+  </div>
+
+  {#}<div class="col-12 col-lg-8">
     <p>
       Show us what you've been getting up to during the camp by sending in your pictures and videos, we'll try to show as many as we can during the weekend across our <a href="{{ url_for('root.live') }}" title="Watch our live stream">live stream</a> and <a href="" target="_blank" rel="nofollow" title="Cabot District Facebook page">Facebook page</a>!
     </p>
@@ -69,5 +78,6 @@
       <p>Check with a parent/guardian before you send any pictures or videos, and make sure you get permission from everybody in your picture or video too!</p>
     </div>
   </div>
+  {#}
 </div>
 {% endblock %}
