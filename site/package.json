@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "wayoutwest",
+  "name": "cabotcamp",
   "version": "1.0.0",
   "description": "",
   "dependencies": {
@@ -35,12 +35,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cabotexplorers/wow.git"
+    "url": "git+https://github.com/cabotexplorers/cabotcamp.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/CabotExplorers/wayoutwest"
+    "url": "https://github.com/CabotExplorers/cabotcamp"
   },
-  "homepage": "https://github.com/CabotExplorers/wayoutwest#readme"
+  "homepage": "https://github.com/CabotExplorers/cabotcamp#readme"
 }
