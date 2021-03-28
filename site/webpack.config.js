@@ -1,7 +1,7 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CSSMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
   entry: ["./src/app.js", "./src/scss/style.scss"],
@@ -13,21 +13,7 @@ module.exports = {
     rules: [
       {
       test: /\.(scss)$/,
-      use: [
-        MiniCssExtractPlugin.loader, 'css-loader',
-      {
-        loader: 'postcss-loader', // Run post css actions
-        options: {
-          plugins: function () { // post css plugins, can be exported to postcss.config.js
-            return [
-              require('precss'),
-              require('autoprefixer')
-            ];
-          }
-        }
-      }, {
-        loader: 'sass-loader' // compiles Sass to CSS
-      }]
+      use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
     },
     {
       test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -44,16 +30,8 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: false
-      }),
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorPluginOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }],
-        }
-      })
+      new TerserPlugin(),
+      new CSSMinimizerPlugin()
     ],
   },
   plugins: [
