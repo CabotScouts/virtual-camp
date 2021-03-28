@@ -13,7 +13,13 @@ from flask_login import current_user
 
 from app import db
 from app.models import User, Group, Share, Message
-from app.utils import auth, isSafeUrl
+from app.utils.auth import (
+    needs_login,
+    needs_admin,
+    needs_manage,
+    needs_curate,
+    isSafeUrl,
+)
 
 blueprint = Blueprint("manage", __name__, url_prefix="/manage")
 
@@ -47,14 +53,14 @@ def injectShareCounts():
 
 
 @blueprint.route("", strict_slashes=False, methods=["GET"])
-@auth.needs_login
+@needs_login
 def index():
     m = Message.query.first()
     return render_template("manage/index.jinja", m=m)
 
 
 @blueprint.route("", strict_slashes=False, methods=["POST"])
-@auth.needs_manage
+@needs_manage
 def lsMessageUpdate():
     m = Message.query.first()
     m.message = request.form["message"]
@@ -68,7 +74,7 @@ def lsMessageUpdate():
 # Shares
 @blueprint.route("/shares")
 @blueprint.route("/shares/<int:page>")
-@auth.needs_manage
+@needs_manage
 def allShares(page=1):
     title = "All Shares"
     shares = Share.query.order_by(Share.id.desc()).paginate(page, sharesPerPage, False)
@@ -76,7 +82,7 @@ def allShares(page=1):
 
 
 @blueprint.route("/shares/view/<int:id>")
-@auth.needs_curate
+@needs_curate
 def viewShare(id):
     share = Share.query.filter_by(id=id).first_or_404()
     return render_template("manage/view-share.jinja", share=share)
@@ -84,7 +90,7 @@ def viewShare(id):
 
 @blueprint.route("/shares/approved")
 @blueprint.route("/shares/approved/<int:page>")
-@auth.needs_curate
+@needs_curate
 def approvedShares(page=1):
     title = "Approved Shares"
     shares = (
@@ -97,7 +103,7 @@ def approvedShares(page=1):
 
 @blueprint.route("/shares/pending")
 @blueprint.route("/shares/pending/<int:page>")
-@auth.needs_manage
+@needs_manage
 def pendingShares(page=1):
     title = "Pending Shares"
     shares = (
@@ -110,7 +116,7 @@ def pendingShares(page=1):
 
 @blueprint.route("/shares/flagged")
 @blueprint.route("/shares/flagged/<int:page>")
-@auth.needs_admin
+@needs_admin
 def flaggedShares(page=1):
     title = "Flagged Shares"
     shares = (
@@ -123,7 +129,7 @@ def flaggedShares(page=1):
 
 @blueprint.route("/shares/featured")
 @blueprint.route("/shares/featured/<int:page>")
-@auth.needs_curate
+@needs_curate
 def featuredShares(page=1):
     title = "Featured Shares"
     shares = (
@@ -136,7 +142,7 @@ def featuredShares(page=1):
 
 # Share Modifiers
 @blueprint.route("/shares/approve", methods=["POST"])
-@auth.needs_manage
+@needs_manage
 def approveShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
     if share:
@@ -149,7 +155,7 @@ def approveShare():
 
 
 @blueprint.route("/shares/flag", methods=["POST"])
-@auth.needs_curate
+@needs_curate
 def flagShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
     if share:
@@ -162,7 +168,7 @@ def flagShare():
 
 
 @blueprint.route("/shares/feature", methods=["POST"])
-@auth.needs_curate
+@needs_curate
 def featureShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
     if share:
@@ -175,7 +181,7 @@ def featureShare():
 
 
 @blueprint.route("/shares/unfeature", methods=["POST"])
-@auth.needs_curate
+@needs_curate
 def unfeatureShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
     if share:
@@ -188,7 +194,7 @@ def unfeatureShare():
 
 
 @blueprint.route("/shares/delete", methods=["POST"])
-@auth.needs_admin
+@needs_admin
 def deleteShare():
     share = Share.query.filter_by(id=request.form["id"]).first()
     if share:
@@ -214,14 +220,14 @@ def deleteShare():
 
 # Groups/Users
 @blueprint.route("/users")
-@auth.needs_admin
+@needs_admin
 def users():
     users = User.query.filter_by(group=None).order_by(User.username)
     return render_template("manage/users.jinja", users=users)
 
 
 @blueprint.route("/users/add", methods=["POST"])
-@auth.needs_admin
+@needs_admin
 def addUser():
     username = request.form["username"].lower()
     user = User.query.filter_by(username=username).first()
@@ -242,7 +248,7 @@ def addUser():
 
 
 @blueprint.route("users/regenerate-key", methods=["POST"])
-@auth.needs_admin
+@needs_admin
 def regenerateKey():
     id = request.form["id"]
 
@@ -264,7 +270,7 @@ def regenerateKey():
 
 
 @blueprint.route("users/update-role", methods=["POST"])
-@auth.needs_admin
+@needs_admin
 def updateRole():
     id = request.form["id"]
 
@@ -285,7 +291,7 @@ def updateRole():
 
 
 @blueprint.route("users/delete", methods=["POST"])
-@auth.needs_admin
+@needs_admin
 def deleteUser():
     id = request.form["id"]
 
@@ -305,7 +311,7 @@ def deleteUser():
 
 
 @blueprint.route("/groups")
-@auth.needs_manage
+@needs_manage
 def groups():
     groups = Group.query.all()
     return render_template("manage/groups.jinja", groups=groups)
