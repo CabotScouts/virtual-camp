@@ -7,8 +7,8 @@
     <link rel="icon" type="image/png" sizes="64x64" href="{{ url_for('static', filename='favicon.png') }}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='appicon.png') }}" />
     <script src="{{ url_for('static', filename='app.js')}}" async></script>
-    {% if self.title() %}<title>{% block title %}{% endblock %} - Way Out West!</title>
-    {% else %}<title>Way Out West!</title>{% endif %}
+    {% if self.title() %}<title>{% block title %}{% endblock %} - St. George's Virtual Sleepout</title>
+    {% else %}<title>St. George's Virtual Sleepout</title>{% endif %}
     {% block headjs %}{% endblock %}
   </head>
   <body {% if self.bodyclass() %}class="{% block bodyclass %}{% endblock %}"{% endif %}>
