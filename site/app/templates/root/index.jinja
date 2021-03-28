@@ -2,12 +2,62 @@
 {% block content %}
 <div class="row">
   <div class="col-12  align-self-center">
-    <h1>St. Georges Virtual Weekend</h1>
-    <p>We’re very excited to announce our next virtual sleepover, which is happening over the weekend of 17th and 18th April 2021!</p>
-    <p>We’ll be starting early in the afternoon on Saturday and finishing our programme of planned activities before lunch on the Sunday.</p>
-    <p>We’re inviting the Cabot Scout District and our friends from local Girlguiding, including Brownies and Rainbows.</p>
-    <p>The sleepover and activities will be themed around St George, who is the patron saint of Scouting and of course England.</p>
+    <h1>St. George's Virtual Sleepout</h1>
+    <p>
+      <strong>We’re very excited to announce our next virtual sleepover, which is happening over the weekend of 17<sup>th</sup> and 18<sup>th</sup> April 2021!</strong>
+    </p>
+    <p>
+      We’ll be starting early in the afternoon on Saturday and finishing our programme of planned activities before lunch on the Sunday. We’re inviting all members of Cabot Scout District and our friends from local Girlguiding, including Brownies and Rainbows.
+    </p>
+    <p>
+      The sleepover and activities will be themed around St George, who is the patron saint of Scouting and of course England.
+    </p>
+    <p>
+      <a href="{{ url_for('root.register')}}" class="btn btn-lg btn-primary">Sign up for the camp!</a>
+    </p>
   </div>
+
+  <div class="col-12">
+    <hr />
+  </div>
+
+  <div class="col-12 col-md-6">
+    <h3>St. George Trail</h3>
+    <p>
+      We’ll be encouraging you to create some St. George themed artwork to display on your fence or wall, or in your window for other participants and members of the public to see. For those of you familiar with the <a href="https://www.windowwanderland.com/" target="_blank" rel="nofollow noreferrer">Window Wanderland events</a>, it will be similar to that - but you don’t need to have them lit up (although you can if you wish).
+    </p>
+    <p>
+      Hopefully you’ll be able to plan your Sunday afternoon exercise around looking for the artwork on the trail! We’re looking forward to lots of dragons and knights!
+    </p>
+    <p>
+      Please collect some thin cardboard ahead of the event too (cereal box thickness or a bit less) ready for a special activity on the Saturday!
+    </p>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <h3>Activities</h3>
+    <p>
+      To go with all this we’re planning lots of activities, including cooking over Zoom, craft activities to make your artwork, stargazing (hopefully real stargazing if we have a clear night), a campfire, Sunday morning keep fit and hopefully getting someone in to run an activity for us - details to be confirmed.
+    </p>
+    <p>
+      It will be great fun, but also give you lots of opportunities to complete parts of your Scouting and Girlguiding badges. There’ll also be the chance to catch-up with other young people in your sections!
+    </p>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <h3>Promise Renewal</h3>
+    <p>
+      Those in Scouting will be used to renewing their promises at a St George’s Day Parade or Event and as we won’t be able to do a face-to-face event this year, and couldn’t do one last year, we’re inviting you all - in both Scouting and Girlguiding - to take part in renewing your promise in an interactive event on the Sunday from 11.30am ‘til 12.30pm, just in time for lunch.
+    </p>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <h3>And speaking of badges...</h3>
+    <p>
+      We’ll also be having a badge made for the event which we’ll get sent out to you afterwards! Because everyone loves a badge (except maybe the people doing the sewing…).
+    </p>
+  </div>
+
   {#}<div class="col-12 col-md-4">
     <div>
       <p>
@@ -28,7 +78,7 @@
     <hr />
   </div>
   <div class="col-12 mb-2">
-    <h2>Getting ready for camp</h2>
+    <h3>Getting ready for camp</h3>
     <p>
       We're looking forward to seeing you all on camp! To help you get ready we've put together a welcome pack to explain how the camp will work and when things are happening. Make sure you take a look at your section's kit list and check you've got everything you need!
     </p>
@@ -43,7 +93,7 @@
     <hr />
   </div>
   <div class="col-12 mb-2">
-    <h2>Activity Quick Links</h2>
+    <h3>Activity Quick Links</h3>
   </div>
   {% include "activities/links/combined.jinja" %}
   {#}
