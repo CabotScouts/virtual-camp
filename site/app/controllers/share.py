@@ -23,10 +23,10 @@ from app.utils.auth import allowedFile
 blueprint = Blueprint("share", __name__, url_prefix="/share")
 
 
-@blueprint.route("", methods=["GET"])
-def new():
-    groups = Group.query.all()
-    return render_template("share/new.jinja", groups=groups)
+# @blueprint.route("", methods=["GET"])
+# def new():
+#     groups = Group.query.all()
+#     return render_template("share/new.jinja", groups=groups)
 
 
 @blueprint.route("", methods=["POST"])
