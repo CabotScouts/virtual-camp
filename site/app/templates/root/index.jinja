@@ -1,20 +1,14 @@
 {% extends "layouts/page.jinja" %}
 {% block content %}
 <div class="row">
-  <div class="col-12 col-md-8 align-self-center">
-    <h1>Way Out West!</h1>
-    <p>
-      On Saturday 25<sup>th</sup> to Sunday 26<sup>th</sup> of July, Cabot are holding a virtual camp for all young people in the District!
-    </p>
-
-    <p>
-      Each section is representing a different part of the West Country - <strong class="beavers">Cornwall (Beavers)</strong>, <strong class="cubs">Somerset (Cubs)</strong>, <strong class="scouts">Devon (Scouts)</strong> and <strong class="explorers">Bristol (Explorers and Network)</strong>.
-    </p>
-    <p>
-      Over the weekend each section will have their own programme of activities to take part in, along with some shared events on our live stream for everybody to join in together - have a look at <a href="{{ url_for('root.programme') }}">the camp programme</a> to see what's happening and when.
-    </p>
+  <div class="col-12  align-self-center">
+    <h1>St. Georges Virtual Weekend</h1>
+    <p>We’re very excited to announce our next virtual sleepover, which is happening over the weekend of 17th and 18th April 2021!</p>
+    <p>We’ll be starting early in the afternoon on Saturday and finishing our programme of planned activities before lunch on the Sunday.</p>
+    <p>We’re inviting the Cabot Scout District and our friends from local Girlguiding, including Brownies and Rainbows.</p>
+    <p>The sleepover and activities will be themed around St George, who is the patron saint of Scouting and of course England.</p>
   </div>
-  <div class="col-12 col-md-4">
+  {#}<div class="col-12 col-md-4">
     <div>
       <p>
         <img class="img img-fluid mt-2 mb-2" alt="Way Out West Camp Badge" src="{{ url_for('static', filename='badge-mockup.png')}}" />
@@ -52,5 +46,6 @@
     <h2>Activity Quick Links</h2>
   </div>
   {% include "activities/links/combined.jinja" %}
+  {#}
 </div>
 {% endblock %}
