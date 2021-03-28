@@ -1,8 +1,4 @@
-# Way Out West!
-*Way Out West! ("WOW!")* was a virtual Summer Camp, run by [Cabot District](https://cabotscouts.org.uk) for Beavers, Cubs, Scouts, Explorers, and Network members in the District.
-
-![Way Out West Badge](badge.png)
-
+# Cabot Camp
 The repository is in two parts:
 
 ## site
