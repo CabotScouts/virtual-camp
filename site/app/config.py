@@ -33,7 +33,7 @@ class Config:
         ],
         "img-src": ["*", "data:", "blob:"],
         "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
-        "frame-src": [],
+        "frame-src": ["docs.google.com"],
         "worker-src": [],
         "child-src": [],
         "connect-src": [],
