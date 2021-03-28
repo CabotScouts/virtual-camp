@@ -30,27 +30,16 @@ class Config:
             "'unsafe-inline'",
             "fonts.googleapis.com",
             "fonts.gstatic.com",
-            "api.mapbox.com",
         ],
         "img-src": ["*", "data:", "blob:"],
         "script-src": [
             "'self'",
             "'unsafe-inline'",
-            "cdnjs.cloudflare.com",
-            "js.stripe.com",
-            "api.mapbox.com",
         ],
-        "frame-src": [
-            "js.stripe.com",
-        ],
-        "worker-src": ["blob:"],
-        "child-src": ["blob:"],
-        "connect-src": [
-            "'self'",
-            "*.tiles.mapbox.com",
-            "api.mapbox.com",
-            "events.mapbox.com",
-        ],
+        "frame-src": [],
+        "worker-src": [],
+        "child-src": [],
+        "connect-src": [],
     }
 
     COMPRESS_MIMETYPES = [
