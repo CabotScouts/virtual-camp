@@ -8,7 +8,9 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_json import FlaskJSON
 
-from app.config import loadConfig, setupLogging, enableAutoescape
+from app.config import loadConfig
+from app.utils import enableAutoescape
+from app.utils.logging import setupLogging
 
 talisman = Talisman()
 compress = Compress()
@@ -21,11 +23,11 @@ json = FlaskJSON()
 
 def create_app(config):
     setupLogging()
-    app = Flask(__name__)
-    app.logger.info(" --- Way Out West! --- ")
-    app.logger.info(f"Launching with { config } config")
+    app = Flask(__name__, static_folder="../static")
     loadConfig(config, app)
-    enableAutoescape(app)
+
+    app.logger.info(f" --- { app.config['NAME'] } --- ")
+    app.logger.info(f"Launching with { config } config")
 
     talisman.init_app(app, content_security_policy=app.config["CSP"])
     compress.init_app(app)
@@ -38,4 +40,5 @@ def create_app(config):
     from app.controllers import registerControllers
 
     registerControllers(app)
+    enableAutoescape(app)
     return app
