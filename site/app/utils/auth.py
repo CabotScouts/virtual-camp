@@ -5,6 +5,7 @@ from flask import current_app, redirect, url_for, abort
 from flask_login import current_user
 
 from app.models import Permission
+from app.utils import getFileExtension
 
 
 def isSafeUrl(target, request):
