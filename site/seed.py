@@ -12,6 +12,7 @@ def seed(app):
     with app.app_context():
         app.logger.info("Creating app database...")
 
+        db.drop_all()
         db.create_all()
 
         app.logger.info("...created!")
@@ -27,7 +28,6 @@ def seed(app):
         groups = [
             "1st Bishopston",
             "3rd Bristol",
-            "4th Bristol (1st Southmead)",
             "7th Bristol (Christ Church Clifton)",
             "18th Bristol (1st Redland Green)",
             "26th Bristol (North Cote)",
