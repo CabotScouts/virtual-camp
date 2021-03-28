@@ -1,14 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Sriracha&family=Lato:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto+Slab:wght@400;700;900&display=swap');
 
 // Typography
-$font-family-sans-serif: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-$font-size-base: 1.1rem;
+$font-family-sans-serif: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-size-base: 1rem;
 $line-height-base: 1.6;
 
-$primary: #0583C7;
-$danger: #EF233C;
-$warning: #FFBE0B;
-$dark: #2B2D42;
+$primary: #B30600;
+// $danger: #E48900;
+// // $warning: #F7EA00;
+// $info: #306F91;
+// $success: #BBFF94;
+$dark: #1A1A1A;
 
 $scout-purple: #7413dc;
 $scout-teal: #00a794;
@@ -32,6 +34,7 @@ $table-hover-bg: rgba($primary, 0.1);
 @import "~@fortawesome/fontawesome-free/scss/regular.scss";
 
 body {
+  overscroll-behavior: none;
   background: $primary;
 }
 
@@ -39,50 +42,42 @@ body.dark {
   background: $dark;
 }
 
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-family: 'Roboto Slab', sans-serif;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+h3 {
+  font-size: 1.4rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
 a:hover {
   color: $primary;
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-  font-family: 'Lato', sans-serif;
-  color: $dark;
-  font-weight: 900;
-  margin-bottom: 0.8rem;
-}
-
-h1, .h1 {
-  font-size: 1.9rem;
-}
-
-h2, .h2 {
-  font-size: 1.7rem;
-}
-
-h3, .h3 {
-  font-size: 1.5rem;
-}
-
-h4, .h4 {
-  font-size: 1.3rem;
-}
-
-h5, .h5 {
-  font-size: 1.1rem;
-}
-
-h6, .h6 {
-  font-size: $font-size-base;
-}
-
 header {
   box-shadow: 1px 1px darken($primary, 3%);
+
+  nav a {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1.1rem;
+  }
 }
 
 main.page {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  background: $gray-100;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background: darken($gray-100, 2%);
   box-shadow: 1px 1px darken($primary, 3%);
+
+  a {
+    font-weight: 600;
+  }
 }
 
 main.modal-page {
@@ -101,7 +96,7 @@ main.modal-page {
 footer {
   padding-top: 20px;
   padding-bottom: 10px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-shadow: 1px 1px darken($primary, 4%);
 }
 
@@ -140,8 +135,9 @@ table.t-6 {
 
 .timetable {
   h2, h3, h4, h5 {
-    font-weight: 900;
+    font-weight: 700;
     margin-bottom: 0;
+    color: $dark;
   }
 
   thead th, td {
@@ -188,14 +184,6 @@ table.t-6 {
 }
 
 /* -- Branding -- */
-.wow {
-  font-family: 'Sriracha', cursive;
-}
-
-.navbar .wow {
-  text-shadow: 1px 1px darken($primary, 8%);
-}
-
 .cabot-logo {
   max-width: 175px;
   padding: 15px;
