@@ -54,7 +54,7 @@ def seed(app):
         app.logger.info("...Groups added!")
 
         app.logger.info("Adding livestream message...")
-        m = Message(message="", updated_by=0)
+        m = Message(message="")
         db.session.add(m)
         app.logger.info("...message added")
 
