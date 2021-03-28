@@ -1,8 +1,23 @@
+from urllib.parse import urlparse, urljoin
 from functools import wraps
-from flask import redirect, url_for, abort
+
+from flask import current_app, redirect, url_for, abort
 from flask_login import current_user
 
 from app.models import Permission
+
+
+def isSafeUrl(target, request):
+    ref_url = urlparse(request.host_url)
+    test_url = urlparse(urljoin(request.host_url, target))
+    return test_url.scheme in ("http", "https") and ref_url.netloc == test_url.netloc
+
+
+def allowedFile(filename):
+    return (
+        "." in filename
+        and getFileExtension(filename) in current_app.config["UPLOAD_EXTENSIONS"]
+    )
 
 
 def needs_group(f):
