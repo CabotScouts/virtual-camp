@@ -32,10 +32,7 @@ class Config:
             "fonts.gstatic.com",
         ],
         "img-src": ["*", "data:", "blob:"],
-        "script-src": [
-            "'self'",
-            "'unsafe-inline'",
-        ],
+        "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
         "frame-src": [],
         "worker-src": [],
         "child-src": [],
