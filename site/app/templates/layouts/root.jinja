@@ -11,7 +11,7 @@
     {% else %}<title>St. George's Virtual Sleepover</title>{% endif %}
     {% block headjs %}{% endblock %}
   </head>
-  <body {% if self.bodyclass() %}class="{% block bodyclass %}{% endblock %}"{% endif %}>
+  <body{% if self.bodyclass() %} class="{% block bodyclass %}{% endblock %}"{% endif %}>
     {% block body %}{% endblock %}
     {% block footjs %}{% endblock %}
   </body>
