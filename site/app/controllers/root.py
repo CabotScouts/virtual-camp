@@ -12,6 +12,7 @@ def injectLinks():
         links=[
             ("Home", "The event homepage", url_for("root.index")),
             ("Sign Up", "Sign up for the event", url_for("root.register")),
+            ("St. George's Trail", "St. George's trail", url_for("activities.trail")),
             # (
             #     "Camp Programme",
             #     "The programme for the weekend",
