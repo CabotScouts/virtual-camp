@@ -1,10 +1,10 @@
 {% macro highlight(day, minH, minM, maxH, maxM) %}{% if day == now.day and (now.hour > minH or (now.hour == minH and now.min >= minM)) and (now.hour < maxH or ( now.hour == maxH and now.min < maxM)) %} class="now"{% endif %}{% endmacro %}
 {% extends "layouts/page.jinja" %}
-{% block title %}Camp Programme{% endblock %}
+{% block title %}Programme{% endblock %}
 {% block content %}
 <div class="row">
   <div class="col-12">
-    <h1>Camp Programme</h1>
+    <h1>Programme</h1>
     <p>
       Here is our timetable for the weekend. We'll add links to Youtube videos during and after the event (including for recordings of the Zoom sessions), so keep checking back. Don’t forget, Zoom links for the live sessions will be emailed separately to those who’ve signed up (subject to space for those signing up after 2<sup>nd</sup> April). When you have some down time, or if you finish something early, open the <a href="">activity pack</a>
        and try out our St George’s themed activities!
