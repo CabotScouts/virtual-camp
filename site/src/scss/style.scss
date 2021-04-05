@@ -36,6 +36,7 @@ $table-hover-bg: rgba($primary, 0.1);
 body {
   overscroll-behavior: none;
   background: $primary;
+  line-height: 1.8;
 }
 
 body.dark {
