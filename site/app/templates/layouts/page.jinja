@@ -1,11 +1,11 @@
 {% extends "layouts/root.jinja" %}
 {% block body %}
-{% include "components/header.jinja" %}
+{% include "layouts/header.jinja" %}
 <main class="page">
   <div class="container-md">
     {% include "components/messages.jinja" %}
     {% block content %}{% endblock %}
   </div>
 </main>
-{% include "components/footer.jinja" %}
+{% include "layouts/footer.jinja" %}
 {% endblock %}
