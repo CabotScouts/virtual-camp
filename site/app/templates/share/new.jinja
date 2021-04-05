@@ -7,7 +7,7 @@
   </div>
   <div class="col-12 col-lg-8">
     <p>
-      Show us what you've been getting up to during the camp by sending in your pictures and videos, we'll try to show as many as we can during the weekend in our <a href="{{ url_for('share.gallery') }}" title="Picture and video gallery">gallery</a> and <a href="" target="_blank" rel="nofollow" title="Cabot District Facebook page">Facebook page</a>!
+      Show us what you've been getting up to during the camp by sending in your pictures and videos, we'll try to show as many as we can during the weekend in our <a href="{{ url_for('share.gallery') }}" title="Picture and video gallery">gallery</a>!
     </p>
 
     <form method="POST" action="{{ url_for('share.upload') }}" enctype="multipart/form-data">
@@ -30,12 +30,12 @@
 
       <div class="form-row">
         <div class="form-group col-12">
-          <p>Choose your picture or video</p>
+          <h5>Choose your picture or video</h5>
           <div class="custom-file">
             <input required type="file" class="custom-file-input" id="file" name="file" accept="image/*,video/*">
             <label class="custom-file-label" for="file">Choose file</label>
           </div>
-          <small id="fileHelpBlock" class="form-text text-muted">Maximum file size is 50MB, most common image and video file formats are accepted</small>
+          <small id="fileHelpBlock" class="form-text text-muted">Maximum file size is 50MB, most common image and video file formats are accepted.</small>
         </div>
       </div>
 
@@ -50,7 +50,7 @@
         <div class="form-group col-12">
           <div class="custom-control custom-checkbox">
             <input required type="checkbox" class="custom-control-input" id="check" name="check">
-            <label class="custom-control-label" for="check">I have permission from a parent/guardian to send this picture or video to <span class="wow">Way Out West!</span></label>
+            <label class="custom-control-label" for="check">I have permission from a parent/guardian to send in this picture or video.</label>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
   <div class="col-12 col-lg-4">
     <div class="alert alert-info mb-0">
       <h5 class="alert-heading">Ask before you send!</h5>
-      <p>Anything you send in may be shown during the <span class="wow">Way Out West!</span> live stream, on the camp website's gallery, or on our Facebook page, so only send us pictures and videos you're happy for everybody to see.</p>
+      <p>Anything you send in may be shown in the <a href="{{ url_for('share.gallery') }}" title="Picture and video gallery">gallery</a>, or used by your Scout/Guide Group, so only send us pictures and videos you're happy for everybody to see.</p>
       <p>Check with a parent/guardian before you send any pictures or videos, and make sure you get permission from everybody in your picture or video too!</p>
     </div>
   </div>

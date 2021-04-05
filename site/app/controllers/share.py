@@ -33,7 +33,7 @@ def new():
 def upload():
     if "group" not in request.form:
         flash(
-            "<i class=\"fas fa-exclamation-circle pr-2\"></i>You didn't tell us which Scout Group you're in!",
+            "<i class=\"fas fa-exclamation-circle pr-2\"></i>You didn't tell us which Group you're in!",
             "danger",
         )
         return redirect(request.url)
@@ -77,7 +77,7 @@ def upload():
         db.session.commit()
 
         flash(
-            '<i class="fas fa-paper-plane pr-2"></i>Your picture or video has been saved, keep your eyes peeled for it on the live stream and in our <span class="wow">Way Out West!</span> gallery!',
+            '<i class="fas fa-paper-plane pr-2"></i>Your picture or video has been saved, keep your eyes peeled for it in our gallery!',
             "success",
         )
         return redirect(url_for("share.new"))
