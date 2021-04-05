@@ -12,9 +12,13 @@ def injectLinks():
         links=[
             ("Home", "The event homepage", url_for("root.index")),
             ("Sign Up", "Sign up for the event", url_for("root.register")),
-            ("St. George's Trail", "St. George's trail", url_for("activities.trail")),
             (
-                "Camp Programme",
+                "Activities",
+                "All the activities for the weekend",
+                url_for("root.activities"),
+            ),
+            (
+                "Programme",
                 "The programme for the weekend",
                 url_for("root.programme"),
             ),
@@ -29,17 +33,17 @@ def injectLinks():
 
 @blueprint.route("/")
 def index():
-    return render_template("root/index.jinja")
+    return render_template("pages/index.jinja")
 
 
 @blueprint.route("/organisation")
 def information():
-    return render_template("root/information.jinja")
+    return render_template("pages/information.jinja")
 
 
 @blueprint.route("/register")
 def register():
-    return render_template("root/registration.jinja")
+    return render_template("pages/registration.jinja")
 
 
 @blueprint.route("/programme")
@@ -52,7 +56,7 @@ def programme():
     m = n.minute
 
     return render_template(
-        "root/programme.jinja",
+        "pages/programme.jinja",
         now={
             "day": ds,
             "hour": h,
@@ -61,6 +65,11 @@ def programme():
     )
 
 
-@blueprint.route("/live")
-def live():
-    return render_template("root/live.jinja")
+@blueprint.route("/activities")
+def activities():
+    return render_template("pages/activities.jinja")
+
+
+@blueprint.route("/activities/trail")
+def trail():
+    return render_template("pages/trail.jinja")

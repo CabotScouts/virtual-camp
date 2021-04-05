@@ -10,7 +10,7 @@
        and try out our St George’s themed activities!
     </p>
     <p>
-      Make sure you <a href="">upload your photos</a> during the weekend, especially of your artwork and anything you create, so we can use them in the event on the Sunday and show them off <a href="">in our gallery</a>!
+      Make sure you <a href="">upload your photos</a> during the weekend, especially of your artwork and anything you create, so we can use them in the event on the Sunday and show them off <a href="{{ url_for('share.gallery') }}">in our gallery</a>!
     </p>
   </div>
   <div class="col-12 mt-3">
@@ -28,7 +28,7 @@
         <tbody>
           <tr{{ highlight('sat', 13, 30, 14, 00) }}>
             <td>1:30pm</td>
-            <td colspan="4"><a href="{{ url_for('root.live') }}">Opening Ceremony</a></td>
+            <td colspan="4"><a href="{{ url_for('root.activities') }}">Opening Ceremony</a></td>
           </tr>
 
           <tr{{ highlight('sat', 14, 00, 15, 30) }}>
@@ -97,7 +97,7 @@
         <tbody>
           <tr{{ highlight('sun', 8, 0, 8, 30) }}>
             <td>8am</td>
-            <td colspan="4"><a href="{{ url_for('root.live') }}">Keep Fit</a></td>
+            <td colspan="4"><a href="{{ url_for('root.activities') }}">Keep Fit</a></td>
           </tr>
 
           <tr{{ highlight('sun', 8, 30, 9, 0) }}>
