@@ -6,10 +6,11 @@
   <div class="col-12">
     <h1>Camp Programme</h1>
     <p>
-      This is the full camp programme, have a look at your section's activities to see what you can get up to over the weekend. We've put when we think the best time to try the activities is, but most of them you can do at any point during the camp, or even afterwards if you don't have time!
+      Here is our timetable for the weekend. We'll add links to Youtube videos during and after the event (including for recordings of the Zoom sessions), so keep checking back. Don’t forget, Zoom links for the live sessions will be emailed separately to those who’ve signed up (subject to space for those signing up after 2<sup>nd</sup> April). When you have some down time, or if you finish something early, open the <a href="">activity pack</a>
+       and try out our St George’s themed activities!
     </p>
     <p>
-      There are some live events for everyone to take part in, which will be <a href="{{ url_for('root.live') }}">on our livestream</a>, as well as live activities and zoom calls for all the different sections - make sure to check what time these are below so you don't miss out!
+      Make sure you <a href="">upload your photos</a> during the weekend, especially of your artwork and anything you create, so we can use them in the event on the Sunday and show them off <a href="">in our gallery</a>!
     </p>
   </div>
   <div class="col-12 mt-3">
@@ -18,135 +19,68 @@
         <thead>
           <tr>
             <th><h2>Saturday</h2></th>
-            <th><h3 class="beavers">Beavers</h3></th>
-            <th><h3 class="cubs">Cubs</h3></th>
+            <th><h5 class="beavers">Beavers<br />&amp; Rainbows</h5></th>
+            <th><h5 class="cubs">Cubs<br />&amp; Brownies</h5></th>
             <th><h3 class="scouts">Scouts</h3></th>
-            <th><h5 class="explorers">Explorers<br />and Network</h5></th>
+            <th><h3 class="explorers">Explorers</h3></th>
           </tr>
         </thead>
         <tbody>
-          <tr{{ highlight('sat', 10, 0, 10, 15) }}>
-            <td>10:00am</td>
+          <tr{{ highlight('sat', 13, 30, 14, 00) }}>
+            <td>1:30pm</td>
             <td colspan="4"><a href="{{ url_for('root.live') }}">Opening Ceremony</a></td>
           </tr>
 
-          <tr{{ highlight('sat', 10, 15, 12, 30) }}>
-            <td rowspan="4">Morning Activities</td>
-            <td><a href="{{ url_for('activities.beavers') }}#coat-of-arms">Coat of Arms</a></td>
-            <td><a href="{{ url_for('activities.cubs') }}#coat-of-arms">Coat of Arms</a></td>
-            <td rowspan="4">
-              <a href="{{ url_for('activities.scouts') }}#buckaroo">Ten Tors Buckaroo</a>
-            </td>
-            <td rowspan="4">
-              <a href="{{ url_for('activities.explorers') }}#gert-lush">Gert Lush Challenges</a>
-            </td>
+          <tr{{ highlight('sat', 14, 00, 15, 30) }}>
+            <td>2pm</td>
+            <td colspan="4">Dragon Making</td>
           </tr>
 
-          <tr{{ highlight('sat', 10, 15, 12, 30) }}>
-            <td><a href="{{ url_for('activities.beavers') }}#booklet">Design and Prepare Lunch</a></td>
-            <td><a href="{{ url_for('activities.cubs') }}#booklet">Cheddar Cheese Rolling</a></td>
+          <tr{{ highlight('sat', 15, 30, 16, 30) }}>
+            <td>3:30pm - 4:30pm</td>
+            <td>Astronomy with Beth</td>
+            <td>Build your den or pitch your tent!</td>
+            <td rowspan="2">Build your den or pitch your tent!</td>
+            <td colspan="2" rowspan="2" class="empty"></td>
           </tr>
 
-          <tr{{ highlight('sat', 10, 15, 12, 30) }}>
-            <td>
-              <a href="{{ url_for('activities.beavers') }}#discover-cornwall">Discover Cornwall</a>
-            </td>
-            <td><a href="{{ url_for('activities.cubs') }}#helter-skelter">Helter Skelter Game</a></td>
+          <tr{{ highlight('sat', 16, 30, 17, 30) }}>
+            <td>4:30pm - 5:30pm</td>
+            <td>Build your den or pitch your tent!</td>
+            <td>Astronomy with Beth</td>
           </tr>
 
-          <tr{{ highlight('sat', 10, 15, 12, 30) }}>
-            <td><a href="{{ url_for('activities.beavers') }}#booklet">Prepare your Paper</a></td>
-            <td><a href="{{ url_for('activities.cubs') }}#somerset-sounds">Somerset Sounds</a></td>
+          <tr{{ highlight('sat', 17, 30, 18, 30) }}>
+            <td>5:30pm - 6:30pm</td>
+            <td colspan="4">Family Quiz</td>
           </tr>
 
-          <tr{{ highlight('sat', 10, 30, 11, 00) }}>
-            <td>10:30am - 11:00am</td>
-            <td><a href="{{ url_for('activities.beavers') }}#booklet">Zoom - Welcome to Camp</a></td>
-            <td colspan="3" class="empty"></td>
+          <tr{{ highlight('sat', 18, 30, 19, 30) }}>
+            <td>6:30pm - 7:30pm</td>
+            <td colspan="4">Dinner Time</td>
           </tr>
 
-          <tr{{ highlight('sat', 12, 00, 12, 30) }}>
-            <td>12:00pm - 12:30pm</td>
-            <td><a href="{{ url_for('activities.beavers') }}#booklet">Zoom Catchup</a></td>
-            <td colspan="3" class="empty"></td>
+          <tr{{ highlight('sat', 19, 30, 20, 00) }}>
+            <td>7:30pm - 8pm</td>
+            <td colspan="4">Campfire</td>
           </tr>
 
-          <tr{{ highlight('sat', 12, 30, 14, 00) }}>
-            <td>12:30pm</td>
-            <td colspan="4">Lunch</td>
-          </tr>
-
-          <tr{{ highlight('sat', 13, 00, 14, 00) }}>
-            <td>1:00pm</td>
-            <td colspan="3" class="empty"></td>
-            <td><a href="{{ url_for('activities.explorers') }}#escape-rooms">Escape Rooms</a></td>
-          </tr>
-
-          <tr{{ highlight('sat', 14, 00, 18, 00) }}>
-            <td rowspan="6">Afternoon Activities</td>
-            <td colspan="4"><a href="{{ url_for('activities.index') }}#den-building">Den Building</a></td>
-          </tr>
-
-          <tr{{ highlight('sat', 14, 00, 18, 00) }}>
-            <td rowspan="3">
-              <a href="{{ url_for('activities.beavers') }}#booklet">Scones for Afternoon Tea</a>
-            </td>
-            <td><a href="{{ url_for('activities.cubs') }}#booklet">Mug Cake Making</a></td>
-            <td rowspan="2"><a href="{{ url_for('activities.scouts') }}#orange-race">Orange Race</a></td>
-            <td rowspan="5"{{ highlight('sat', 14, 00, 18, 00) }}>
-              <a href="{{ url_for('activities.explorers') }}#gert-lush">Gert Lush Challenges</a>
-            </td>
-          </tr>
-
-          <tr{{ highlight('sat', 14, 00, 18, 00) }}>
-            <td><a href="{{ url_for('activities.cubs') }}#booklet">Design and Make a Sculpture</a></td>
-          </tr>
-
-          <tr{{ highlight('sat', 14, 00, 18, 00) }}>
-            <td><a href="{{ url_for('activities.cubs') }}#booklet">Chocolate Archeology</a></td>
-            <td rowspan="3"><a href="{{ url_for('activities.scouts') }}#beast">BEAST</a></td>
-          </tr>
-
-          <tr{{ highlight('sat', 14, 00, 18, 00) }}>
-            <td rowspan="2">
-              <a href="{{ url_for('activities.beavers') }}#booklet">Washing Up</a>
-            </td>
-            <td><a href="{{ url_for('activities.cubs') }}#booklet">Flying Dragons</a></td>
-          </tr>
-
-          <tr{{ highlight('sat', 14, 00, 18, 00) }}>
-            <td><a href="{{ url_for('activities.cubs') }}#booklet">Carnival Time</a></td>
-          </tr>
-
-          <tr{{ highlight('sat', 16, 00, 16, 30) }}>
-            <td>4:00pm - 4:30pm</td>
-            <td><a href="{{ url_for('activities.beavers') }}#booklet">Zoom Catchup</a></td>
-            <td colspan="3" class="empty"></td>
-          </tr>
-
-          <tr{{ highlight('sat', 16, 30, 17, 00) }}>
-            <td>4:30pm - 5:00pm</td>
-            <td class="empty"></td>
-            <td><a href="{{ url_for('activities.cubs') }}#booklet">Zoom Catchup</a></td>
+          <tr{{ highlight('sat', 20, 00, 22, 00) }}>
+            <td>8pm - 9pm</td>
+            <td colspan="2" rowspan="2">Down time &amp; bedtime for the younger ones</td>
             <td colspan="2" class="empty"></td>
           </tr>
 
-          <tr{{ highlight('sat', 18, 00, 19, 00) }}>
-            <td>6:00pm</td>
-            <td colspan="4">Dinner</td>
+          <tr{{ highlight('sat', 21, 00, 22, 00) }}>
+            <td>9pm - 10pm</td>
+            <td colspan="2">Stargazing with Beth</td>
           </tr>
 
-          <tr{{ highlight('sat', 19, 00, 20, 30) }}>
-            <td>7:00pm</td>
-            <td colspan="4"><a href="{{ url_for('activities.index') }}#family-quiz">Family Quiz</a></td>
+          <tr{{ highlight('sat', 22, 00, 23, 00) }}>
+            <td>10pm - 11pm</td>
+            <td colspan="4"><em>Down time for Adults</em></td>
           </tr>
 
-          <tr{{ highlight('sat', 20, 30, 21, 30) }}>
-            <td>8:30pm</td>
-            <td colspan="2" class="empty"></td>
-            <td><a href="{{ url_for('activities.scouts') }}#agatha-quiztie">Agatha Quiztie</a></td>
-            <td><a href="{{ url_for('activities.explorers') }}#hunger-games">Hunger Games</a></td>
-          </tr>
         </tbody>
       </table>
 
@@ -154,95 +88,55 @@
         <thead>
           <tr>
             <th><h2>Sunday</h2></th>
-            <th><h3 class="beavers">Beavers</h3></th>
-            <th><h3 class="cubs">Cubs</h3></th>
+            <th><h5 class="beavers">Beavers<br />&amp; Rainbows</h5></th>
+            <th><h5 class="cubs">Cubs<br />&amp; Brownies</h5></th>
             <th><h3 class="scouts">Scouts</h3></th>
-            <th><h5 class="explorers">Explorers<br />and Network</h5></th>
+            <th><h3 class="explorers">Explorers</h3></th>
           </tr>
         </thead>
         <tbody>
+          <tr{{ highlight('sun', 8, 0, 8, 30) }}>
+            <td>8am</td>
+            <td colspan="4"><a href="{{ url_for('root.live') }}">Keep Fit</a></td>
+          </tr>
+
+          <tr{{ highlight('sun', 8, 30, 9, 0) }}>
+            <td>8:30am - 9am</td>
+            <td colspan="2">Zoom Catch-up</td>
+            <td colspan="2">Striking Camp</td>
+          </tr>
+
+          <tr{{ highlight('sun', 8, 30, 9, 0) }}>
+            <td>9am - 9:30am</td>
+            <td colspan="2">Striking Camp</td>
+            <td colspan="2">Zoom Catch-up</td>
+          </tr>
+
           <tr{{ highlight('sun', 9, 30, 10, 0) }}>
-            <td>9:30am</td>
-            <td colspan="4"><a href="{{ url_for('root.live') }}">Wake Up Workout</a></td>
+            <td>9:30am - 10am</td>
+            <td colspan="4">Knight Talk by <em>History into Schools</em></td>
           </tr>
 
-          <tr{{ highlight('sun', 10, 0, 12, 30) }}>
-            <td rowspan="3">Morning Activities</td>
-            <td>
-              <a href="{{ url_for('activities.beavers') }}#bottle-message">Message in a Bottle</a>
-            </td>
-            <td>
-              <a href="{{ url_for('activities.cubs') }}#junk-modelling">Junk Modelling - Glastonbury Tor</a>
-            </td>
-            <td rowspan="2">
-              <a href="{{ url_for('activities.scouts') }}#floaty-boaty">Floaty Boaty</a>
-            </td>
-            <td rowspan="2">
-              <a href="{{ url_for('activities.explorers') }}#gert-lush">Gert Lush Challenges</a>
-            </td>
+          <tr{{ highlight('sun', 10, 30, 11, 30) }}>
+            <td>10:30am - 11:30am</td>
+            <td colspan="4">Cooking on Zoom</td>
           </tr>
 
-          <tr{{ highlight('sun', 10, 0, 12, 30) }}>
-            <td>
-              <a href="{{ url_for('activities.beavers') }}#junk-modelling">Junk Modelling - Castles</a>
-            </td>
-            <td>
-              <a href="{{ url_for('activities.cubs') }}#booklet">
-                Let's get Creative - Postcard Design
-              </a>
-            </td>
+          <tr{{ highlight('sun', 11, 30, 12, 30) }}>
+            <td>11:30am - 12:30pm</td>
+            <td colspan="4"><h5>The Big St. George's Day Event</h5></td>
           </tr>
 
-          <tr{{ highlight('sun', 10, 0, 12, 30) }}>
-            <td colspan="4">Strike Camp</td>
+          <tr{{ highlight('sun', 12, 30, 13, 30) }}>
+            <td>12:30pm - 1:30pm</td>
+            <td colspan="4">Lunch Time</td>
           </tr>
 
-          <tr{{ highlight('sun', 10, 0, 10, 20) }}>
-            <td>10:00am - 10:20am</td>
-            <td><a href="{{ url_for('activities.beavers') }}#booklet">Zoom Catchup</a></td>
-            <td colspan="3" class="empty"></td>
+          <tr{{ highlight('sun', 13, 30, 18, 00) }}>
+            <td>1:30pm onwards</td>
+            <td colspan="4">St. George's Artwork Trail</td>
           </tr>
 
-          {# <tr{{ highlight('sun', 10, 20, 10, 30) }}>
-            <td>10:20am - 10:30am</td>
-            <td colspan="2" class="empty"></td>
-            <td><a href="{{ url_for('activities.scouts') }}#booklet">Zoom Catchup</a></td>
-            <td class="empty"></td>
-          </tr> #}
-
-          <tr{{ highlight('sun', 10, 30, 10, 45) }}>
-            <td>10:30am - 10:45am</td>
-            <td class="empty"></td>
-            <td><a href="{{ url_for('activities.cubs') }}#booklet">Zoom Catchup</a></td>
-            <td colspan="2" class="empty"></td>
-          </tr>
-
-          <tr{{ highlight('sun', 11, 00, 12, 00) }}>
-            <td>11:00am - 12:00pm</td>
-            <td colspan="2" class="empty"></td>
-            <td><a href="{{ url_for('activities.scouts') }}#booklet">Kahoot</a></td>
-            <td class="empty"></td>
-          </tr>
-
-          <tr{{ highlight('sun', 11, 00, 12, 00) }}>
-            <td>11:00am - 12:00pm</td>
-            <td colspan="3" class="empty"></td>
-            <td><a href="{{ url_for('activities.explorers') }}#cabot-council">Cabot Council</a></td>
-          </tr>
-
-          <tr{{ highlight('sun', 12, 30, 14, 0) }}>
-            <td>12:30pm</td>
-            <td colspan="4">Lunch</td>
-          </tr>
-
-          <tr{{ highlight('sun', 14, 00, 16, 0) }}>
-            <td>2:00pm</td>
-            <td colspan="4"><a href="{{ url_for('activities.index') }}#penny-hike">Penny Hike</a></td>
-          </tr>
-          <tr{{ highlight('sun', 16, 0, 16, 30) }}>
-            <td>4:00pm</td>
-            <td colspan="4"><a href="{{ url_for('root.live') }}">Closing Ceremony</a></td>
-          </tr>
         </tbody>
       </table>
     </div>
