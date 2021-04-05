@@ -67,9 +67,9 @@ def programme():
 
 @blueprint.route("/activities")
 def activities():
-    return render_template("pages/activities.jinja")
+    return render_template("pages/activities/index.jinja")
 
 
 @blueprint.route("/activities/trail")
 def trail():
-    return render_template("pages/trail.jinja")
+    return render_template("pages/activities/trail.jinja")
