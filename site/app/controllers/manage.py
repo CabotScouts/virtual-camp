@@ -261,6 +261,10 @@ def regenerateKey():
         flash("You can't regenerate your own key", "danger")
         return redirect(url_for("manage.users"))
 
+    if user.id == User.query.filter_by(username="admin").first().id:
+        flash("You can't change this user's key", "danger")
+        return redirect(url_for("manage.users"))
+
     user.generateKey()
     db.session.add(user)
     db.session.commit()
@@ -283,6 +287,10 @@ def updateRole():
         flash("You can't change your own role", "danger")
         return redirect(url_for("manage.users"))
 
+    if user.id == User.query.filter_by(username="admin").first().id:
+        flash("You can't change this user's role", "danger")
+        return redirect(url_for("manage.users"))
+
     user.role = request.form["role"]
     db.session.add(user)
     db.session.commit()
@@ -302,6 +310,10 @@ def deleteUser():
 
     if user.id == current_user.id:
         flash("You can't delete yourself", "danger")
+        return redirect(url_for("manage.users"))
+
+    if user.id == User.query.filter_by(username="admin").first().id:
+        flash("You can't delete this user", "danger")
         return redirect(url_for("manage.users"))
 
     db.session.delete(user)
