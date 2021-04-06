@@ -13,7 +13,7 @@ module.exports = {
     rules: [
       {
       test: /\.(scss)$/,
-      use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
+      use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
     },
     {
       test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -36,7 +36,6 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      // path: path.resolve(__dirname, 'site/static'),
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
