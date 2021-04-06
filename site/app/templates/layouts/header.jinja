@@ -15,9 +15,9 @@
         </ul>
       </div>
       <div class="d-none d-xl-block">
-        {#}<a class="btn btn-success" href="{{ url_for('share.new') }}" title="Share your images and video with us">
+        <a class="btn btn-success" href="{{ url_for('share.new') }}" title="Share your images and video with us">
           <i class="fas fa-star pr-2"></i>Share what you're doing
-        </a>{#}
+        </a>
         {% if hasGroup() %}
         <a class="btn btn-info ml-2" href="{{ url_for('group.index') }}" title="See what your group members have shared with us">
           <i class="far fa-images pr-1"></i> Group Shares
