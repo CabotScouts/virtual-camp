@@ -50,9 +50,9 @@ def register():
 def programme():
     n = datetime.now()
     dn = n.day
-    s = {25: "sat", 26: "sun"}
+    s = {17: "sat", 18: "sun"}
     ds = s[dn] if dn in s else ""
-    h = n.hour + 1
+    h = n.hour + 1  # +1 if in BST (server in UTC)!
     m = n.minute
 
     return render_template(
