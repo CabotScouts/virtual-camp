@@ -24,7 +24,7 @@
       </p>
     </div>{#}
     <div class="d-xl-none">
-      <a class="btn btn-block btn-success" href="{{ url_for('share.new') }}"><i class="fas fa-star pr-2"></i>Share what you're doing</a>
+      {#}<a class="btn btn-block btn-success" href="{{ url_for('share.new') }}"><i class="fas fa-star pr-2"></i>Share what you're doing</a>{#}
       {% if hasGroup() %}
       <a class="btn btn-block btn-info" href="{{ url_for('group.index') }}"><i class="far fa-images pr-1"></i> Group Shares</a>
       {% elif hasLogin() %}
