@@ -1,72 +1,30 @@
 {% extends "layouts/page.jinja" %}
 {% block content %}
 <div class="row">
-  <div class="col-12  align-self-center">
+  <div class="col-12 col-md-8">
     <h1>St. George's Virtual Sleepover</h1>
     <p>
       <strong>We’re very excited to announce our next virtual sleepover, which is happening over the weekend of 17<sup>th</sup> and 18<sup>th</sup> April 2021!</strong>
     </p>
     <p>
-      We’ll be starting early in the afternoon on Saturday and finishing our programme of planned activities before lunch on the Sunday. We’re inviting all members of Cabot Scout District and our friends from local Girlguiding, including Brownies and Rainbows.
+      Welcome to the St. George’s Virtual Sleepover for Cabot District Scouts and our friends from local Girlguiding, including Rainbows and Brownies. We’re so pleased you can join us!
     </p>
     <p>
-      The sleepover and activities will be themed around St George, who is the patron saint of Scouting and of course England.
+      St. George was chosen by Baden Powell as the patron saint of Scouting and traditionally Scouts renew their promises at a St. George’s Day event. We will be doing this virtually this year, on the Sunday of our sleepover.
     </p>
     <p>
-      <a href="{{ url_for('root.register')}}" class="btn btn-lg btn-primary">Sign up for the camp!</a>
+      We have a <a href="{{ url_for('root.programme') }}">programme for the weekend</a>, but this is just a guide - you can take part in the activities whenever you want – if you can’t join the events live you can watch the recordings afterwards.
     </p>
   </div>
 
-  <div class="col-12">
-    <hr />
-  </div>
-
-  <div class="col-12 col-md-6">
-    <h3>St. George Trail</h3>
-    <p>
-      We’ll be encouraging you to create some St. George themed artwork to display on your fence or wall, or in your window for other participants and members of the public to see. For those of you familiar with the <a href="https://www.windowwanderland.com/" target="_blank" rel="nofollow noreferrer">Window Wanderland events</a>, it will be similar to that - but you don’t need to have them lit up (although you can if you wish).
-    </p>
-    <p>
-      Hopefully you’ll be able to plan your Sunday afternoon exercise around looking for the artwork on the trail! We’re looking forward to lots of dragons and knights!
-    </p>
-    <p>
-      Please collect some thin cardboard ahead of the event too (cereal box thickness or a bit less) ready for a special activity on the Saturday!
-    </p>
-  </div>
-
-  <div class="col-12 col-md-6">
-    <h3>Activities</h3>
-    <p>
-      To go with all this we’re planning lots of activities, including cooking over Zoom, craft activities to make your artwork, stargazing (hopefully real stargazing if we have a clear night), a campfire, Sunday morning keep fit and hopefully getting someone in to run an activity for us - details to be confirmed.
-    </p>
-    <p>
-      It will be great fun, but also give you lots of opportunities to complete parts of your Scouting and Girlguiding badges. There’ll also be the chance to catch-up with other young people in your sections!
-    </p>
-  </div>
-
-  <div class="col-12 col-md-6">
-    <h3>Promise Renewal</h3>
-    <p>
-      Those in Scouting will be used to renewing their promises at a St George’s Day Parade or Event and as we won’t be able to do a face-to-face event this year, and couldn’t do one last year, we’re inviting you all - in both Scouting and Girlguiding - to take part in renewing your promise in an interactive event on the Sunday from 11.30am ‘til 12.30pm, just in time for lunch.
-    </p>
-  </div>
-
-  <div class="col-12 col-md-6">
-    <h3>And speaking of badges...</h3>
-    <p>
-      We’ll also be having a badge made for the event which we’ll get sent out to you afterwards! Because everyone loves a badge (except maybe the people doing the sewing…).
-    </p>
-  </div>
-
-  {#}<div class="col-12 col-md-4">
-    <div>
+  <div class="col-12 col-md-4 align-self-center">
+    {#}<div>
       <p>
         <img class="img img-fluid mt-2 mb-2" alt="Way Out West Camp Badge" src="{{ url_for('static', filename='badge-mockup.png')}}" />
       </p>
-    </div>
+    </div>{#}
     <div class="d-xl-none">
       <a class="btn btn-block btn-success" href="{{ url_for('share.new') }}"><i class="fas fa-star pr-2"></i>Share what you're doing</a>
-      <a class="btn btn-block btn-danger" href="{{ url_for('root.live') }}"><i class="fas fa-video pr-2"></i>Watch live</a>
       {% if hasGroup() %}
       <a class="btn btn-block btn-info" href="{{ url_for('group.index') }}"><i class="far fa-images pr-1"></i> Group Shares</a>
       {% elif hasLogin() %}
@@ -74,28 +32,36 @@
       {% endif %}
     </div>
   </div>
+
   <div class="col-12 mb-2">
     <hr />
   </div>
-  <div class="col-12 mb-2">
-    <h3>Getting ready for camp</h3>
+
+  <div class="col-12 col-lg-8">
     <p>
-      We're looking forward to seeing you all on camp! To help you get ready we've put together a welcome pack to explain how the camp will work and when things are happening. Make sure you take a look at your section's kit list and check you've got everything you need!
+      You can find all the information, including the timetable, links to our YouTube channel, a pack of activities and the joining instructions on this website. All the useful links and downloads will be added to the timetable.
     </p>
     <p>
-      If you haven't already, make sure you <a href="{{ url_for('root.register') }}">sign up for the camp</a> to receive a camp badge and login links for your section's zoom calls.
+      Hopefully, you will also be able to create some St. George's themed artwork to display on your fence or wall or in your window over the weekend. If you can, and haven’t signed up yet, please use the sign-up link above, even if you can’t take part in the rest of the event. Then we can (anonymously!) <a href="{{ url_for('root.trail') }}">add you to our map</a> which we are sharing with the community.
     </p>
     <p>
-      <a href="{{ url_for('static', filename='activities/welcome-pack.pdf')}}" class="btn btn-success" target="_blank">Download the WOW! Welcome Pack</a>
+      Last but definitely not least, we have a badge! These will be produced after the event, for everyone completing our post-event form at the link below (sorry – another form!).  Here you can also let us know which activities you took part in so we can let your leaders know and so that they can tick off parts of some more Scouting or Girlguiding badges for you.
+    </p>
+    <p>
+      <a href="{{ url_for('root.posteventform') }}" class="btn btn-success">Fill in the post-event form</a>
     </p>
   </div>
-  <div class="col-12 mb-2">
-    <hr />
+
+  <div class="col-12 col-lg-4">
+    <div class="alert alert-info mb-0">
+      <h5 class="alert-heading">Sign Up For Camp</h5>
+      <p>
+        If you haven’t signed up yet, you still can, but there’s now limited space left for the live events held over Zoom. We will invite as many people as we can to the calls in separate emails – first come first served, but all those who signed up by 2<sup>nd</sup> April are guaranteed a place.
+      </p>
+      <p>
+        <a href="{{ url_for('root.register')}}" class="btn btn-block btn-info">Sign up</a>
+      </p>
+    </div>
   </div>
-  <div class="col-12 mb-2">
-    <h3>Activity Quick Links</h3>
-  </div>
-  {% include "activities/links/combined.jinja" %}
-  {#}
 </div>
 {% endblock %}
