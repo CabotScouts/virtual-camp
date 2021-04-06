@@ -22,11 +22,11 @@ def injectLinks():
                 "The programme for the weekend",
                 url_for("root.programme"),
             ),
-            (
-                "Gallery",
-                "A gallery of images and videos sent into the event",
-                url_for("share.gallery"),
-            ),
+            # (
+            #     "Gallery",
+            #     "A gallery of images and videos sent into the event",
+            #     url_for("share.gallery"),
+            # ),
         ]
     )
 
