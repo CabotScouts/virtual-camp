@@ -10,27 +10,17 @@
     <p>
       We have <a href="{{ url_for('root.programme') }}">a programme</a> for the weekend, but this is just a guide - you can take part in the activities whenever you want – if you can’t join the events live you can watch the recordings, we'll add them here when they're ready!
     </p>
-
     <hr class="mt-4 mb-4" />
 
-    <h2 id="live">Live Activities</h2>
-    <p>
-      All the live activities are being run through Zoom calls - joining links will be emailed out in advance to everyone who's signed up for the camp.
-    </p>
-    <p>
-      If you can't join any of the activities we'll be adding recordings here afterwards.
-    </p>
-    <hr class="mt-4 mb-4" />
-
-    <h2 id="opening-ceremony">Opening Ceremony</h2>
+    {#}<h2 id="opening-ceremony">Opening Ceremony</h2>
     <p>
       [youtube embed post-event]
     </p>
-    <hr class="mt-4 mb-4" />
+    <hr class="mt-4 mb-4" />{#}
 
     <h2 id="dragon-making">Dragon Making</h2>
     <p>
-      [youtube embed + resources]
+      [resources in the activity pack?]
     </p>
     <hr class="mt-4 mb-4" />
 
@@ -46,11 +36,11 @@
     </p>
     <hr class="mt-4 mb-4" />
 
-    <h2 id="astronomy">Astronomy with Beth</h2>
+    {#}<h2 id="astronomy">Astronomy with Beth</h2>
     <p>
       [youtube embed post-event - any resources for before?]
     </p>
-    <hr class="mt-4 mb-4" />
+    <hr class="mt-4 mb-4" />{#}
 
     <h2 id="family-quiz">Family Quiz</h2>
     <p>
@@ -60,21 +50,21 @@
 
     <h2 id="campfire">Campfire</h2>
     <p>
-      [youtube embed]
+      [youtube embed - make live Saturday afternoon?]
     </p>
     <hr class="mt-4 mb-4" />
 
     <h2 id="keep-fit">Keep Fit</h2>
     <p>
-      [youtube embed]
+      [youtube embed - make live Saturday night?]
     </p>
     <hr class="mt-4 mb-4" />
 
-    <h2>Knight Talk</h2>
+    {#}<h2>Knight Talk</h2>
     <p>
       [youtube embed post-event]
     </p>
-    <hr class="mt-4 mb-4" />
+    <hr class="mt-4 mb-4" />{#}
 
     <h2 id="zoom-cooking">Cooking on Zoom</h2>
     <p>
@@ -108,7 +98,20 @@
         When you have some down time, or if you finish something early, open the activity pack and try out our St. George’s themed activities!
       </p>
       <p>
-        <a href="{{ url_for('static', filename='activities/pack.pdf') }}" class="btn btn-block btn-info">Download the pack</a>
+        <a href="{{ url_for('static', filename='activities/pack.pdf') }}" target="_blank" class="btn btn-block btn-info">Download the pack</a>
+      </p>
+    </div>
+
+    <div class="alert alert-danger">
+      <h5 id="live" class="alert-heading">Live Activities</h5>
+      <p>
+        All the live activities are being run on Zoom - joining links will be emailed out in advance to everyone who's signed up for the camp.
+      </p>
+      <p>
+        If you can't join any of the activities we'll be uploading recordings of them on YouTube afterwards, and linking them here.
+      </p>
+      <p>
+        <a href="https://www.youtube.com/channel/UCPgDtXXXkPsQoKPqVVr_3hg" target="_blank" rel="nofollow noreferrer" class="btn btn-block btn-danger">Cabot Scouts on YouTube</a>
       </p>
     </div>
 
