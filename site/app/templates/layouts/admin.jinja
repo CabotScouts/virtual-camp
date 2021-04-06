@@ -1,6 +1,6 @@
 {% extends "layouts/root.jinja" %}
 {% block body %}
-{% include "components/header.jinja" %}
+{% include "layouts/header.jinja" %}
 <main class="page">
   <div class="container-md">
     <div class="row">
@@ -18,64 +18,64 @@
           {% endif %}
         {% endwith %}
         <div class="list-group">
-          <a href="{{ url_for('manage.index') }}" class="list-group-item">
-            Manage
-          </a>
+          <div class="list-group-item">
+            <a href="{{ url_for('manage.index') }}">Manage</a>
+          </div>
 
           {% if hasManage() %}
-          <a href="{{ url_for('manage.pendingShares') }}" class="list-group-item d-flex justify-content-between align-items-center">
-            Pending Shares
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{{ url_for('manage.pendingShares') }}">Pending Shares</a>
             <span class="badge badge-pill badge-warning text-white ml-2">{{ pendingCount() }}</span>
-          </a>
+          </div>
           {% endif %}
 
           {% if hasCurate() %}
-          <a href="{{ url_for('manage.approvedShares') }}" class="list-group-item d-flex justify-content-between align-items-center">
-            Approved Shares
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{{ url_for('manage.approvedShares') }}">Approved Shares</a>
             <span class="badge badge-pill badge-success ml-2">{{ approvedCount() }}</span>
-          </a>
+          </div>
           {% endif %}
 
           {% if hasAdmin() %}
-          <a href="{{ url_for('manage.flaggedShares') }}" class="list-group-item d-flex justify-content-between align-items-center">
-            Flagged Shares
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{{ url_for('manage.flaggedShares') }}">Flagged Shares</a>
             <span class="badge badge-pill badge-danger ml-2">{{ flaggedCount() }}</span>
-          </a>
+          </div>
           {% endif %}
 
           {% if hasCurate() %}
-          <a href="{{ url_for('manage.featuredShares') }}" class="list-group-item d-flex justify-content-between align-items-center">
-            Featured Shares
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{{ url_for('manage.featuredShares') }}">Featured Shares</a>
             <span class="badge badge-pill badge-info ml-2">{{ featuredCount() }}</span>
-          </a>
+          </div>
           {% endif %}
 
           {% if hasManage() %}
-          <a href="{{ url_for('manage.allShares') }}" class="list-group-item d-flex justify-content-between align-items-center">
-            All Shares
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{{ url_for('manage.allShares') }}">All Shares</a>
             <span class="badge badge-pill badge-primary ml-2">{{ totalCount() }}</span>
-          </a>
+          </div>
           {% endif %}
 
           {% if hasAdmin() %}
-          <a href="{{ url_for('manage.users') }}" class="list-group-item">
-            Users
-          </a>
+          <div class="list-group-item">
+            <a href="{{ url_for('manage.users') }}">Users</a>
+          </div>
           {% endif %}
 
           {% if hasManage() %}
-          <a href="{{ url_for('manage.groups') }}" class="list-group-item">
-            Groups
-          </a>
+          <div class="list-group-item">
+            <a href="{{ url_for('manage.groups') }}">Groups</a>
+          </div>
           {% endif %}
 
-          <a href="{{ url_for('auth.logout') }}" class="list-group-item">
-            Logout
-          </a>
+          <div class="list-group-item ">
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </main>
-{% include "components/footer.jinja" %}
+{% include "layouts/footer.jinja" %}
 {% endblock %}
