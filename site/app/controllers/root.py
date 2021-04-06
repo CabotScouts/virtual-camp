@@ -73,3 +73,8 @@ def activities():
 @blueprint.route("/activities/trail")
 def trail():
     return render_template("pages/activities/trail.jinja")
+
+
+@blueprint.route("/activities/form")
+def posteventform():
+    return render_template("pages/activities/form.jinja")

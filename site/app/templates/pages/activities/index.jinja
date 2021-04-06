@@ -2,17 +2,39 @@
 {% block title %}Activities{% endblock %}
 {% block content %}
 <div class="row">
-  <div class="col-12 mb-2">
+  <div class="col-12">
     <h1>Activities</h1>
-
   </div>
 
-  <div class="col-12 mb-3">
-    <hr />
-  </div>
+  <div class="col-12 col-md-8 mb-2">
+    <p>
+      We have <a href="{{ url_for('root.programme') }}">a programme</a> for the weekend, but this is just a guide - you can take part in the activities whenever you want – if you can’t join the events live you can watch the recordings, we'll add them here when they're ready!
+    </p>
 
-  <div class="col-12 col-md-4">
-    <h3 id="den-building">Den Building</h3>
+    <hr class="mt-4 mb-4" />
+
+    <h2 id="live">Live Activities</h2>
+    <p>
+      All the live activities are being run through Zoom calls - joining links will be emailed out in advance to everyone who's signed up for the camp.
+    </p>
+    <p>
+      If you can't join any of the activities we'll be adding recordings here afterwards.
+    </p>
+    <hr class="mt-4 mb-4" />
+
+    <h2 id="opening-ceremony">Opening Ceremony</h2>
+    <p>
+      [youtube embed post-event]
+    </p>
+    <hr class="mt-4 mb-4" />
+
+    <h2 id="dragon-making">Dragon Making</h2>
+    <p>
+      [youtube embed + resources]
+    </p>
+    <hr class="mt-4 mb-4" />
+
+    <h2 id="den-building">Build your Den</h2>
     <p>
       Make your den to sleep in for the night, inside or out. Try it out. Set up your sleeping bag, pillow, sleeping mat and don’t forget your cuddly toy. Who's is the most comfortable - take a snap!
     </p>
@@ -22,43 +44,83 @@
     <p>
       <a href="https://www.dezeen.com/2020/05/15/ikea-forts-children-lockdown-coronavirus/" target="_blank" rel="noopener" class="btn btn-success">Den Building Blueprints</a>
     </p>
-  </div>
+    <hr class="mt-4 mb-4" />
 
-  <div class="col-12 col-md-4">
-    <h3 id="family-quiz">Family Quiz</h3>
+    <h2 id="astronomy">Astronomy with Beth</h2>
     <p>
-      Join the whole camp for a fun family quiz on Saturday evening! Grab a pen and paper and join us on the livestream from 7pm.
+      [youtube embed post-event - any resources for before?]
     </p>
-  </div>
+    <hr class="mt-4 mb-4" />
 
-  <div class="col-12 col-md-4">
-    <h3 id="penny-hike">Penny Hike</h3>
+    <h2 id="family-quiz">Family Quiz</h2>
     <p>
-      <ul>
-        <li>
-          Make sure you are wearing your group necker.
-        </li>
-        <li>
-          Wear clothes suitable for the weather and shoes that are comfy to walk in.
-        </li>
-        <li>
-          Walk with at least one other adult from your house.
-        </li>
-        <li>
-          Take a coin with you.
-        </li>
-        <li>
-          Whenever you reach a road/path junction, toss your coin - if it's heads turn left, if it's tails turn right.
-        </li>
-        <li>
-          Say hello to any other scouts you see on your hike.
-        </li>
-        <li>
-          Remember to be back home in time for the closing ceremony at 4pm!
-        </li>
-      </ul>
+      [Kahoot links?]
     </p>
+    <hr class="mt-4 mb-4" />
+
+    <h2 id="campfire">Campfire</h2>
+    <p>
+      [youtube embed]
+    </p>
+    <hr class="mt-4 mb-4" />
+
+    <h2 id="keep-fit">Keep Fit</h2>
+    <p>
+      [youtube embed]
+    </p>
+    <hr class="mt-4 mb-4" />
+
+    <h2>Knight Talk</h2>
+    <p>
+      [youtube embed post-event]
+    </p>
+    <hr class="mt-4 mb-4" />
+
+    <h2 id="zoom-cooking">Cooking on Zoom</h2>
+    <p>
+      [youtube embed post-event]
+    </p>
+    <hr class="mt-4 mb-4" />
+
+    <h2 id="big-event">The Big St. George's Day Event</h2>
+    <p>
+      <a href="#live">Join us on Zoom</a> for a special St. George's Day event.
+    </p>
+    <p>
+      Try and join wearing your uniform if you can!
+    </p>
+    <hr class="mt-4 mb-4" />
+
+    <h2 id="artwork-trail">St. George's Artwork Trail</h2>
+    <p>
+      St. George is the patron saint of Scouting as well as England, and on the weekend of 17<sup>th</sup>/18<sup>th</sup> April, members of Scouting and Girlguiding, mostly in the north west Bristol area will be displaying St. George themed artwork in windows, or on walls and fences for you to find, as part of their virtual sleepover and St. George's Day celebrations.
+    </p>
+    <p>
+      <a href="{{ url_for('root.trail') }}" class="btn btn-success">Follow the Artwork Trail</a>
+    </p>
+
   </div>
 
+  <div class="col-md-4">
+    <div class="alert alert-info">
+      <h5 class="alert-heading">Activity Pack</h5>
+      <p>
+        When you have some down time, or if you finish something early, open the activity pack and try out our St. George’s themed activities!
+      </p>
+      <p>
+        <a href="{{ url_for('static', filename='activities/pack.pdf') }}" class="btn btn-block btn-info">Download the pack</a>
+      </p>
+    </div>
+
+    <div class="alert alert-success mb-0">
+      <h5 class="alert-heading">Submit Your Activities</h5>
+      <p>
+        Tell us which activities you took part in and we can let your leaders know so they can tick off parts of some more Scouting or Girlguiding badges for you.
+      </p>
+      <p>
+        <a href="{{ url_for('root.posteventform') }}" class="btn btn-block btn-success">Fill in the activity form</a>
+      </p>
+    </div>
+  </div>
 </div>
 {% endblock %}

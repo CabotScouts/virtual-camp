@@ -6,11 +6,11 @@
   <div class="col-12">
     <h1>Programme</h1>
     <p>
-      Here is our timetable for the weekend. We'll add links to Youtube videos during and after the event (including for recordings of the Zoom sessions), so keep checking back. Don’t forget, Zoom links for the live sessions will be emailed separately to those who’ve signed up (subject to space for those signing up after 2<sup>nd</sup> April). When you have some down time, or if you finish something early, open the <a href="">activity pack</a>
+      Here is our timetable for the weekend. We'll add links to Youtube videos during and after the event (including for recordings of the Zoom sessions), so keep checking back. Don’t forget, Zoom links for the live sessions will be emailed separately to those who’ve signed up (subject to space for those signing up after 2<sup>nd</sup> April). When you have some down time, or if you finish something early, open the <a href="{{ url_for('root.activities') }}#activity-pack">activity pack</a>
        and try out our St George’s themed activities!
     </p>
     <p>
-      Make sure you <a href="">upload your photos</a> during the weekend, especially of your artwork and anything you create, so we can use them in the event on the Sunday and show them off <a href="{{ url_for('share.gallery') }}">in our gallery</a>!
+      Make sure you <a href="{{ url_for('share.new') }}">upload your photos</a> during the weekend, especially of your artwork and anything you create, so we can use them in the event on the Sunday and show them off <a href="{{ url_for('share.gallery') }}">in our gallery</a>!
     </p>
   </div>
   <div class="col-12 mt-3">
@@ -28,31 +28,41 @@
         <tbody>
           <tr{{ highlight('sat', 13, 30, 14, 00) }}>
             <td>1:30pm</td>
-            <td colspan="4"><a href="{{ url_for('root.activities') }}">Opening Ceremony</a></td>
+            <td colspan="4"><a href="{{ url_for('root.activities') }}#live">Opening Ceremony</a></td>
           </tr>
 
           <tr{{ highlight('sat', 14, 00, 15, 30) }}>
-            <td>2pm</td>
-            <td colspan="4">Dragon Making</td>
+            <td rowspan="2"><em>During the Afternoon</em></td>
+            <td colspan="3"><a href="{{ url_for('root.activities') }}#dragon-making">Dragon Making</a></td>
+            <td rowspan="2" class="empty"></td>
+          </tr>
+
+          <tr{{ highlight('sat', 15, 30, 17, 30)}}>
+            <td colspan="3"><a href="{{ url_for('root.activities') }}#den-building">Build your den or pitch your tent!</a></td>
+          </tr>
+
+          <tr{{ highlight('sat', 15, 0, 17, 0)}}>
+            <td>3pm - 5pm</td>
+            <td colspan="3" class="empty"></td>
+            <td><a href="{{ url_for('root.activities') }}#live">Sleep Pod Construction &amp; Zoom Chat</a></td>
           </tr>
 
           <tr{{ highlight('sat', 15, 30, 16, 30) }}>
             <td>3:30pm - 4:30pm</td>
-            <td>Astronomy with Beth</td>
-            <td>Build your den or pitch your tent!</td>
-            <td rowspan="2">Build your den or pitch your tent!</td>
-            <td colspan="2" rowspan="2" class="empty"></td>
+            <td><a href="{{ url_for('root.activities') }}#live">Astronomy with Beth</a></td>
+            <td colspan="3" class="empty"></td>
           </tr>
 
           <tr{{ highlight('sat', 16, 30, 17, 30) }}>
             <td>4:30pm - 5:30pm</td>
-            <td>Build your den or pitch your tent!</td>
-            <td>Astronomy with Beth</td>
+            <td class="empty"></td>
+            <td><a href="{{ url_for('root.activities') }}#live">Astronomy with Beth</a></td>
+            <td colspan="2" class="empty"></td>
           </tr>
 
           <tr{{ highlight('sat', 17, 30, 18, 30) }}>
             <td>5:30pm - 6:30pm</td>
-            <td colspan="4">Family Quiz</td>
+            <td colspan="4"><a href="{{ url_for('root.activities') }}#family-quiz">Family Quiz</a></td>
           </tr>
 
           <tr{{ highlight('sat', 18, 30, 19, 30) }}>
@@ -62,24 +72,25 @@
 
           <tr{{ highlight('sat', 19, 30, 20, 00) }}>
             <td>7:30pm - 8pm</td>
-            <td colspan="4">Campfire</td>
+            <td colspan="4"><a href="{{ url_for('root.activities') }}#campfire">Campfire</a></td>
           </tr>
 
-          <tr{{ highlight('sat', 20, 00, 22, 00) }}>
+          {#}<tr{{ highlight('sat', 20, 00, 22, 00) }}>
             <td>8pm - 9pm</td>
-            <td colspan="2" rowspan="2">Down time &amp; bedtime for the younger ones</td>
+            <td colspan="2" rowspan="2">Down time and bedtime for the younger ones</td>
             <td colspan="2" class="empty"></td>
-          </tr>
+          </tr>{#}
 
           <tr{{ highlight('sat', 21, 00, 22, 00) }}>
             <td>9pm - 10pm</td>
-            <td colspan="2">Stargazing with Beth</td>
+            <td colspan="2" class="empty"></td>
+            <td colspan="2"><a href="{{ url_for('root.activities') }}#live">Stargazing with Beth</a></td>
           </tr>
 
-          <tr{{ highlight('sat', 22, 00, 23, 00) }}>
+          {#}<tr{{ highlight('sat', 22, 00, 23, 00) }}>
             <td>10pm - 11pm</td>
-            <td colspan="4"><em>Down time for Adults</em></td>
-          </tr>
+            <td colspan="4">Down time for Adults</td>
+          </tr>{#}
 
         </tbody>
       </table>
@@ -96,35 +107,45 @@
         </thead>
         <tbody>
           <tr{{ highlight('sun', 8, 0, 8, 30) }}>
-            <td>8am</td>
-            <td colspan="4"><a href="{{ url_for('root.activities') }}">Keep Fit</a></td>
+            <td>8am - 8:30am</td>
+            <td colspan="4"><a href="{{ url_for('root.activities') }}#keep-fit">Keep Fit</a></td>
+          </tr>
+
+          <tr{{ highlight('sun', 8, 30, 11, 30) }}>
+            <td rowspan="2"><em>During the Morning</em></td>
+            <td colspan="4">Striking Camp</td>
+          </tr>
+
+          <tr>
+            <td colspan="4">Find your uniform, ready for later!</td>
           </tr>
 
           <tr{{ highlight('sun', 8, 30, 9, 0) }}>
             <td>8:30am - 9am</td>
-            <td colspan="2">Zoom Catch-up</td>
-            <td colspan="2">Striking Camp</td>
+            <td colspan="2"><a href="{{ url_for('root.activities') }}#live">Zoom Catch-up</a></td>
+            <td class="empty"></td>
+            <td rowspan="2"><a href="{{ url_for('root.activities') }}#live">Zoom Breakfast</a></td>
           </tr>
 
           <tr{{ highlight('sun', 8, 30, 9, 0) }}>
             <td>9am - 9:30am</td>
-            <td colspan="2">Striking Camp</td>
-            <td colspan="2">Zoom Catch-up</td>
+            <td colspan="2" class="empty"></td>
+            <td><a href="{{ url_for('root.activities') }}#live">Zoom Catch-up</a></td>
           </tr>
 
           <tr{{ highlight('sun', 9, 30, 10, 0) }}>
             <td>9:30am - 10am</td>
-            <td colspan="4">Knight Talk by <em>History into Schools</em></td>
+            <td colspan="4"><a href="{{ url_for('root.activities') }}#live">Knight Talk by <em>History into Schools</em></a></td>
           </tr>
 
           <tr{{ highlight('sun', 10, 30, 11, 30) }}>
             <td>10:30am - 11:30am</td>
-            <td colspan="4">Cooking on Zoom</td>
+            <td colspan="4"><a href="{{ url_for('root.activities') }}#zoom-cooking">Cooking on Zoom</a></td>
           </tr>
 
           <tr{{ highlight('sun', 11, 30, 12, 30) }}>
             <td>11:30am - 12:30pm</td>
-            <td colspan="4"><h5>The Big St. George's Day Event</h5></td>
+            <td colspan="4"><a href="{{ url_for('root.activities') }}#big-event">The Big St. George's Day Event</a></td>
           </tr>
 
           <tr{{ highlight('sun', 12, 30, 13, 30) }}>
@@ -134,7 +155,7 @@
 
           <tr{{ highlight('sun', 13, 30, 18, 00) }}>
             <td>1:30pm onwards</td>
-            <td colspan="4">St. George's Artwork Trail</td>
+            <td colspan="4"><a href="{{ url_for('root.trail') }}">St. George's Artwork Trail</a></td>
           </tr>
 
         </tbody>
