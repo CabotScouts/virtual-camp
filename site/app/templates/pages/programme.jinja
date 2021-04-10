@@ -37,7 +37,7 @@
             <td rowspan="2" class="empty"></td>
           </tr>
 
-          <tr{{ highlight('sat', 15, 30, 17, 30)}}>
+          <tr{{ highlight('sat', 14, 00, 15, 30)}}>
             <td colspan="3"><a href="{{ url_for('root.activities') }}#den-building">Build your den or pitch your tent!</a></td>
           </tr>
 
@@ -116,7 +116,7 @@
             <td colspan="4">Striking Camp</td>
           </tr>
 
-          <tr>
+          <tr{{ highlight('sun', 8, 30, 11, 30) }}>
             <td colspan="4">Find your uniform, ready for later!</td>
           </tr>
 
@@ -124,10 +124,10 @@
             <td>8:30am - 9am</td>
             <td colspan="2"><a href="{{ url_for('root.activities') }}#live">Zoom Catch-up</a></td>
             <td class="empty"></td>
-            <td rowspan="2"><a href="{{ url_for('root.activities') }}#live">Zoom Breakfast</a></td>
+            <td rowspan="2"{{ highlight('sun', 8, 30, 9, 30) }}><a href="{{ url_for('root.activities') }}#live">Zoom Breakfast</a></td>
           </tr>
 
-          <tr{{ highlight('sun', 8, 30, 9, 0) }}>
+          <tr{{ highlight('sun', 9, 0, 9, 30) }}>
             <td>9am - 9:30am</td>
             <td colspan="2" class="empty"></td>
             <td><a href="{{ url_for('root.activities') }}#live">Zoom Catch-up</a></td>
