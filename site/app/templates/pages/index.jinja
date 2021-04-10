@@ -18,11 +18,11 @@
   </div>
 
   <div class="col-12 col-md-4 align-self-center">
-    {#}<div>
+    <div>
       <p>
-        <img class="img img-fluid mt-2 mb-2" alt="Way Out West Camp Badge" src="{{ url_for('static', filename='badge-mockup.png')}}" />
+        <img class="img img-fluid mt-2 mb-2" alt="Way Out West Camp Badge" src="{{ url_for('static', filename='badge.png')}}" />
       </p>
-    </div>{#}
+    </div>
     <div class="d-xl-none">
       {#}<a class="btn btn-block btn-success" href="{{ url_for('share.new') }}"><i class="fas fa-star pr-2"></i>Share what you're doing</a>{#}
       {% if hasGroup() %}
