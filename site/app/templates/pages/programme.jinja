@@ -44,7 +44,7 @@
           <tr{{ highlight('sat', 15, 0, 17, 0)}}>
             <td>3pm - 5pm</td>
             <td colspan="3" class="empty"></td>
-            <td><a href="{{ url_for('root.activities') }}#live">Sleep Pod Construction &amp; Zoom Chat</a></td>
+            <td><a href="{{ url_for('root.activities') }}#shelter">Shelter Construction &amp; Zoom Chat</a></td>
           </tr>
 
           <tr{{ highlight('sat', 15, 30, 16, 30) }}>
@@ -91,6 +91,11 @@
             <td>10pm - 11pm</td>
             <td colspan="4">Down time for Adults</td>
           </tr>{#}
+          <tr{{ highlight('sat', 22, 0, 23, 59) }}{{ highlight('sun', 0, 0, 8, 0) }}>
+            <td><em>Overnight</em></td>
+            <td colspan="3" class="empty"></td>
+            <td><a href="{{ url_for('root.activities') }}#sleep-out">Sleep Pod Sleep Out</a></td>
+          </tr>
 
         </tbody>
       </table>
