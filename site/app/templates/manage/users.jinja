@@ -40,7 +40,7 @@
       <tr>
         <td class="align-middle">{{ user.name }}</td>
         <td class="align-middle">
-          {% if user.id == current_user.id %}
+          {% if user.id == current_user.id or user.id == 1 %}
           {{ user.role|roleName }}
           {% else %}
           <form method="POST" action="{{ url_for('manage.updateRole') }}">
@@ -73,7 +73,7 @@
           {% endif %}
         </td>
         <td class="align-middle">
-          {% if user.id != current_user.id %}
+          {% if user.id != current_user.id and user.id != 1 %}
           <div class="form-row">
             <div class="col-6">
               <form method="POST" action="{{ url_for('manage.regenerateKey') }}">
