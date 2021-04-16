@@ -24,7 +24,7 @@
       </p>
     </div>
     <div class="d-xl-none">
-      {#}<a class="btn btn-block btn-success" href="{{ url_for('share.new') }}"><i class="fas fa-star pr-2"></i>Share what you're doing</a>{#}
+      <a class="btn btn-block btn-success" href="{{ url_for('share.new') }}"><i class="fas fa-star pr-2"></i>Share what you're doing</a>
       {% if hasGroup() %}
       <a class="btn btn-block btn-info" href="{{ url_for('group.index') }}"><i class="far fa-images pr-1"></i> Group Shares</a>
       {% elif hasLogin() %}
@@ -53,13 +53,13 @@
   </div>
 
   <div class="col-12 col-lg-4">
-    <div class="alert alert-info mb-0">
-      <h5 class="alert-heading">Sign Up For Camp</h5>
+    <div class="alert alert-info">
+      <h5 class="alert-heading">Activity Pack</h5>
       <p>
-        If you haven’t signed up yet, you still can, but there’s now limited space left for the live events held over Zoom. We will invite as many people as we can to the calls in separate emails – first come first served, but all those who signed up by 2<sup>nd</sup> April are guaranteed a place.
+        When you have some down time, or if you finish something early, open the activity pack and try out our St. George’s themed activities!
       </p>
       <p>
-        <a href="{{ url_for('root.register')}}" class="btn btn-block btn-info">Sign up</a>
+        <a href="{{ url_for('static', filename='activities/pack.pdf') }}" target="_blank" class="btn btn-block btn-info">Download the pack</a>
       </p>
     </div>
   </div>
